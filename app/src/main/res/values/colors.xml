@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6495ED</color>
+    <color name="colorPrimaryDark">#6495ED</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="text_color_black">#333333</color>
+    <color name="btn_blue">#4d7bfe</color>
+    <color name="btn_b">#983E2D</color>
+    <color name="btn_z">#BB8E58</color>
+
+    <color name="line_color">#EEEEEE</color>
+    <color name="white">#ffffff</color>
+    <color name="hint_text_color">#DDDDDD</color>
+    <color name="reg_choose_color">#999999</color>
+
+    <color name="firebrick">#B22222</color><!--火砖色 -->
+    <color name="darkmagenta">#8B008B</color><!--暗洋红 -->
+    <color name="royalblue">#4169E1</color><!--皇家蓝 -->
+    <color name="lightskyblue">#87CEFA</color><!--亮天蓝色 -->
+    <color name="mediumslateblue">#7B68EE</color>
+    <color name="index_bg_color">#F1F1F6</color>
+
+    <color name="bg_black">#3A3A3A</color>
+    <color name="route_view_text_color_gray">#a4a4a4</color>
+    <color name="rate_text_color">#FA5555</color>
+    <color name="coupon_color_more">#ffc000</color>
+
+</resources>

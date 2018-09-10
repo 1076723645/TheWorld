@@ -1,0 +1,11 @@
+<litepal>
+    <dbname value="the_world"/>
+    <version value="1"/>
+
+    <list>
+        <mapping class="com.smallcat.theworld.model.db.Equip"/>
+        <mapping class="com.smallcat.theworld.model.db.Exclusive"/>
+        <mapping class="com.smallcat.theworld.model.db.Boss"/>
+        <mapping class="com.smallcat.theworld.model.db.Material"/>
+    </list>
+</litepal>
