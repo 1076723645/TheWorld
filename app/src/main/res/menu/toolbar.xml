@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/settings"
+        android:title="设置"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/update"
+        android:title="检查更新"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/tips"
+        android:title="提示"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menu_search"
+        android:orderInCategory="100"
+        android:title="搜索"
+        android:icon="@drawable/search"
+        app:showAsAction="ifRoom"/>
+</menu>

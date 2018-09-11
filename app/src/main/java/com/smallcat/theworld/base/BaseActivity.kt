@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.smallcat.theworld.R
+import com.smallcat.theworld.utils.sharedPref
 import me.yokeyword.fragmentation.SupportActivity
 
 /**
@@ -24,6 +25,7 @@ abstract class BaseActivity : SupportActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initTheme()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         fitSystem()
         setContentView(layoutId)
@@ -38,7 +40,14 @@ abstract class BaseActivity : SupportActivity() {
         super.onDestroy()
     }
 
-    protected open fun fitSystem() {
+    protected open fun fitSystem() {}
+
+    protected open fun initTheme() {
+        if (!sharedPref.isBlack){
+            setTheme(R.style.AppTheme)
+        }else{
+            setTheme(R.style.BlackTheme)
+        }
     }
 
     protected abstract fun initData()
