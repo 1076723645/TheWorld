@@ -126,6 +126,7 @@ class SplashActivity : AppCompatActivity() {
                             material.materialName = sheet.getCell(0, i).contents
                             material.access = sheet.getCell(1, i).contents
                             material.effect = sheet.getCell(2, i).contents
+                            material.dataList = AppUtils.needEquip(material.access)
                             material.type = types[k]
                             material.imgId = imgArray[i - 1]
                             material.save()

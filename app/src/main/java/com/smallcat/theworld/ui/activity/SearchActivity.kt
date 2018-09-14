@@ -1,13 +1,14 @@
 package com.smallcat.theworld.ui.activity
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import com.smallcat.theworld.R
+import com.smallcat.theworld.base.BaseActivity
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+    override val layoutId: Int
+        get() = R.layout.activity_search
+
+    override fun initData() {
     }
+
 }

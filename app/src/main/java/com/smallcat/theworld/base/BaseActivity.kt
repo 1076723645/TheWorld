@@ -57,6 +57,10 @@ abstract class BaseActivity : SupportActivity() {
         finish()
     }
 
+    protected fun startActivity(cls: Class<*>) {
+        startActivity(getIntent(cls))
+    }
+
     protected fun showLoading() {
         if (loadingDialog == null) {
             loadingDialog = Dialog(mContext, R.style.CustomDialog)

@@ -10,7 +10,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/AppTheme.Splash">
@@ -22,7 +23,10 @@
         </activity>
         <activity android:name=".ui.activity.EquipDetailActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
-        <activity android:name=".ui.activity.SearchActivity"></activity>
+        <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.CareerIntroduceActivity" />
+        <activity android:name=".ui.activity.BossDetailActivity" />
+        <activity android:name=".ui.activity.OtherDetailActivity"></activity>
     </application>
 
 </manifest>

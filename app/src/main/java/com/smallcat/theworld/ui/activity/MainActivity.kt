@@ -2,6 +2,7 @@ package com.smallcat.theworld.ui.activity
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Handler
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -10,16 +11,26 @@ import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.ui.fragment.BossFragment
 import com.smallcat.theworld.ui.fragment.EquipFragment
+import com.smallcat.theworld.ui.fragment.ExclusiveFragment
+import com.smallcat.theworld.ui.fragment.MaterialFragment
+import com.smallcat.theworld.utils.SystemFit
 import com.smallcat.theworld.utils.ToastUtil
 import com.smallcat.theworld.utils.sharedPref
 import me.yokeyword.fragmentation.ISupportFragment
+import android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+import android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+
+
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,30 +49,62 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private var show = EQUIP
     private var hide = EQUIP
     private var lastBackTime = 0L
+    private var checkItemId = 0
 
     override val layoutId: Int
         get() = R.layout.activity_main
 
+    override fun fitSystem() {
+        SystemFit.fitSystem(this)
+    }
+
     override fun initData() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        mDrawerLayout = findViewById(R.id.drawer_layout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
-        val actionbar = supportActionBar
-        if (actionbar != null) {
-            actionbar.setDisplayHomeAsUpEnabled(true)
-            actionbar.setHomeAsUpIndicator(R.drawable.toolbar_head)
-        }
         navView.setNavigationItemSelectedListener(this)
+        //navView.itemIconTintList = null
         navView.setCheckedItem(R.id.nav_equip)
+
+        mDrawerLayout = findViewById(R.id.drawer_layout)
+        mDrawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener{
+            override fun onDrawerStateChanged(newState: Int) {
+            }
+
+            override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                when(checkItemId){
+                    R.id.nav_equip -> show = EQUIP
+                    R.id.nav_career -> show = EXCLUSIVE
+                    R.id.nav_boss -> show = BOSS
+                    R.id.nav_task -> show = MATERIAL
+                    R.id.nav_setting -> startActivity(SettingActivity::class.java)
+                    R.id.nav_tips -> showDialog()
+                    R.id.nav_update -> ToastUtil.shortShow("更新不可用")
+                }
+                showHideFragment(getFragment(show), getFragment(hide))
+                hide = show
+            }
+
+            override fun onDrawerOpened(drawerView: View) {
+            }
+
+        })
+        val ivHead = findViewById<ImageView>(R.id.iv_logo)
+        ivHead.setOnClickListener { mDrawerLayout.openDrawer(GravityCompat.START) }
+
+        val ivSearch = findViewById<ImageView>(R.id.iv_search)
+        ivSearch.setOnClickListener { startActivity(SearchActivity::class.java) }
+
+        fg1 = EquipFragment()
+        fg2 = ExclusiveFragment()
+        fg3 = BossFragment()
+        fg4 = MaterialFragment()
+        loadMultipleRootFragment(R.id.fragment_container, 0, fg1, fg2, fg3, fg4)
+
         if (sharedPref.isShow){
             Handler().postDelayed({ showDialog() }, 500)
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.toolbar, menu)
-        return true
     }
 
     private fun showDialog() {
@@ -82,32 +125,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         btnIndex.setOnClickListener { dialog.dismiss() }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.settings -> {
-                val intent = Intent(this, SettingActivity::class.java)
-                startActivity(intent)
-            }
-            R.id.menu_search -> {
-                val intent1 = Intent(this, SearchActivity::class.java)
-                startActivity(intent1)
-            }
-            android.R.id.home -> mDrawerLayout.openDrawer(GravityCompat.START)
-            R.id.tips -> showDialog()
-            R.id.update -> Toast.makeText(this, "更新不可用", Toast.LENGTH_SHORT).show()
-        }
-        return true
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_equip -> show = EQUIP
-            R.id.nav_career -> show = EXCLUSIVE
-            R.id.nav_boss -> show = BOSS
-            R.id.nav_task -> show = MATERIAL
-        }
-        showHideFragment(getFragment(show), getFragment(hide))
-        hide = show
+        checkItemId = item.itemId
         mDrawerLayout.closeDrawers()
         return true
     }

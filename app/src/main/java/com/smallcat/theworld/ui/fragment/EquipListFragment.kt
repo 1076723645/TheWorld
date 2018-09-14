@@ -22,9 +22,9 @@ class EquipListFragment : BaseFragment() {
         fun newInstance(position: Int): EquipListFragment {
             val bundle = Bundle()
             bundle.putInt("index", position)
-            val weatherFragment = EquipListFragment()
-            weatherFragment.arguments = bundle
-            return weatherFragment
+            val fragment = EquipListFragment()
+            fragment.arguments = bundle
+            return fragment
         }
     }
 
@@ -42,12 +42,8 @@ class EquipListFragment : BaseFragment() {
         rv_equip.adapter = adapter
         adapter.setOnItemClickListener { _, _, position ->
             val intent = Intent(mContext, EquipDetailActivity::class.java)
-            intent.putExtra("name", mEquipList[position].id)
-            mContext.startActivity(intent)
+            intent.putExtra("id", mEquipList[position].id.toString())
+            startActivity(intent)
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        //super.onSaveInstanceState(outState);
     }
 }
