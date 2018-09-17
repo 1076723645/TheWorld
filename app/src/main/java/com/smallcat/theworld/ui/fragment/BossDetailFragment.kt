@@ -21,7 +21,7 @@ class BossDetailFragment : BaseFragment() {
     override val layoutId: Int
         get() = R.layout.fragment_boss_detail
 
-    override fun initData() {
+    override fun lazyLoading() {
         val data = arguments?.getString("index")
         tv_skill.text = data
     }

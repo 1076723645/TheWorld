@@ -31,15 +31,9 @@ open class SharedPref {
         get() = prefs.getBoolean(KEY_BLACK, false)
         set(token) = prefs.edit().putBoolean(KEY_BLACK, token).apply()
 
-    //用户类型： 企业员工，企业管理员
-    var userType: String
-        get() = prefs.getString(KEY_TYPE, "")
+    var versionName: String
+        get() = prefs.getString(KEY_TYPE, "2.0")
         set(value) = prefs.edit().putString(KEY_TYPE, value).apply()
-
-    // 认证状态（1未认证2认证中3认证通过 4认证驳回）
-    var userConfirmState: Int
-        get() = prefs.getInt(KEY_STATUE, 0)
-        set(value) = prefs.edit().putInt(KEY_STATUE, value).apply()
 
     var isShow: Boolean
         get() = prefs.getBoolean(KEY_PHONE, true)

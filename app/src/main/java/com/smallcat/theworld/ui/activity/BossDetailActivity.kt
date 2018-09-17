@@ -1,5 +1,8 @@
 package com.smallcat.theworld.ui.activity
 
+import android.app.ActivityOptions
+import android.content.Intent
+import android.os.Build
 import android.support.v4.view.ViewPager
 import android.view.View
 import butterknife.OnClick
@@ -14,6 +17,8 @@ import org.litepal.crud.DataSupport
 
 class BossDetailActivity : BaseActivity() {
 
+    private var imgId: Int = 0
+
     override val layoutId: Int
         get() = R.layout.activity_boss_detail
 
@@ -21,6 +26,7 @@ class BossDetailActivity : BaseActivity() {
         val bossId = intent.getStringExtra("id")
         val bossList = DataSupport.where("id = ?", bossId).find(Boss::class.java)
         val boss = bossList[0]
+        imgId = boss.imgId
 
         tv_title.text = boss.bossName
         tv_call.text = boss.call
@@ -30,7 +36,7 @@ class BossDetailActivity : BaseActivity() {
         tv_distance.text = boss.distance
         tv_need_lv.text = boss.level
         tv_resistance.text = boss.resistance
-        iv_boss.setImageResource(boss.imgId)
+        iv_boss.setImageResource(imgId)
 
         val data = ArrayList<String>()
         data.add(boss.drop!!)
@@ -59,6 +65,11 @@ class BossDetailActivity : BaseActivity() {
     fun onClick(v: View) {
         when (v.id) {
             R.id.iv_back -> onBackPressed()
+            R.id.iv_boss -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val intent = Intent(this, ImageShowActivity::class.java)
+                intent.putExtra("img", imgId)
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this, iv_boss, "watch").toBundle())
+            }
         }
     }
 }

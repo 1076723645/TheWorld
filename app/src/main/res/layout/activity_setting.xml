@@ -121,7 +121,7 @@
                     android:layout_marginEnd="24dp"
                     android:textColor="@color/route_view_text_color_gray"
                     android:textSize="13sp"
-                    android:text="1.5"/>
+                    android:text="2.0"/>
             </LinearLayout>
             <View
                 android:layout_width="wrap_content"
@@ -225,7 +225,7 @@
                     android:layout_marginEnd="24dp"
                     android:textSize="13sp"
                     android:textColor="@color/route_view_text_color_gray"
-                    android:text="AliceG,孽"/>
+                    android:text="白衣沐血"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -277,7 +277,7 @@
                     android:layout_marginEnd="24dp"
                     android:textSize="13sp"
                     android:textColor="@color/route_view_text_color_gray"
-                    android:text="萌剑，晚安"/>
+                    android:text="飞舞拉面"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"

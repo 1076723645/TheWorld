@@ -21,7 +21,8 @@
             android:icon="@drawable/ic_material"/>
     </group>
 
-    <group android:id="@+id/g2">
+    <group android:id="@+id/g2"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_setting"
             android:title="设置" />

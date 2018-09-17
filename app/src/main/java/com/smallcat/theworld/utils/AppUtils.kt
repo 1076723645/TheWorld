@@ -3,6 +3,10 @@ package com.smallcat.theworld.utils
 import android.content.Context
 import android.content.pm.PackageManager
 import com.smallcat.theworld.R
+import com.smallcat.theworld.model.db.Boss
+import com.smallcat.theworld.model.db.Equip
+import com.smallcat.theworld.model.db.Exclusive
+import org.litepal.crud.DataSupport
 import java.util.*
 
 /**
@@ -31,6 +35,12 @@ object AppUtils{
             qul.contains("冥灵传世") -> R.color.btn_b
             else -> R.color.firebrick
         }
+    }
+
+    fun clean(){
+        DataSupport.deleteAll(Equip::class.java)
+        DataSupport.deleteAll(Boss::class.java)
+        DataSupport.deleteAll(Exclusive::class.java)
     }
 
     fun needEquip(s: String): List<String> {

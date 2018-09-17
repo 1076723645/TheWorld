@@ -18,6 +18,11 @@ class SplashActivity : AppCompatActivity() {
     private val tabTitles = arrayOf("武器", "头盔", "衣服", "饰品", "翅膀")
     private val types = arrayOf("boss", "材料", "徽章", "其他")
 
+    private val exclusiveList = ArrayList<Exclusive>()
+    private val equipList = ArrayList<Equip>()
+    private val bossList = ArrayList<Boss>()
+    private val materialList = ArrayList<Material>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         SystemFit.fitSystem(this)
@@ -25,7 +30,17 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun initData(){
-        if (sharedPref.isFirst) {
+        val oldVersion = sharedPref.versionName
+        val newVersion = AppUtils.getVerName(this)
+        var isFirst = sharedPref.isFirst
+
+        if (oldVersion != newVersion){
+            isFirst = true
+            AppUtils.clean()
+            sharedPref.versionName = newVersion
+        }
+
+        if (isFirst) {
             //第一次打开
             getData()
         } else {
@@ -33,16 +48,16 @@ class SplashActivity : AppCompatActivity() {
                 val intent = Intent(this@SplashActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }, 1000)
+            }, 500)
         }
     }
 
     private fun getData(){
         Observable.create<String> {
-            it.onNext("初始化数据中，请耐心等待QAQ")
             getXlsData(FILE_NAME)
-            it.onNext("即将成功，请耐心等待QAQ")
             getXlsData(FILE_NAME2)
+            it.onNext("初始化数据中，请耐心等待QAQ")
+            saveData()
             it.onComplete()
         }
                 .subscribeOn(Schedulers.io())
@@ -53,6 +68,10 @@ class SplashActivity : AppCompatActivity() {
                     ToastUtil.shortShow("加载错误,请重试")
                 },{
                     sharedPref.isFirst = false
+                    equipList.clear()
+                    bossList.clear()
+                    materialList.clear()
+                    exclusiveList.clear()
                     val intent = Intent(this@SplashActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -80,7 +99,7 @@ class SplashActivity : AppCompatActivity() {
                             exclusive.profession = sheet.getCell(1, i).contents
                             exclusive.skill = sheet.getCell(2, i).contents
                             exclusive.effect = sheet.getCell(3, i).contents
-                            exclusive.save()
+                            exclusiveList.add(exclusive)
                         }
                     } else {
                         val imgArray: IntArray = PictureRes.getImgList(tabTitles[k])
@@ -96,8 +115,7 @@ class SplashActivity : AppCompatActivity() {
                             equip.exclusive = sheet.getCell(5, i).contents
                             equip.type = tabTitles[k]
                             equip.imgId = imgArray[i - 1]
-                            equip.save()
-
+                            equipList.add(equip)
                         }
                     }
                 }else{
@@ -117,7 +135,7 @@ class SplashActivity : AppCompatActivity() {
                             boss.drop = sheet.getCell(9, i).contents
                             boss.call = sheet.getCell(10, i).contents
                             boss.imgId = imgArray[i - 1]
-                            boss.save()
+                            bossList.add(boss)
                         }
                     } else {
                         val imgArray: IntArray = PictureRes.getImgList(types[k])
@@ -129,7 +147,7 @@ class SplashActivity : AppCompatActivity() {
                             material.dataList = AppUtils.needEquip(material.access)
                             material.type = types[k]
                             material.imgId = imgArray[i - 1]
-                            material.save()
+                            materialList.add(material)
                         }
                     }
                 }
@@ -139,5 +157,23 @@ class SplashActivity : AppCompatActivity() {
             LogUtil.e("read error=$e")
         }
 
+    }
+
+    private fun saveData(){
+        val length0 = exclusiveList.size
+        val length1 = bossList.size
+        val length2 = materialList.size
+        for (i in equipList.indices){
+            equipList[i].save()
+            if (i < length0){
+                exclusiveList[i].save()
+            }
+            if (i < length1){
+                bossList[i].save()
+            }
+            if (i < length2){
+                materialList[i].save()
+            }
+        }
     }
 }

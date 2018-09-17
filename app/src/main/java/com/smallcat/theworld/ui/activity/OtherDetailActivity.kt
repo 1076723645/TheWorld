@@ -13,6 +13,7 @@ import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Material
 import com.smallcat.theworld.ui.adapter.AccessAdapter
+import com.smallcat.theworld.utils.AppUtils
 import org.litepal.crud.DataSupport
 import java.util.ArrayList
 
@@ -48,13 +49,20 @@ class OtherDetailActivity : BaseActivity() {
     override fun initData() {
         val mMaterialId = intent.getStringExtra("id")
         val equips = DataSupport.where("id = ?", mMaterialId).find(Material::class.java)
+
         ivBack.setOnClickListener { onBackPressed() }
         fab.setOnClickListener { startActivityFinish(MainActivity::class.java) }
+
         material = equips[0]
         mMaterialName = material.materialName
         tvName.text = mMaterialName
+
+        val color = resources.getColor(R.color.firebrick)
         tvType.text = material.type
+        tvType.setTextColor(color)
         tvLevel.text = "Lv 0"
+        tvLevel.setTextColor(color)
+
         ivEquip.setImageResource(material.imgId)
         if (material.effect.isNotEmpty()){
             tvProperty.visibility = View.VISIBLE
