@@ -38,7 +38,7 @@ class SettingActivity : BaseActivity() {
         }
         iv_back.setOnClickListener {
             if (isChangeTheme){
-                App.getInstance().finishAllActivity()
+                App.getInstance().finishAllActivityExcept(this)
                 startActivity(MainActivity::class.java)
             }
             finish()

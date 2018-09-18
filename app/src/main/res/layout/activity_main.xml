@@ -68,6 +68,7 @@
         android:fitsSystemWindows="true"
         android:layout_gravity="start"
         android:background="@color/white"
+        app:insetForeground="#00000000"
         app:menu="@menu/nav_menu"
         app:headerLayout="@layout/nav_header"/>
 </android.support.v4.widget.DrawerLayout>

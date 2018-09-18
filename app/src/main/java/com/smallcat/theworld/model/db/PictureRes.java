@@ -60,7 +60,7 @@ public class PictureRes {
             , R.drawable.nail_27, R.drawable.nail_28, R.drawable.nail_29, R.drawable.nail_30, R.drawable.nail_31, R.drawable.nail_32, R.drawable.nail_33
             , R.drawable.nail_34, R.drawable.nail_35, R.drawable.nail_36, R.drawable.nail_37, R.drawable.nail_38, R.drawable.nail_39, R.drawable.nail_40
             , R.drawable.nail_41, R.drawable.nail_42, R.drawable.nail_43, R.drawable.nail_44, R.drawable.nail_45, R.drawable.nail_46, R.drawable.nail_47
-            , R.drawable.nail_48, R.drawable.nail_49, R.drawable.nail_49};
+            , R.drawable.nail_48, R.drawable.nail_50, R.drawable.nail_49};
 
     private static final int[] imgList4 = new int[]{R.drawable.ship_1, R.drawable.ship_2, R.drawable.ship_3, R.drawable.ship_4, R.drawable.ship_5
             , R.drawable.ship_6, R.drawable.ship_7, R.drawable.ship_8, R.drawable.ship_9, R.drawable.ship_10, R.drawable.ship_11, R.drawable.ship_12
@@ -70,7 +70,7 @@ public class PictureRes {
             , R.drawable.ship_34, R.drawable.ship_35, R.drawable.ship_36, R.drawable.ship_37, R.drawable.ship_38, R.drawable.ship_39, R.drawable.ship_40
             , R.drawable.ship_41, R.drawable.ship_42, R.drawable.ship_43, R.drawable.ship_44, R.drawable.ship_45, R.drawable.ship_46, R.drawable.ship_47
             , R.drawable.ship_48, R.drawable.ship_49, R.drawable.ship_50, R.drawable.ship_51, R.drawable.ship_52, R.drawable.ship_53, R.drawable.ship_54
-            , R.drawable.ship_55, R.drawable.ship_56, R.drawable.ship_57, R.drawable.ship_58, R.drawable.ship_59, R.drawable.ship_59};
+            , R.drawable.ship_55, R.drawable.ship_56, R.drawable.ship_57, R.drawable.ship_58, R.drawable.ship_60, R.drawable.ship_59};
 
     private static final int[] imgList = new int[]{R.drawable.chib_1, R.drawable.chib_2, R.drawable.chib_3, R.drawable.chib_4, R.drawable.chib_5
             , R.drawable.chib_6, R.drawable.chib_7, R.drawable.chib_8, R.drawable.chib_9, R.drawable.chib_10, R.drawable.chib_11, R.drawable.chib_11

@@ -10,14 +10,10 @@ import com.smallcat.theworld.App
  */
 open class SharedPref {
     private val KEY_BLACK = "isBlack"
-    val KEY_FIRST= "isFirst"
-    val KEY_PHONE= "usePhone"
-    var KEY_TYPE = "userType"
+    private val KEY_FIRST= "isFirst"
+    private val KEY_PHONE= "usePhone"
+    private var KEY_VERSION = "versionName"
     var KEY_HISTORY = "history"
-    var KEY_STATUE = "useState"
-    var KEY_USE = "useInfo"
-    var KEY_INDEX = "indexData"
-    var KEY_SERVICE = "serviceData"
 
     private val prefs: SharedPreferences = App.getInstance().applicationContext.getSharedPreferences(SharedPref.PREFS_KEY, Context.MODE_PRIVATE)
 
@@ -32,8 +28,8 @@ open class SharedPref {
         set(token) = prefs.edit().putBoolean(KEY_BLACK, token).apply()
 
     var versionName: String
-        get() = prefs.getString(KEY_TYPE, "2.0")
-        set(value) = prefs.edit().putString(KEY_TYPE, value).apply()
+        get() = prefs.getString(KEY_VERSION, "2.0")
+        set(value) = prefs.edit().putString(KEY_VERSION, value).apply()
 
     var isShow: Boolean
         get() = prefs.getBoolean(KEY_PHONE, true)

@@ -1,13 +1,12 @@
 package com.smallcat.theworld.model.db
 
-import org.litepal.crud.DataSupport
 import java.util.ArrayList
 
 /**
  * @author smallCut
  * @date 2018/9/10
  */
-class Material : DataSupport() {
+class Material{
 
     var id: Int = 0
     var materialName: String = ""//材料名

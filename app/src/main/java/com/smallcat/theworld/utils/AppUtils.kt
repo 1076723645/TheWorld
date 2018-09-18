@@ -1,11 +1,17 @@
 package com.smallcat.theworld.utils
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
 import com.smallcat.theworld.R
 import com.smallcat.theworld.model.db.Boss
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Exclusive
+import com.smallcat.theworld.ui.activity.BossDetailActivity
+import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import org.litepal.crud.DataSupport
 import java.util.*
 
@@ -36,6 +42,38 @@ object AppUtils{
             else -> R.color.firebrick
         }
     }
+
+    fun getEmptyView(mContext:Context, s: String) : View {
+        val view = LayoutInflater.from(mContext).inflate(R.layout.empty_view, null)
+        val text = view.findViewById<TextView>(R.id.tv_none)
+        text.text = s
+        return view
+    }
+
+    fun goEquipDetailActivity(mContext:Context, name: String) : Boolean{
+        val data = DataSupport.select("id")
+                .where("equipName = ?", name).find(Equip::class.java)
+        if (data.isNotEmpty()){
+            val intent = Intent(mContext, EquipDetailActivity::class.java)
+            intent.putExtra("id", data[0].id.toString())
+            mContext.startActivity(intent)
+            return true
+        }
+        return false
+    }
+
+    fun goBossDetailActivity(mContext:Context, name: String) : Boolean{
+        val data = DataSupport.select("id")
+                .where("bossName like ?", "%$name%").find(Boss::class.java)
+        if (data.isNotEmpty()){
+            val intent = Intent(mContext, BossDetailActivity::class.java)
+            intent.putExtra("id", data[0].id.toString())
+            mContext.startActivity(intent)
+            return true
+        }
+        return false
+    }
+
 
     fun clean(){
         DataSupport.deleteAll(Equip::class.java)

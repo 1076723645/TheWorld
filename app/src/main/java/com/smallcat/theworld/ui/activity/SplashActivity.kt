@@ -10,6 +10,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import jxl.Workbook
+import org.litepal.crud.DataSupport
 
 class SplashActivity : AppCompatActivity() {
 
@@ -21,7 +22,6 @@ class SplashActivity : AppCompatActivity() {
     private val exclusiveList = ArrayList<Exclusive>()
     private val equipList = ArrayList<Equip>()
     private val bossList = ArrayList<Boss>()
-    private val materialList = ArrayList<Material>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +54,9 @@ class SplashActivity : AppCompatActivity() {
 
     private fun getData(){
         Observable.create<String> {
+            it.onNext("初始化数据中，请耐心等待QAQ")
             getXlsData(FILE_NAME)
             getXlsData(FILE_NAME2)
-            it.onNext("初始化数据中，请耐心等待QAQ")
             saveData()
             it.onComplete()
         }
@@ -70,7 +70,6 @@ class SplashActivity : AppCompatActivity() {
                     sharedPref.isFirst = false
                     equipList.clear()
                     bossList.clear()
-                    materialList.clear()
                     exclusiveList.clear()
                     val intent = Intent(this@SplashActivity, MainActivity::class.java)
                     startActivity(intent)
@@ -140,14 +139,15 @@ class SplashActivity : AppCompatActivity() {
                     } else {
                         val imgArray: IntArray = PictureRes.getImgList(types[k])
                         for (i in 1 until sheetRows) {//从第二行开始读
-                            val material = Material()
-                            material.materialName = sheet.getCell(0, i).contents
-                            material.access = sheet.getCell(1, i).contents
-                            material.effect = sheet.getCell(2, i).contents
-                            material.dataList = AppUtils.needEquip(material.access)
-                            material.type = types[k]
-                            material.imgId = imgArray[i - 1]
-                            materialList.add(material)
+                            val equip = Equip()
+                            equip.equipName = (sheet.getCell(0, i).contents)
+                            val access = sheet.getCell(1, i).contents
+                            equip.access = access
+                            equip.equipmentProperty = (sheet.getCell(2, i).contents)
+                            equip.dataList = AppUtils.needEquip(access)
+                            equip.type = types[k]
+                            equip.imgId = imgArray[i - 1]
+                            equipList.add(equip)
                         }
                     }
                 }
@@ -156,24 +156,11 @@ class SplashActivity : AppCompatActivity() {
         } catch (e: Exception) {
             LogUtil.e("read error=$e")
         }
-
     }
 
     private fun saveData(){
-        val length0 = exclusiveList.size
-        val length1 = bossList.size
-        val length2 = materialList.size
-        for (i in equipList.indices){
-            equipList[i].save()
-            if (i < length0){
-                exclusiveList[i].save()
-            }
-            if (i < length1){
-                bossList[i].save()
-            }
-            if (i < length2){
-                materialList[i].save()
-            }
-        }
+        DataSupport.saveAll(equipList)
+        DataSupport.saveAll(exclusiveList)
+        DataSupport.saveAll(bossList)
     }
 }

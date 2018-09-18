@@ -1,6 +1,8 @@
 package com.smallcat.theworld.ui.activity
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.content.Intent
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -43,6 +45,7 @@ class EquipDetailActivity : BaseActivity() {
     private var dataList = ArrayList<String>()//装备数据
     private var advanceList = ArrayList<String>()//进阶
     private var exclusiveList: List<String> = ArrayList()//专属
+    private var dialog: Dialog? = null
 
     override val layoutId: Int
         get() = R.layout.activity_equip_detail
@@ -68,16 +71,62 @@ class EquipDetailActivity : BaseActivity() {
         tvType.setTextColor(color)
         tvQul.text = quality
         tvQul.setTextColor(color)
-        tvProperty.text = equip.equipmentProperty
-        tvProperty.visibility = View.VISIBLE
+        if (equip.equipmentProperty.isNotEmpty()){
+            tvProperty.text = equip.equipmentProperty
+            tvProperty.visibility = View.VISIBLE
+        }
 
         /**
          * 合成装备
          */
         dataList = equip.dataList as ArrayList<String>
         val accessAdapter = AccessAdapter(dataList)
-        accessAdapter.setOnItemClickListener { adapter, view, position ->
+        accessAdapter.setOnItemClickListener { _, _, position ->
+            var name = dataList[position]
+            /**
+             * 2选1的情况
+             */
+            if (name.contains("/")){
+                dialog = Dialog(mContext, R.style.CustomDialog)
+                val v1 = LayoutInflater.from(mContext).inflate(R.layout.dialog_choose, null)
+                dialog!!.setContentView(v1)
+                dialog!!.setCanceledOnTouchOutside(true)
+                dialog!!.setCancelable(true)
+                val tvName1 = v1.findViewById<TextView>(R.id.tv_name)
+                val tvName2 = v1.findViewById<TextView>(R.id.tv_name2)
+                val choose1 = name.substring(0, name.indexOf('/'))
+                val choose2 = name.substring(name.indexOf('/') + 1)
+                tvName1.text = choose1
+                tvName2.text = choose2
+                tvName1.setOnClickListener{
+                    AppUtils.goEquipDetailActivity(mContext, choose1)
+                    dialog!!.dismiss()
+                }
+                tvName2.setOnClickListener{
+                    AppUtils.goEquipDetailActivity(mContext, choose2)
+                    dialog!!.dismiss()
+                }
+                dialog!!.show()
+                return@setOnItemClickListener
+            }
+            /**
+             * boss掉落的情况
+             */
+            if (name.contains("[")){
+                name = name.substring(0, name.indexOf('['))
+                if (name == "远古法爷" || name == "巨人法爷") {
+                    name = "法爷"
+                }
+                AppUtils.goBossDetailActivity(mContext, name)
+                return@setOnItemClickListener
+            }
 
+            /**
+             * 正常情况
+             */
+            if (!AppUtils.goEquipDetailActivity(mContext, name)){
+                AppUtils.goBossDetailActivity(mContext, name)
+            }
         }
         rvAccess.isFocusable = false
         rvAccess.isNestedScrollingEnabled = false
@@ -88,21 +137,14 @@ class EquipDetailActivity : BaseActivity() {
          */
         advanceList = equip.advanceList as ArrayList<String>
         if (advanceList.size == 0){
-            if (equipName == "真·卡拉菲米亚,神圣之剑" || equipName == "真·埃克斯米亚,不洁之刃") {
-                advanceList.add("斩神,亚特兰蒂斯的毁灭圣剑")
-            }
-            if (equipName == "深渊指环" || equipName == "圣光之戒") {
-                advanceList.add("德瑞诺斯,深渊领主的戒指")
-            }
-            if (equipName == "冬日的玫瑰" || equipName == "极冰之牙") {
-                advanceList.add("霜枭之戒")
-            }
             val equipList = DataSupport.where("access like ?", "%$equipName%").find(Equip::class.java)
             for (i in 0 until equipList.size) {
                 val mEquip = equipList[i]
                 val mList = mEquip.dataList
                 for (j in 0 until mList.size) {
                     if (mList[j] == equipName) {
+                        advanceList.add(mEquip.equipName)
+                    }else if (mList[j].contains("/") && mList[j].contains(equipName)){
                         advanceList.add(mEquip.equipName)
                     }
                 }
@@ -118,8 +160,8 @@ class EquipDetailActivity : BaseActivity() {
                 val inflatedView = viewStub.inflate()
                 val advanceView = inflatedView.findViewById<RecyclerView>(R.id.rv_advance)
                 val adapter = AccessAdapter(advanceList)
-                adapter.setOnItemClickListener{ adapter, view, position ->
-
+                adapter.setOnItemClickListener{ _, _, position ->
+                    AppUtils.goEquipDetailActivity(mContext, advanceList[position])
                 }
                 advanceView.adapter = adapter
                 advanceView.isFocusable = false
@@ -142,10 +184,21 @@ class EquipDetailActivity : BaseActivity() {
                     val exclusive = exclusiveList[i]
                     tvExclusive.text = exclusive
                     tvExclusive.setOnClickListener {
+                        val name = exclusive.substring(0, exclusive.indexOf('-'))
+                        val intent = Intent(this@EquipDetailActivity, CareerIntroduceActivity::class.java)
+                        intent.putExtra("name", name)
+                        startActivity(intent)
                     }
                     layout.addView(v)
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        if (dialog != null && dialog!!.isShowing){
+            dialog!!.dismiss()
+        }
+        super.onDestroy()
     }
 }

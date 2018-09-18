@@ -10,15 +10,13 @@ import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.BindView
 import com.smallcat.theworld.R
-import com.smallcat.theworld.base.BaseFragment
 import com.smallcat.theworld.model.bean.ImgData
 import com.smallcat.theworld.ui.activity.CareerIntroduceActivity
 import com.smallcat.theworld.ui.adapter.ExclusiveAdapter
 import com.smallcat.theworld.utils.DataUtil
 import me.yokeyword.fragmentation.SupportFragment
-import java.util.ArrayList
+import java.util.*
 
 /**
  * @author Administrator

@@ -27,8 +27,7 @@
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.CareerIntroduceActivity" />
         <activity android:name=".ui.activity.BossDetailActivity" />
-        <activity android:name=".ui.activity.OtherDetailActivity" />
-        <activity android:name=".ui.activity.ImageShowActivity"></activity>
+        <activity android:name=".ui.activity.ImageShowActivity"/>
     </application>
 
 </manifest>
