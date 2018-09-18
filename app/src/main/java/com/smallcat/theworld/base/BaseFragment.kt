@@ -21,7 +21,6 @@ abstract class BaseFragment : SupportFragment() {
     protected lateinit var mActivity: Activity
     protected lateinit var mContext: Context
     private var mUnbind: Unbinder? = null
-    private var loadingDialog: Dialog? = null
 
     protected abstract val layoutId: Int
 
@@ -44,7 +43,7 @@ abstract class BaseFragment : SupportFragment() {
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
         super.onLazyInitView(savedInstanceState)
-        initData()
+        lazyLoading()
     }
 
     override fun onDestroyView() {
@@ -52,21 +51,8 @@ abstract class BaseFragment : SupportFragment() {
         super.onDestroyView()
     }
 
-    protected fun showLoading() {
-        if (loadingDialog == null) {
-            loadingDialog = Dialog(mContext, R.style.CustomDialog)
-        }
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_loading, null)
-        loadingDialog!!.setContentView(view)
-        loadingDialog!!.setCanceledOnTouchOutside(true)
-        loadingDialog!!.setCancelable(true)
-        loadingDialog!!.show()
-    }
-
-    protected fun dismissLoading() {
-        if (loadingDialog != null)
-            loadingDialog!!.dismiss()
-    }
-
-    protected abstract fun initData()
+    /**
+     * 懒加载
+     */
+    protected abstract fun lazyLoading()
 }

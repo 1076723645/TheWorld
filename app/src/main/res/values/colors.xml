@@ -25,5 +25,6 @@
     <color name="route_view_text_color_gray">#a4a4a4</color>
     <color name="rate_text_color">#FA5555</color>
     <color name="coupon_color_more">#ffc000</color>
+    <color name="color_default">#fafafa</color>
 
 </resources>

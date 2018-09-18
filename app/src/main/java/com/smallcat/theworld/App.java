@@ -96,6 +96,16 @@ public class App extends Application {
         }
     }
 
+    public void finishAllActivityExcept(Activity activity) {
+        if (mActivists != null) {
+            for (Activity act : mActivists) {
+                if (act != activity) {
+                    act.finish();
+                }
+            }
+        }
+    }
+
     public void finishActivity(Activity activity) {
         if (mActivists == null || mActivists.isEmpty()) {
             return;
