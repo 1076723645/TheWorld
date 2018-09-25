@@ -2,28 +2,27 @@ package com.smallcat.theworld.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.smallcat.theworld.R
+import com.smallcat.theworld.base.RxFragment
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import com.smallcat.theworld.ui.adapter.EquipAdapter
-import me.yokeyword.fragmentation.SupportFragment
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.litepal.crud.DataSupport
 
 
 /**
  * @author Administrator
  */
-class EquipListFragment : SupportFragment() {
+class EquipListFragment : RxFragment() {
 
     private lateinit var mEquipList: List<Equip>
+    private lateinit var adapter: EquipAdapter
     private val tabTitles = arrayOf("武器", "头盔", "衣服", "饰品", "翅膀")
     private var flag: Int = 0
-    private var mView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,34 +32,36 @@ class EquipListFragment : SupportFragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        mView = inflater.inflate(R.layout.fragment_equip_list, container, false)
-        initData()
-        return mView
-    }
+    override val layoutId: Int
+        get() = R.layout.fragment_equip_list
 
-    private fun initData() {
-        val type = tabTitles[flag]
-        mEquipList = DataSupport.where("type = ?", type).find(Equip::class.java)
-    }
-
-    override fun onLazyInitView(savedInstanceState: Bundle?) {
-        super.onLazyInitView(savedInstanceState)
-        val recyclerView = mView!!.findViewById<RecyclerView>(R.id.rv_equip)
-        val adapter = EquipAdapter(mEquipList)
-        adapter.setOnItemClickListener(object : EquipAdapter.OnItemClickListener{
-            override fun onItemClick(adapter: EquipAdapter, view: View, position: Int) {
-                val intent = Intent(context, EquipDetailActivity::class.java)
-                intent.putExtra("id", mEquipList[position].id.toString())
-                startActivity(intent)
-            }
-        })
+    override fun initView() {
+        val recyclerView = mView.findViewById<RecyclerView>(R.id.rv_equip)
+        adapter = EquipAdapter(null)
+        adapter.setOnItemClickListener { _, _, position ->
+            val intent = Intent(context, EquipDetailActivity::class.java)
+            intent.putExtra("id", mEquipList[position].id.toString())
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
+        loadData()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        //super.onSaveInstanceState(outState);
+    private fun loadData(){
+        addSubscribe(Observable.create<List<Equip>> {
+            val list  = DataSupport.where("type = ?", tabTitles[flag]).find(Equip::class.java)
+            it.onNext(list)
+        }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe{
+                    showList(it)
+                })
+    }
+
+    private fun showList(data:List<Equip>){
+        mEquipList = data
+        adapter.setNewData(mEquipList)
     }
 
     companion object {

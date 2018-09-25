@@ -9,7 +9,7 @@ import com.smallcat.theworld.model.db.Boss
  * @author smallCut
  * @date 2018/9/13
  */
-class BossAdapter(data: List<Boss>) : BaseQuickAdapter<Boss, BaseViewHolder>(R.layout.item_list_access, data) {
+class BossAdapter(data: List<Boss>?) : BaseQuickAdapter<Boss, BaseViewHolder>(R.layout.item_list_access, data) {
 
     override fun convert(viewHolder: BaseViewHolder, item: Boss) {
         viewHolder.setText(R.id.tv_name, item.bossName)

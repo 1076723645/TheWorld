@@ -1,6 +1,8 @@
 package com.smallcat.theworld.ui.activity
 
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Handler
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -13,6 +15,7 @@ import android.widget.TextView
 import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.model.ApiConfig
 import com.smallcat.theworld.ui.fragment.BossFragment
 import com.smallcat.theworld.ui.fragment.EquipFragment
 import com.smallcat.theworld.ui.fragment.ExclusiveFragment
@@ -24,7 +27,6 @@ import me.yokeyword.fragmentation.ISupportFragment
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var fg1: EquipFragment
@@ -90,6 +92,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         btnIndex.setOnClickListener { dialog.dismiss() }
     }
 
+    private fun upDateApp(){
+        val intent = Intent()
+        intent.action = Intent.ACTION_VIEW
+        intent.data = Uri.parse(ApiConfig.URL_DOWNLOAD)
+        startActivity(Intent.createChooser(intent, "请选择浏览器"))
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_equip -> show = EQUIP
@@ -98,7 +107,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_task -> show = MATERIAL
             R.id.nav_setting -> startActivity(SettingActivity::class.java)
             R.id.nav_tips -> showDialog()
-            R.id.nav_update -> ToastUtil.shortShow("更新不可用")
+            R.id.nav_update -> upDateApp()
         }
         showHideFragment(getFragment(show), getFragment(hide))
         hide = show

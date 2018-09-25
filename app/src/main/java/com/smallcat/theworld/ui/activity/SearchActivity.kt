@@ -28,13 +28,11 @@ class SearchActivity : BaseActivity() {
         val back = findViewById<ImageView>(R.id.iv_back)
         val recyclerView = findViewById<RecyclerView>(R.id.rv_search)
         val adapter = EquipAdapter(dataList)
-        adapter.setOnItemClickListener(object : EquipAdapter.OnItemClickListener{
-            override fun onItemClick(adapter: EquipAdapter, view: View, position: Int) {
-                val intent = Intent(this@SearchActivity, EquipDetailActivity::class.java)
-                intent.putExtra("id", dataList[position].id.toString())
-                startActivity(intent)
-            }
-        })
+        adapter.setOnItemClickListener { _, _, position ->
+            val intent = Intent(this@SearchActivity, EquipDetailActivity::class.java)
+            intent.putExtra("id", dataList[position].id.toString())
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
         searchData.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {

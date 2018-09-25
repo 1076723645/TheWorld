@@ -30,9 +30,5 @@ class EquipFragment : SupportFragment() {
         viewPager.adapter = adapter
         tab.setupWithViewPager(viewPager)
     }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        //super.onSaveInstanceState(outState);
-    }
 }
 

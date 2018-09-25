@@ -17,7 +17,7 @@ public class PictureRes {
             , R.drawable.wuqi_13, R.drawable.liliang, R.drawable.shuiguo, R.drawable.wuqi_14, R.drawable.wuqi_15, R.drawable.wuqi_16, R.drawable.wuqi_17
             , R.drawable.wuqi_18, R.drawable.wuqi_19
             , R.drawable.wuqi_14, R.drawable.wuqi_15, R.drawable.wuqi_16, R.drawable.wuqi_17, R.drawable.wuqi_18, R.drawable.wuqi_19, R.drawable.wuqi_14
-            , R.drawable.wuqi_15, R.drawable.wuqi_16, R.drawable.wuqi_17, R.drawable.wuqi_18, R.drawable.wuqi_19, R.drawable.wuqi_14, R.drawable.wuqi_15
+            , R.drawable.wuqi_15, R.drawable.wuqi_18, R.drawable.wuqi_16, R.drawable.wuqi_17, R.drawable.wuqi_19, R.drawable.wuqi_14, R.drawable.wuqi_15
             , R.drawable.wuqi_16, R.drawable.wuqi_17, R.drawable.wuqi_18, R.drawable.wuqi_20, R.drawable.wuqi_21, R.drawable.wuqi_22, R.drawable.wuqi_23
             , R.drawable.wuqi_24, R.drawable.wuqi_25, R.drawable.wuqi_26, R.drawable.wuqi_27, R.drawable.wuqi_22, R.drawable.wuqi_23, R.drawable.wuqi_24
             , R.drawable.wuqi_25, R.drawable.wuqi_26, R.drawable.wuqi_27, R.drawable.wuqi_28, R.drawable.wuqi_29, R.drawable.wuqi_30, R.drawable.wuqi_31
@@ -43,7 +43,8 @@ public class PictureRes {
             , R.drawable.wuqi_137, R.drawable.wuqi_138, R.drawable.wuqi_140, R.drawable.wuqi_141, R.drawable.wuqi_142
             , R.drawable.wuqi_144, R.drawable.wuqi_145, R.drawable.wuqi_146, R.drawable.wuqi_147, R.drawable.wuqi_148, R.drawable.wuqi_149, R.drawable.wuqi_150
             , R.drawable.wuqi_152, R.drawable.wuqi_153, R.drawable.wuqi_154, R.drawable.wuqi_155, R.drawable.wuqi_156, R.drawable.wuqi_157
-            , R.drawable.wuqi_158, R.drawable.wuqi_159, R.drawable.wuqi_160, R.drawable.wuqi_160, R.drawable.wuqi_160, R.drawable.wuqi_160};
+            , R.drawable.wuqi_158, R.drawable.wuqi_159, R.drawable.wuqi_161, R.drawable.wuqi_162, R.drawable.wuqi_163, R.drawable.wuqi_164, R.drawable.wuqi_165
+            , R.drawable.wuqi_160};
 
     private static final int[] imgList2 = new int[]{R.drawable.head_1, R.drawable.head_2, R.drawable.head_3, R.drawable.head_4, R.drawable.head_5
             , R.drawable.head_6, R.drawable.head_7, R.drawable.head_8, R.drawable.head_9, R.drawable.head_10, R.drawable.head_11, R.drawable.head_12
@@ -60,20 +61,21 @@ public class PictureRes {
             , R.drawable.nail_27, R.drawable.nail_28, R.drawable.nail_29, R.drawable.nail_30, R.drawable.nail_31, R.drawable.nail_32, R.drawable.nail_33
             , R.drawable.nail_34, R.drawable.nail_35, R.drawable.nail_36, R.drawable.nail_37, R.drawable.nail_38, R.drawable.nail_39, R.drawable.nail_40
             , R.drawable.nail_41, R.drawable.nail_42, R.drawable.nail_43, R.drawable.nail_44, R.drawable.nail_45, R.drawable.nail_46, R.drawable.nail_47
-            , R.drawable.nail_48, R.drawable.nail_50, R.drawable.nail_49};
+            , R.drawable.nail_48, R.drawable.nail_50, R.drawable.nail_51, R.drawable.nail_49};
 
     private static final int[] imgList4 = new int[]{R.drawable.ship_1, R.drawable.ship_2, R.drawable.ship_3, R.drawable.ship_4, R.drawable.ship_5
             , R.drawable.ship_6, R.drawable.ship_7, R.drawable.ship_8, R.drawable.ship_9, R.drawable.ship_10, R.drawable.ship_11, R.drawable.ship_12
             , R.drawable.ship_13, R.drawable.ship_14, R.drawable.ship_15, R.drawable.ship_16, R.drawable.ship_17, R.drawable.ship_18, R.drawable.ship_19
             , R.drawable.ship_20, R.drawable.ship_21, R.drawable.ship_22, R.drawable.ship_23, R.drawable.ship_24, R.drawable.ship_25, R.drawable.ship_26
             , R.drawable.ship_27, R.drawable.ship_28, R.drawable.ship_29, R.drawable.ship_30, R.drawable.ship_31, R.drawable.ship_32, R.drawable.ship_33
-            , R.drawable.ship_34, R.drawable.ship_35, R.drawable.ship_36, R.drawable.ship_37, R.drawable.ship_38, R.drawable.ship_39, R.drawable.ship_40
-            , R.drawable.ship_41, R.drawable.ship_42, R.drawable.ship_43, R.drawable.ship_44, R.drawable.ship_45, R.drawable.ship_46, R.drawable.ship_47
+            , R.drawable.ship_34, R.drawable.ship_35, R.drawable.ship_36, R.drawable.ship_61, R.drawable.ship_37, R.drawable.ship_38, R.drawable.ship_39
+            , R.drawable.ship_40, R.drawable.ship_41, R.drawable.ship_42, R.drawable.ship_43, R.drawable.ship_44, R.drawable.ship_45, R.drawable.ship_46, R.drawable.ship_47
             , R.drawable.ship_48, R.drawable.ship_49, R.drawable.ship_50, R.drawable.ship_51, R.drawable.ship_52, R.drawable.ship_53, R.drawable.ship_54
-            , R.drawable.ship_55, R.drawable.ship_56, R.drawable.ship_57, R.drawable.ship_58, R.drawable.ship_60, R.drawable.ship_59};
+            , R.drawable.ship_55, R.drawable.ship_56, R.drawable.ship_58, R.drawable.ship_60, R.drawable.ship_62 , R.drawable.ship_63, R.drawable.ship_64
+            , R.drawable.ship_57, R.drawable.ship_59};
 
     private static final int[] imgList = new int[]{R.drawable.chib_1, R.drawable.chib_2, R.drawable.chib_3, R.drawable.chib_4, R.drawable.chib_5
-            , R.drawable.chib_6, R.drawable.chib_7, R.drawable.chib_8, R.drawable.chib_9, R.drawable.chib_10, R.drawable.chib_11, R.drawable.chib_11
+            , R.drawable.chib_6, R.drawable.chib_7, R.drawable.chib_8, R.drawable.chib_9, R.drawable.chib_10, R.drawable.chib_sx, R.drawable.chib_11
             , R.drawable.chib_12, R.drawable.chib_13, R.drawable.chib_14, R.drawable.chib_15, R.drawable.chib_16, R.drawable.chib_18, R.drawable.chib_19
             , R.drawable.chib_20, R.drawable.chib_21, R.drawable.chib_22, R.drawable.chib_23, R.drawable.chib_24, R.drawable.chib_25, R.drawable.chib_26
             , R.drawable.chib_27};
@@ -86,7 +88,7 @@ public class PictureRes {
     private static final int[] cailList = new int[]{R.drawable.cail_0, R.drawable.cail_1, R.drawable.cail_2, R.drawable.cail_3, R.drawable.cail_4, R.drawable.cail_5
             , R.drawable.cail_6, R.drawable.cail_7, R.drawable.cail_8, R.drawable.cail_9, R.drawable.cail_10, R.drawable.cail_11, R.drawable.cail_12
             , R.drawable.cail_13, R.drawable.cail_14, R.drawable.cail_15, R.drawable.cail_16, R.drawable.cail_17, R.drawable.cail_18, R.drawable.cail_19
-            , R.drawable.cail_20, R.drawable.cail_21, R.drawable.cail_22, R.drawable.cail_23, R.drawable.cail_24, R.drawable.cail_25, R.drawable.cail_26
+            , R.drawable.cail_20, R.drawable.cail_21, R.drawable.cail_22, R.drawable.cail_23, R.drawable.cail_24, R.drawable.cail_25, R.drawable.cail_26, R.drawable.cailiao_57
             , R.drawable.cail_27, R.drawable.cail_28, R.drawable.cail_29, R.drawable.cail_30, R.drawable.cail_31, R.drawable.cail_32, R.drawable.cail_33
             , R.drawable.cail_34, R.drawable.cail_35, R.drawable.cail_36, R.drawable.cail_37, R.drawable.cail_38, R.drawable.cail_39, R.drawable.cail_40
             , R.drawable.cail_41, R.drawable.cail_42, R.drawable.cail_43, R.drawable.cail_44, R.drawable.cail_45, R.drawable.cail_46, R.drawable.cail_47

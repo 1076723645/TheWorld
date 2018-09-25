@@ -10,7 +10,7 @@ import com.smallcat.theworld.model.db.Material
  * @author smallCut
  * @date 2018/9/14
  */
-class OtherAdapter(data: List<Equip>) : BaseQuickAdapter<Equip, BaseViewHolder>(R.layout.item_material, data) {
+class OtherAdapter(data: List<Equip>?) : BaseQuickAdapter<Equip, BaseViewHolder>(R.layout.item_material, data) {
 
     override fun convert(viewHolder: BaseViewHolder, item: Equip) {
         viewHolder.setText(R.id.tv_name, item.equipName)

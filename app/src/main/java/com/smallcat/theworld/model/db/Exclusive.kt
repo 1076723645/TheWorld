@@ -9,8 +9,12 @@ import org.litepal.crud.DataSupport
 class Exclusive : DataSupport() {
 
     var id: Int = 0
-    var equipName: String = ""//装备名
-    var profession: String = ""//职业
-    var skill: String = ""//强化技能
-    var effect: String = ""//强化效果
+    var equipName: String? = null
+        get() = if (field == null) "" else field//装备名
+    var profession: String? = null
+        get() = if (field == null) "" else field//职业
+    var skill: String? = null
+        get() = if (field == null) "" else field//强化技能
+    var effect: String? = null
+        get() = if (field == null) "" else field//强化效果
 }

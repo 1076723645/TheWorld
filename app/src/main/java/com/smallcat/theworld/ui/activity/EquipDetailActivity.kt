@@ -3,7 +3,10 @@ package com.smallcat.theworld.ui.activity
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
+import android.os.Build
+import android.support.annotation.RequiresApi
 import android.support.design.widget.FloatingActionButton
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -61,7 +64,7 @@ class EquipDetailActivity : BaseActivity() {
          * 基础属性
          */
         val quality = equip.quality
-        val color = resources.getColor(AppUtils.getColor(quality))
+        val color = AppUtils.getColor(mContext, quality)
         val equipName = equip.equipName
         tvName.text = equipName
         ivEquip.setImageResource(equip.imgId)
@@ -144,8 +147,12 @@ class EquipDetailActivity : BaseActivity() {
                 for (j in 0 until mList.size) {
                     if (mList[j] == equipName) {
                         advanceList.add(mEquip.equipName)
-                    }else if (mList[j].contains("/") && mList[j].contains(equipName)){
-                        advanceList.add(mEquip.equipName)
+                    }else if (mList[j].contains("/")){
+                        val choose1 = mList[j].substring(0, mList[j].indexOf('/'))
+                        val choose2 = mList[j].substring(mList[j].indexOf('/') + 1)
+                        if (equipName == choose1 || equipName == choose2) {
+                            advanceList.add(mEquip.equipName)
+                        }
                     }
                 }
             }

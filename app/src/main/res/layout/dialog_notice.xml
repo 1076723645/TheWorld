@@ -29,13 +29,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color_black"
-            android:text="2.最新版APP下载/更新日志/反馈地址"/>
+            android:text="2.最新版APP下载/更新日志/反馈QQ群"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:autoLink="web"
-            android:text="https://tieba.baidu.com/p/5522352363"/>
+            android:textColor="?attr/colorPrimary"
+            android:text="816760537"/>
         <TextView
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"

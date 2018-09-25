@@ -52,7 +52,6 @@ class BossDetailActivity : BaseActivity() {
             }
 
             override fun onPageScrollStateChanged(state: Int) {
-
             }
         })
         vp_boss.offscreenPageLimit = 2
