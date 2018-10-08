@@ -3,7 +3,7 @@ package com.smallcat.theworld.ui.activity
 import android.widget.ImageView
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
-import com.smallcat.theworld.utils.SystemFit
+import com.smallcat.theworld.utils.fitSystemAllScroll
 
 class ImageShowActivity : BaseActivity() {
 
@@ -11,7 +11,7 @@ class ImageShowActivity : BaseActivity() {
         get() = R.layout.activity_image_show
 
     override fun fitSystem() {
-        SystemFit.fitSystem(this)
+        fitSystemAllScroll(this)
     }
 
     override fun initData() {

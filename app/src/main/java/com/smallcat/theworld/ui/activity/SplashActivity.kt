@@ -25,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        SystemFit.fitSystem(this)
+        fitSystemAllScroll(this)
         initData()
     }
 
@@ -36,6 +36,7 @@ class SplashActivity : AppCompatActivity() {
 
         if (oldVersion != newVersion){
             isFirst = true
+            CleanMessageUtil.cleanApplicationData(this)
             AppUtils.clean()
             sharedPref.versionName = newVersion
         }

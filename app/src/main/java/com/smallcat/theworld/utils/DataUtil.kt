@@ -4,8 +4,6 @@ import android.content.Context
 import android.support.design.widget.TabLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.smallcat.theworld.model.db.Boss
-import org.litepal.crud.DataSupport
 
 /**
  * @author smallCut

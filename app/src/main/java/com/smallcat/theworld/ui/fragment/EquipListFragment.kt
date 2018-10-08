@@ -39,9 +39,10 @@ class EquipListFragment : RxFragment() {
         val recyclerView = mView.findViewById<RecyclerView>(R.id.rv_equip)
         adapter = EquipAdapter(null)
         adapter.setOnItemClickListener { _, _, position ->
-            val intent = Intent(context, EquipDetailActivity::class.java)
-            intent.putExtra("id", mEquipList[position].id.toString())
-            startActivity(intent)
+            Intent(context, EquipDetailActivity::class.java).apply {
+                putExtra("id", mEquipList[position].id.toString())
+                startActivity(this)
+            }
         }
         recyclerView.adapter = adapter
         loadData()

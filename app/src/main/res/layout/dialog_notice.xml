@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textColor="?attr/colorPrimary"
+            android:textColor="?attr/colorAccent"
             android:text="816760537"/>
         <TextView
             android:layout_marginTop="16dp"

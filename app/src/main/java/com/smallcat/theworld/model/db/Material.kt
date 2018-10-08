@@ -16,8 +16,4 @@ class Material{
     var advanceList: List<String> = ArrayList() //可合成列表
     var type: String = ""
     var imgId: Int = 0
-
-
-
-
 }

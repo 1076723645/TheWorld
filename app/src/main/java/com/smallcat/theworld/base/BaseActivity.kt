@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.smallcat.theworld.R
+import com.smallcat.theworld.utils.adaptScreen4VerticalSlide
 import com.smallcat.theworld.utils.sharedPref
 import me.yokeyword.fragmentation.SupportActivity
 
@@ -28,6 +29,7 @@ abstract class BaseActivity : SupportActivity() {
         initTheme()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         fitSystem()
+        adaptScreen4VerticalSlide(this, 360)
         setContentView(layoutId)
         mUnbind = ButterKnife.bind(this)
         mContext = this
