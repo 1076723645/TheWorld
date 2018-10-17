@@ -27,5 +27,6 @@
     <color name="rate_text_color">#FA5555</color>
     <color name="coupon_color_more">#ffc000</color>
     <color name="color_default">#fafafa</color>
+    <color name="black">#000000</color>
 
 </resources>

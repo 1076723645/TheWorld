@@ -2,6 +2,8 @@ package com.smallcat.theworld.ui.activity
 
 import android.Manifest
 import android.app.Dialog
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -17,16 +19,13 @@ import com.smallcat.theworld.ui.fragment.BossFragment
 import com.smallcat.theworld.ui.fragment.EquipFragment
 import com.smallcat.theworld.ui.fragment.ExclusiveFragment
 import com.smallcat.theworld.ui.fragment.MaterialFragment
-import com.smallcat.theworld.utils.SharedPref
-import com.smallcat.theworld.utils.ToastUtil
-import com.smallcat.theworld.utils.fitSystemAllScroll
 import me.yokeyword.fragmentation.ISupportFragment
 import com.pgyersdk.update.PgyUpdateManager
 import com.pgyersdk.update.javabean.AppBean
 import com.pgyersdk.update.UpdateManagerListener
 import com.tbruyelle.rxpermissions2.RxPermissions
 import android.support.v7.app.AlertDialog
-import com.smallcat.theworld.utils.LogUtil
+import com.smallcat.theworld.utils.*
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -99,6 +98,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     if (granted) { // Always true pre-M
                         upDateApp(type)
                     } else {
+                        dismissLoading()
                         ToastUtil.shortShow("需要读写权限")
                     }
                 }
@@ -111,10 +111,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 .setDeleteHistroyApk(true)     // 检查更新前是否删除本地历史 Apk， 默认为true
                 .setUpdateManagerListener(object : UpdateManagerListener {
                     override fun onNoUpdateAvailable() {
+                        dismissLoading()
                         if (type != 0) {
                             ToastUtil.shortShow("当前是最新版本")
                         }else{
-                            showDialog()
+                            if (sharedPref.isShow){
+                                showDialog()
+                            }
                         }
                     }
 
@@ -125,10 +128,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     }
 
                     override fun checkUpdateFailed(e: Exception) {
+                        dismissLoading()
                         if (type != 0) {
                             ToastUtil.shortShow("更新异常")
                         }else{
-                            showDialog()
+                            if (sharedPref.isShow){
+                                showDialog()
+                            }
                         }
                     }
                 })
@@ -156,7 +162,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_task -> show = MATERIAL
             R.id.nav_setting -> startActivity(SettingActivity::class.java)
             R.id.nav_tips -> showDialog()
-            R.id.nav_update -> checkPermission(1)
+            R.id.nav_update -> {
+                showLoading()
+                checkPermission(1)
+            }
         }
         showHideFragment(getFragment(show), getFragment(hide))
         hide = show
@@ -172,6 +181,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             MATERIAL -> return fg4
         }
         return fg1
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+
     }
 
     override fun onBackPressedSupport() {

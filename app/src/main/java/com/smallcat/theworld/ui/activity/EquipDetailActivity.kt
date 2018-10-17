@@ -192,8 +192,9 @@ class EquipDetailActivity : BaseActivity() {
                     tvExclusive.text = exclusive
                     tvExclusive.setOnClickListener {
                         val name = exclusive.substring(0, exclusive.indexOf('-'))
-                        val intent = Intent(this@EquipDetailActivity, CareerIntroduceActivity::class.java)
+                        val intent = Intent(this@EquipDetailActivity, CareerDetailActivity::class.java)
                         intent.putExtra("name", name)
+                        intent.putExtra("position", 2)
                         startActivity(intent)
                     }
                     layout.addView(v)

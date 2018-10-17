@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import com.smallcat.theworld.R
-import com.smallcat.theworld.model.db.Boss
-import com.smallcat.theworld.model.db.Equip
-import com.smallcat.theworld.model.db.Exclusive
+import com.smallcat.theworld.model.db.*
 import com.smallcat.theworld.ui.activity.BossDetailActivity
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import org.litepal.crud.DataSupport
@@ -83,6 +81,8 @@ object AppUtils{
         DataSupport.deleteAll(Equip::class.java)
         DataSupport.deleteAll(Boss::class.java)
         DataSupport.deleteAll(Exclusive::class.java)
+        DataSupport.deleteAll(Hero::class.java)
+        DataSupport.deleteAll(Skill::class.java)
     }
 
     fun needEquip(s: String): List<String> {

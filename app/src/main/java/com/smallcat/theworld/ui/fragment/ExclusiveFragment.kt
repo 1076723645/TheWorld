@@ -11,57 +11,70 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.smallcat.theworld.R
+import com.smallcat.theworld.base.RxFragment
 import com.smallcat.theworld.model.bean.ImgData
+import com.smallcat.theworld.model.db.Exclusive
+import com.smallcat.theworld.model.db.Hero
+import com.smallcat.theworld.ui.activity.CareerDetailActivity
 import com.smallcat.theworld.ui.activity.CareerIntroduceActivity
 import com.smallcat.theworld.ui.adapter.ExclusiveAdapter
 import com.smallcat.theworld.utils.DataUtil
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import me.yokeyword.fragmentation.SupportFragment
+import org.litepal.crud.DataSupport
 import java.util.*
 
 /**
  * @author Administrator
  */
-class ExclusiveFragment : SupportFragment() {
+class ExclusiveFragment : RxFragment() {
 
-    private var mView: View? = null
     private val mData = ArrayList<ImgData>()
-    private val imgList = intArrayOf(R.drawable.ss1, R.drawable.zy_jj, R.drawable.zy_33, R.drawable.zy_js, R.drawable.zy_ck,
-            R.drawable.zy_sj,R.drawable.zy_jx, R.drawable.zy_qs, R.drawable.zy_bbx, R.drawable.zy_skz, R.drawable.zy_fm, R.drawable.zy_my,
-            R.drawable.zy_dc, R.drawable.zy_kz, R.drawable.zy_hq, R.drawable.zy_mq, R.drawable.zy_c8, R.drawable.zy_bf, R.drawable.zy_hf,
-            R.drawable.zy_yf, R.drawable.zy_ff, R.drawable.zy_zh, R.drawable.zy_cn, R.drawable.zy_ms, R.drawable.zy_lj, R.drawable.zy_xf,
-            R.drawable.zy_ws, R.drawable.zz_df)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        mView = inflater.inflate(R.layout.fragment_exclusive, container, false)
-        initData()
-        return mView
-    }
+    private lateinit var adapter: ExclusiveAdapter
 
-    private fun initData() {
-        for (anImgList in imgList) {
-            val imgData = ImgData()
-            imgData.imgUrl = anImgList
-            mData.add(imgData)
-        }
-    }
+    override val layoutId: Int
+        get() = R.layout.fragment_exclusive
 
-    override fun onLazyInitView(savedInstanceState: Bundle?) {
-        super.onLazyInitView(savedInstanceState)
-        val recyclerView = mView!!.findViewById<RecyclerView>(R.id.rv_profession)
+    override fun initView() {
+        val recyclerView = mView.findViewById<RecyclerView>(R.id.rv_profession)
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.layoutManager = layoutManager
-        val adapter = ExclusiveAdapter(mData)
-        adapter.setOnItemClickListener { _, view, position ->
-            val intent = Intent(context , CareerIntroduceActivity::class.java)
-            intent.putExtra("name", DataUtil.getProfession(position))
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity, view.findViewById(R.id.iv_profession), "share").toBundle())
-            }else{
-                startActivity(intent)
-            }
+        adapter = ExclusiveAdapter(mData)
+        adapter.setOnItemClickListener { _, _, position ->
+            val intent = Intent(context , CareerDetailActivity::class.java)
+            intent.putExtra("name", mData[position].name)
+            intent.putExtra("imgId", mData[position].imgUrl)
+            startActivity(intent)
+
         }
         recyclerView.adapter = adapter
+        loadData()
+    }
+
+    private fun loadData(){
+        addSubscribe(Observable.create<List<Hero>> {
+            val list  = DataSupport.findAll(Hero::class.java)
+            it.onNext(list)
+        }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe{
+                    showData(it)
+                })
+    }
+
+    private fun showData(data:List<Hero>){
+        mData.clear()
+        for (i in data.indices){
+            val imgData = ImgData()
+            imgData.imgUrl = data[i].imgId
+            imgData.name = data[i].heroName!!
+            mData.add(imgData)
+        }
+        adapter.setNewData(mData)
     }
 }
 

@@ -24,7 +24,7 @@ open class SharedPref {
     }
 
     var isBlack: Boolean
-        get() = prefs.getBoolean(KEY_BLACK, false)
+        get() = prefs.getBoolean(KEY_BLACK, true)
         set(token) = prefs.edit().putBoolean(KEY_BLACK, token).apply()
 
     var versionName: String

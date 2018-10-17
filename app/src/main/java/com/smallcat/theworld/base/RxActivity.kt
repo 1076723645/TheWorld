@@ -16,16 +16,18 @@ import com.smallcat.theworld.utils.AppStatusManager
 import com.smallcat.theworld.utils.LogUtil
 import com.smallcat.theworld.utils.adaptScreen4VerticalSlide
 import com.smallcat.theworld.utils.sharedPref
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import me.yokeyword.fragmentation.SupportActivity
 
 /**
  * Created by smallCut on 2018/4/27.
  */
-abstract class BaseActivity : SupportActivity() {
+abstract class RxActivity : SupportActivity() {
 
     protected lateinit var mContext: Context
-    private var mUnbind: Unbinder? = null
     private var loadingDialog: Dialog? = null
+    private var mCompositeDisposable: CompositeDisposable? = null
 
     protected abstract val layoutId: Int
 
@@ -37,7 +39,6 @@ abstract class BaseActivity : SupportActivity() {
         fitSystem()
         adaptScreen4VerticalSlide(this, 360)
         setContentView(layoutId)
-        mUnbind = ButterKnife.bind(this)
         mContext = this
         initData()
     }
@@ -53,7 +54,7 @@ abstract class BaseActivity : SupportActivity() {
 
     override fun onDestroy() {
         dismissLoading()
-        mUnbind!!.unbind()
+        unSubscribe()
         super.onDestroy()
     }
 
@@ -92,6 +93,18 @@ abstract class BaseActivity : SupportActivity() {
     protected fun dismissLoading() {
         if (loadingDialog != null && loadingDialog!!.isShowing)
             loadingDialog!!.dismiss()
+    }
+
+    private fun unSubscribe() {
+        if (mCompositeDisposable != null)
+            mCompositeDisposable!!.clear()
+    }
+
+    protected fun addSubscribe(disposable: Disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = CompositeDisposable()
+        }
+        mCompositeDisposable!!.add(disposable)
     }
 
     protected fun getIntent(cls: Class<*>): Intent {

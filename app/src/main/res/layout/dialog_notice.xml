@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color_black"
-            android:text="2.最新版APP下载/更新日志/反馈QQ群"/>
+            android:text="2.最新版APP下载/更新日志/QQ群"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,7 +41,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color_black"
-            android:text="3.游戏相关信息请查看世界PRG百度贴吧"/>
+            android:text="3.bug反馈QQ号"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="?attr/colorAccent"
+            android:text="1076723645"/>
+        <TextView
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color_black"
+            android:text="4.游戏相关信息请查看世界PRG百度贴吧"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color_black"
-            android:text="4.对游戏内不良玩家举报邮箱：被举报玩家的游戏ID/举报理由/截图/rep缺一不可"/>
+            android:text="5.对游戏内不良玩家举报邮箱：被举报玩家的游戏ID/举报理由/截图/rep缺一不可"/>
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="match_parent"
@@ -62,18 +74,6 @@
             android:layout_marginStart="8dp"
             android:autoLink="email"
             android:text="232031706@qq.com"/>
-        <TextView
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
-            android:text="5.祝各位欧皇(非酋)附体"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textColor="?attr/colorAccent"
-            android:text="ding ding ding"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="300dp"

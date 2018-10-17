@@ -46,7 +46,6 @@ class SearchActivity : BaseActivity() {
                             .order("quality")
                             .find(Equip::class.java)
                     val result = equips.size
-                    //       Log.e("eee", String.valueOf(result));
                     if (result == 0) {
                         textView.visibility = View.VISIBLE
                         dataList.clear()
