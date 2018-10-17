@@ -5,10 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import butterknife.ButterKnife
 import butterknife.Unbinder
+import com.smallcat.theworld.App
 import com.smallcat.theworld.R
+import com.smallcat.theworld.ui.activity.SplashActivity
+import com.smallcat.theworld.utils.AppStatusManager
+import com.smallcat.theworld.utils.LogUtil
+import com.smallcat.theworld.utils.adaptScreen4VerticalSlide
 import com.smallcat.theworld.utils.sharedPref
 import me.yokeyword.fragmentation.SupportActivity
 
@@ -24,14 +30,25 @@ abstract class BaseActivity : SupportActivity() {
     protected abstract val layoutId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        checkAppStatus()
         super.onCreate(savedInstanceState)
         initTheme()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         fitSystem()
+        adaptScreen4VerticalSlide(this, 360)
         setContentView(layoutId)
         mUnbind = ButterKnife.bind(this)
         mContext = this
         initData()
+    }
+
+    private fun checkAppStatus() {
+        if (AppStatusManager.getInstance().appStatus == AppStatusManager.AppStatusConstant.APP_FORCE_KILLED) {
+            LogUtil.e("activity被回收")
+            App.reInitApp()
+        }else{
+            LogUtil.e("正常启动")
+        }
     }
 
     override fun onDestroy() {

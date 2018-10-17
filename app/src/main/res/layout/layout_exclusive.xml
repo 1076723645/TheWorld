@@ -9,7 +9,7 @@
         android:layout_height="40dp"
         android:gravity="center_vertical"
         android:background="@drawable/touch_bg"
-        android:paddingLeft="16dp" />
+        android:paddingStart="16dp" />
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"

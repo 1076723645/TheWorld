@@ -17,7 +17,7 @@ public class PictureRes {
             , R.drawable.wuqi_13, R.drawable.liliang, R.drawable.shuiguo, R.drawable.wuqi_14, R.drawable.wuqi_15, R.drawable.wuqi_16, R.drawable.wuqi_17
             , R.drawable.wuqi_18, R.drawable.wuqi_19
             , R.drawable.wuqi_14, R.drawable.wuqi_15, R.drawable.wuqi_16, R.drawable.wuqi_17, R.drawable.wuqi_18, R.drawable.wuqi_19, R.drawable.wuqi_14
-            , R.drawable.wuqi_15, R.drawable.wuqi_16, R.drawable.wuqi_17, R.drawable.wuqi_18, R.drawable.wuqi_19, R.drawable.wuqi_14, R.drawable.wuqi_15
+            , R.drawable.wuqi_15, R.drawable.wuqi_18, R.drawable.wuqi_16, R.drawable.wuqi_17, R.drawable.wuqi_19, R.drawable.wuqi_14, R.drawable.wuqi_15
             , R.drawable.wuqi_16, R.drawable.wuqi_17, R.drawable.wuqi_18, R.drawable.wuqi_20, R.drawable.wuqi_21, R.drawable.wuqi_22, R.drawable.wuqi_23
             , R.drawable.wuqi_24, R.drawable.wuqi_25, R.drawable.wuqi_26, R.drawable.wuqi_27, R.drawable.wuqi_22, R.drawable.wuqi_23, R.drawable.wuqi_24
             , R.drawable.wuqi_25, R.drawable.wuqi_26, R.drawable.wuqi_27, R.drawable.wuqi_28, R.drawable.wuqi_29, R.drawable.wuqi_30, R.drawable.wuqi_31
@@ -43,7 +43,8 @@ public class PictureRes {
             , R.drawable.wuqi_137, R.drawable.wuqi_138, R.drawable.wuqi_140, R.drawable.wuqi_141, R.drawable.wuqi_142
             , R.drawable.wuqi_144, R.drawable.wuqi_145, R.drawable.wuqi_146, R.drawable.wuqi_147, R.drawable.wuqi_148, R.drawable.wuqi_149, R.drawable.wuqi_150
             , R.drawable.wuqi_152, R.drawable.wuqi_153, R.drawable.wuqi_154, R.drawable.wuqi_155, R.drawable.wuqi_156, R.drawable.wuqi_157
-            , R.drawable.wuqi_158, R.drawable.wuqi_159, R.drawable.wuqi_160, R.drawable.wuqi_160, R.drawable.wuqi_160, R.drawable.wuqi_160};
+            , R.drawable.wuqi_158, R.drawable.wuqi_159, R.drawable.wuqi_161, R.drawable.wuqi_162, R.drawable.wuqi_163, R.drawable.wuqi_164, R.drawable.wuqi_165
+            , R.drawable.wuqi_160};
 
     private static final int[] imgList2 = new int[]{R.drawable.head_1, R.drawable.head_2, R.drawable.head_3, R.drawable.head_4, R.drawable.head_5
             , R.drawable.head_6, R.drawable.head_7, R.drawable.head_8, R.drawable.head_9, R.drawable.head_10, R.drawable.head_11, R.drawable.head_12
@@ -60,20 +61,21 @@ public class PictureRes {
             , R.drawable.nail_27, R.drawable.nail_28, R.drawable.nail_29, R.drawable.nail_30, R.drawable.nail_31, R.drawable.nail_32, R.drawable.nail_33
             , R.drawable.nail_34, R.drawable.nail_35, R.drawable.nail_36, R.drawable.nail_37, R.drawable.nail_38, R.drawable.nail_39, R.drawable.nail_40
             , R.drawable.nail_41, R.drawable.nail_42, R.drawable.nail_43, R.drawable.nail_44, R.drawable.nail_45, R.drawable.nail_46, R.drawable.nail_47
-            , R.drawable.nail_48, R.drawable.nail_50, R.drawable.nail_49};
+            , R.drawable.nail_48, R.drawable.nail_50, R.drawable.nail_51, R.drawable.nail_49};
 
     private static final int[] imgList4 = new int[]{R.drawable.ship_1, R.drawable.ship_2, R.drawable.ship_3, R.drawable.ship_4, R.drawable.ship_5
             , R.drawable.ship_6, R.drawable.ship_7, R.drawable.ship_8, R.drawable.ship_9, R.drawable.ship_10, R.drawable.ship_11, R.drawable.ship_12
             , R.drawable.ship_13, R.drawable.ship_14, R.drawable.ship_15, R.drawable.ship_16, R.drawable.ship_17, R.drawable.ship_18, R.drawable.ship_19
             , R.drawable.ship_20, R.drawable.ship_21, R.drawable.ship_22, R.drawable.ship_23, R.drawable.ship_24, R.drawable.ship_25, R.drawable.ship_26
             , R.drawable.ship_27, R.drawable.ship_28, R.drawable.ship_29, R.drawable.ship_30, R.drawable.ship_31, R.drawable.ship_32, R.drawable.ship_33
-            , R.drawable.ship_34, R.drawable.ship_35, R.drawable.ship_36, R.drawable.ship_37, R.drawable.ship_38, R.drawable.ship_39, R.drawable.ship_40
-            , R.drawable.ship_41, R.drawable.ship_42, R.drawable.ship_43, R.drawable.ship_44, R.drawable.ship_45, R.drawable.ship_46, R.drawable.ship_47
+            , R.drawable.ship_34, R.drawable.ship_35, R.drawable.ship_36, R.drawable.ship_61, R.drawable.ship_37, R.drawable.ship_38, R.drawable.ship_39
+            , R.drawable.ship_40, R.drawable.ship_41, R.drawable.ship_42, R.drawable.ship_43, R.drawable.ship_44, R.drawable.ship_45, R.drawable.ship_46, R.drawable.ship_47
             , R.drawable.ship_48, R.drawable.ship_49, R.drawable.ship_50, R.drawable.ship_51, R.drawable.ship_52, R.drawable.ship_53, R.drawable.ship_54
-            , R.drawable.ship_55, R.drawable.ship_56, R.drawable.ship_57, R.drawable.ship_58, R.drawable.ship_60, R.drawable.ship_59};
+            , R.drawable.ship_55, R.drawable.ship_56, R.drawable.ship_58, R.drawable.ship_60, R.drawable.ship_62 , R.drawable.ship_63, R.drawable.ship_64
+            , R.drawable.ship_57, R.drawable.ship_59};
 
     private static final int[] imgList = new int[]{R.drawable.chib_1, R.drawable.chib_2, R.drawable.chib_3, R.drawable.chib_4, R.drawable.chib_5
-            , R.drawable.chib_6, R.drawable.chib_7, R.drawable.chib_8, R.drawable.chib_9, R.drawable.chib_10, R.drawable.chib_11, R.drawable.chib_11
+            , R.drawable.chib_6, R.drawable.chib_7, R.drawable.chib_8, R.drawable.chib_9, R.drawable.chib_10, R.drawable.chib_sx, R.drawable.chib_11
             , R.drawable.chib_12, R.drawable.chib_13, R.drawable.chib_14, R.drawable.chib_15, R.drawable.chib_16, R.drawable.chib_18, R.drawable.chib_19
             , R.drawable.chib_20, R.drawable.chib_21, R.drawable.chib_22, R.drawable.chib_23, R.drawable.chib_24, R.drawable.chib_25, R.drawable.chib_26
             , R.drawable.chib_27};
@@ -86,7 +88,7 @@ public class PictureRes {
     private static final int[] cailList = new int[]{R.drawable.cail_0, R.drawable.cail_1, R.drawable.cail_2, R.drawable.cail_3, R.drawable.cail_4, R.drawable.cail_5
             , R.drawable.cail_6, R.drawable.cail_7, R.drawable.cail_8, R.drawable.cail_9, R.drawable.cail_10, R.drawable.cail_11, R.drawable.cail_12
             , R.drawable.cail_13, R.drawable.cail_14, R.drawable.cail_15, R.drawable.cail_16, R.drawable.cail_17, R.drawable.cail_18, R.drawable.cail_19
-            , R.drawable.cail_20, R.drawable.cail_21, R.drawable.cail_22, R.drawable.cail_23, R.drawable.cail_24, R.drawable.cail_25, R.drawable.cail_26
+            , R.drawable.cail_20, R.drawable.cail_21, R.drawable.cail_22, R.drawable.cail_23, R.drawable.cail_24, R.drawable.cail_25, R.drawable.cail_26, R.drawable.cailiao_57
             , R.drawable.cail_27, R.drawable.cail_28, R.drawable.cail_29, R.drawable.cail_30, R.drawable.cail_31, R.drawable.cail_32, R.drawable.cail_33
             , R.drawable.cail_34, R.drawable.cail_35, R.drawable.cail_36, R.drawable.cail_37, R.drawable.cail_38, R.drawable.cail_39, R.drawable.cail_40
             , R.drawable.cail_41, R.drawable.cail_42, R.drawable.cail_43, R.drawable.cail_44, R.drawable.cail_45, R.drawable.cail_46, R.drawable.cail_47
@@ -97,12 +99,75 @@ public class PictureRes {
             , R.drawable.shu, R.drawable.haojiao, R.drawable.jiej_1, R.drawable.jiej_2, R.drawable.jiej_3, R.drawable.jiej_4, R.drawable.jiej_5, R.drawable.jiej_6
             , R.drawable.fenmo_1, R.drawable.fenmo_2, R.drawable.fenmo_3, R.drawable.fenmo_4, R.drawable.fenmo_5};
 
-    private static final int[] boss = new int[]{R.drawable.bs_1, R.drawable.bs_2, R.drawable.bs_3, R.drawable.bs_4, R.drawable.bs_5, R.drawable.bs_6
+    private static final int[] BOSS = new int[]{R.drawable.bs_1, R.drawable.bs_2, R.drawable.bs_3, R.drawable.bs_4, R.drawable.bs_5, R.drawable.bs_6
             , R.drawable.bs_7, R.drawable.bs_8, R.drawable.bs_9, R.drawable.bs_10, R.drawable.bs_11, R.drawable.bs_12, R.drawable.bs_13
             , R.drawable.bs_14, R.drawable.bs_15, R.drawable.bs_16, R.drawable.bs_17, R.drawable.bs_18, R.drawable.bs_19, R.drawable.bs_20
             , R.drawable.bs_21, R.drawable.bs_22, R.drawable.bs_23, R.drawable.bs_24, R.drawable.bs_25, R.drawable.bs_26, R.drawable.bs_27
             , R.drawable.bs_28, R.drawable.bs_29, R.drawable.bs_30, R.drawable.bs_31, R.drawable.bs_32, R.drawable.bs_33, R.drawable.bs_34
-            , R.drawable.bs_35, R.drawable.bs_36, R.drawable.bs_38, R.drawable.bs_37};
+            , R.drawable.bs_35, R.drawable.bs_36, R.drawable.bs_38, R.drawable.bs_37 };
+
+    private static final int[] EXCLUSIVE_LIST = new int[]{
+            //背包
+            R.drawable.liliang, R.drawable.haohan, R.drawable.haohan, R.drawable.shenyuan, R.drawable.shangqiu, R.drawable.wuqi_161, R.drawable.shuiguo,
+            R.drawable.tanguo, R.drawable.tanguo, R.drawable.tianguo, R.drawable.shengming, R.drawable.wuqi_162,
+            //C8
+            R.drawable.nail_22, R.drawable.nail_37, R.drawable.wuqi_113, R.drawable.ship_14, R.drawable.ship_23, R.drawable.ship_42,
+            //黑骑
+            R.drawable.ship_53, R.drawable.nail_40, R.drawable.nail_49,
+            //大锤
+            R.drawable.wuqi_125, R.drawable.wuqi_112, R.drawable.wuqi_155, R.drawable.wuqi_80, R.drawable.wuqi_159, R.drawable.ship_36, R.drawable.ship_60,
+            R.drawable.ship_56,
+            //魅影
+            R.drawable.wuqi_65, R.drawable.wuqi_117, R.drawable.wuqi_116, R.drawable.ship_60,
+            //魔枪
+            R.drawable.wuqi_118, R.drawable.wuqi_119, R.drawable.wuqi_111, R.drawable.nail_22, R.drawable.nail_37,
+            //剑圣
+            R.drawable.ship_50, R.drawable.ship_51,
+            //刺客
+            R.drawable.wuqi_61, R.drawable.ship_50, R.drawable.ship_51,
+            //拳师
+            R.drawable.chib_14, R.drawable.chib_27, R.drawable.nail_25, R.drawable.nail_47, R.drawable.ship_60,
+            //神射
+            R.drawable.wuqi_66, R.drawable.wuqi_124, R.drawable.wuqi_50, R.drawable.wuqi_122, R.drawable.wuqi_123,
+            //狙击
+            R.drawable.wuqi_121, R.drawable.wuqi_160, R.drawable.wuqi_115, R.drawable.wuqi_158, R.drawable.wuqi_107,
+            //闪闪
+            R.drawable.chib_13,
+            //机械
+            R.drawable.wuqi_59, R.drawable.wuqi_103, R.drawable.wuqi_105, R.drawable.wuqi_153, R.drawable.wuqi_152, R.drawable.wuqi_95,
+            R.drawable.wuqi_164,
+            //牧师
+            R.drawable.wuqi_120, R.drawable.nail_27, R.drawable.nail_38, R.drawable.ship_36, R.drawable.ship_56, R.drawable.ship_57,
+            R.drawable.ship_61, R.drawable.ship_62,
+            //织女
+            R.drawable.wuqi_109, R.drawable.wuqi_wenyi,
+            //冰法
+            R.drawable.nail_34, R.drawable.nail_35,
+            //月法
+            R.drawable.chib_16,
+            //风法
+            R.drawable.wuqi_88, R.drawable.wuqi_106, R.drawable.nail_27, R.drawable.nail_38, R.drawable.head_39, R.drawable.ship_32,
+            R.drawable.ship_36, R.drawable.ship_56, R.drawable.ship_57,
+            //召唤
+            R.drawable.wuqi_71, R.drawable.wuqi_132, R.drawable.wuqi_62, R.drawable.wuqi_108,
+            R.drawable.wuqi_88, R.drawable.wuqi_106, R.drawable.wuqi_hundunbishou,
+            //巫术
+            R.drawable.chib_15, R.drawable.ship_61, R.drawable.ship_62,
+            //炼金
+            R.drawable.ship_31, R.drawable.ship_29, R.drawable.wuqi_48, R.drawable.wuqi_62, R.drawable.wuqi_108,
+            //血法
+            R.drawable.ship_6, R.drawable.ship_37, R.drawable.wuqi_72,
+            //电法
+            R.drawable.wuqi_88, R.drawable.wuqi_106, R.drawable.nail_26, R.drawable.nail_27, R.drawable.nail_38,
+            //赏金
+            R.drawable.wuqi_152
+    };
+
+    private static final int[] HERO_LIST = new int[]{R.drawable.zy_my, R.drawable.zy_dc, R.drawable.zy_mq, R.drawable.zy_kz, R.drawable.zy_c8,
+            R.drawable.zy_bbx,R.drawable.zy_hq, R.drawable.zy_jx, R.drawable.zy_33, R.drawable.zy_qs, R.drawable.zy_js, R.drawable.ss1,
+            R.drawable.zy_jj, R.drawable.zy_ck, R.drawable.zy_fm, R.drawable.zy_skz, R.drawable.zy_sj, R.drawable.zy_hf, R.drawable.zy_bf,
+            R.drawable.zy_ff, R.drawable.zy_yf, R.drawable.zz_df, R.drawable.zy_ms, R.drawable.zy_zh, R.drawable.zy_cn, R.drawable.zy_ws,
+            R.drawable.zy_lj, R.drawable.zy_xf};
 
     public static int[] getImgList(String type){
         switch (type) {
@@ -121,7 +186,11 @@ public class PictureRes {
             case "其他":
                 return gao;
             case "boss":
-                return boss;
+                return BOSS;
+            case "英雄":
+                return HERO_LIST;
+            case "专属":
+                return EXCLUSIVE_LIST;
             default:
                 return imgList;
         }

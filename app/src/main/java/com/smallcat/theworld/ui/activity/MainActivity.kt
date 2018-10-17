@@ -1,7 +1,9 @@
 package com.smallcat.theworld.ui.activity
 
+import android.Manifest
 import android.app.Dialog
-import android.os.Handler
+import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -17,14 +19,16 @@ import com.smallcat.theworld.ui.fragment.BossFragment
 import com.smallcat.theworld.ui.fragment.EquipFragment
 import com.smallcat.theworld.ui.fragment.ExclusiveFragment
 import com.smallcat.theworld.ui.fragment.MaterialFragment
-import com.smallcat.theworld.utils.SharedPref
-import com.smallcat.theworld.utils.SystemFit
-import com.smallcat.theworld.utils.ToastUtil
 import me.yokeyword.fragmentation.ISupportFragment
+import com.pgyersdk.update.PgyUpdateManager
+import com.pgyersdk.update.javabean.AppBean
+import com.pgyersdk.update.UpdateManagerListener
+import com.tbruyelle.rxpermissions2.RxPermissions
+import android.support.v7.app.AlertDialog
+import com.smallcat.theworld.utils.*
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var fg1: EquipFragment
@@ -45,7 +49,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         get() = R.layout.activity_main
 
     override fun fitSystem() {
-        SystemFit.fitSystem(this)
+        fitSystemAllScroll(this)
     }
 
     override fun initData() {
@@ -66,10 +70,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         fg3 = BossFragment()
         fg4 = MaterialFragment()
         loadMultipleRootFragment(R.id.fragment_container, 0, fg1, fg2, fg3, fg4)
-
-        if (SharedPref.newInstance().isShow){
-            Handler().postDelayed({ showDialog() }, 500)
-        }
+        checkPermission(0)
     }
 
     private fun showDialog() {
@@ -90,6 +91,69 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         btnIndex.setOnClickListener { dialog.dismiss() }
     }
 
+    private fun checkPermission(type: Int){
+        val rxPermissions = RxPermissions(this)
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe { granted ->
+                    if (granted) { // Always true pre-M
+                        upDateApp(type)
+                    } else {
+                        dismissLoading()
+                        ToastUtil.shortShow("需要读写权限")
+                    }
+                }
+    }
+
+    private fun upDateApp(type: Int){
+        PgyUpdateManager.Builder()
+                .setForced(false)                //设置是否强制更新,非自定义回调更新接口此方法有用
+                .setUserCanRetry(true)         //失败后是否提示重新下载，非自定义下载 apk 回调此方法有用
+                .setDeleteHistroyApk(true)     // 检查更新前是否删除本地历史 Apk， 默认为true
+                .setUpdateManagerListener(object : UpdateManagerListener {
+                    override fun onNoUpdateAvailable() {
+                        dismissLoading()
+                        if (type != 0) {
+                            ToastUtil.shortShow("当前是最新版本")
+                        }else{
+                            if (sharedPref.isShow){
+                                showDialog()
+                            }
+                        }
+                    }
+
+                    override fun onUpdateAvailable(appBean: AppBean) {
+                        //有更新回调此方法
+                        LogUtil.e(appBean.toString())
+                        showUpdateDialog(appBean)
+                    }
+
+                    override fun checkUpdateFailed(e: Exception) {
+                        dismissLoading()
+                        if (type != 0) {
+                            ToastUtil.shortShow("更新异常")
+                        }else{
+                            if (sharedPref.isShow){
+                                showDialog()
+                            }
+                        }
+                    }
+                })
+                .register()
+    }
+
+    private fun showUpdateDialog(appBean: AppBean){
+        val dialog = AlertDialog.Builder(this)
+        dialog.setTitle("V${appBean.versionName}")
+                .setMessage(appBean.releaseNote)
+                .setPositiveButton("确定更新") { _, _ ->
+                    PgyUpdateManager.downLoadApk(appBean.downloadURL)
+                }
+                .setNegativeButton("暂不更新", null)
+        dialog.setCancelable(false)
+        dialog.create()
+        dialog.show()
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_equip -> show = EQUIP
@@ -98,7 +162,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_task -> show = MATERIAL
             R.id.nav_setting -> startActivity(SettingActivity::class.java)
             R.id.nav_tips -> showDialog()
-            R.id.nav_update -> ToastUtil.shortShow("更新不可用")
+            R.id.nav_update -> {
+                showLoading()
+                checkPermission(1)
+            }
         }
         showHideFragment(getFragment(show), getFragment(hide))
         hide = show
@@ -114,6 +181,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             MATERIAL -> return fg4
         }
         return fg1
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+
     }
 
     override fun onBackPressedSupport() {

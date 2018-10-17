@@ -44,7 +44,7 @@ class BossDetailActivity : BaseActivity() {
         data.add(boss.strategy!!)
         val adapter = BossPageAdapter(supportFragmentManager, data)
         vp_boss.adapter = adapter
-        vp_boss.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        vp_boss.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
@@ -52,7 +52,6 @@ class BossDetailActivity : BaseActivity() {
             }
 
             override fun onPageScrollStateChanged(state: Int) {
-
             }
         })
         vp_boss.offscreenPageLimit = 2

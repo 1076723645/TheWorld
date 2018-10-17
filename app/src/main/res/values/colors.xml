@@ -22,9 +22,11 @@
     <color name="index_bg_color">#F1F1F6</color>
 
     <color name="bg_black">#3A3A3A</color>
+    <color name="color_6c">#6c6c6c</color>
     <color name="route_view_text_color_gray">#a4a4a4</color>
     <color name="rate_text_color">#FA5555</color>
     <color name="coupon_color_more">#ffc000</color>
     <color name="color_default">#fafafa</color>
+    <color name="black">#000000</color>
 
 </resources>

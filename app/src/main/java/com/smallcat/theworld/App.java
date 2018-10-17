@@ -2,9 +2,12 @@ package com.smallcat.theworld;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+
+import com.smallcat.theworld.ui.activity.SplashActivity;
 
 import org.litepal.LitePal;
 
@@ -104,6 +107,16 @@ public class App extends Application {
                 }
             }
         }
+    }
+
+
+    /**
+     * 重新初始化应用界面，清空当前Activity棧，并启动欢迎页面
+     */
+    public static void reInitApp() {
+        Intent intent = new Intent(mApplication, SplashActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        mApplication.startActivity(intent);
     }
 
     public void finishActivity(Activity activity) {

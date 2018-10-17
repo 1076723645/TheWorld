@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="lineColor">@color/btn_blue</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColor">@color/color_6c</item>
     </style>
 
     <style name="CustomDialog" parent="android:style/Theme.Dialog">
@@ -45,6 +46,7 @@
         <item name="colorAccent">@color/btn_b</item>
         <item name="lineColor">@color/btn_b</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:textColor">@color/color_6c</item>
     </style>
 
 </resources>

@@ -3,13 +3,12 @@ package com.smallcat.theworld.utils
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import com.smallcat.theworld.R
-import com.smallcat.theworld.model.db.Boss
-import com.smallcat.theworld.model.db.Equip
-import com.smallcat.theworld.model.db.Exclusive
+import com.smallcat.theworld.model.db.*
 import com.smallcat.theworld.ui.activity.BossDetailActivity
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import org.litepal.crud.DataSupport
@@ -32,8 +31,8 @@ object AppUtils{
         return verName
     }
 
-    fun getColor(qul: String): Int {
-        return when {
+    fun getColor(mContext:Context, qul: String): Int {
+        val color= when{
             qul.contains("罕见") -> R.color.lightskyblue
             qul.contains("天绝史诗") -> R.color.mediumslateblue
             qul.contains("传奇至宝") -> R.color.royalblue
@@ -41,7 +40,10 @@ object AppUtils{
             qul.contains("冥灵传世") -> R.color.btn_b
             else -> R.color.firebrick
         }
+        return getResourcesColor(mContext, color)
     }
+
+    fun getResourcesColor(mContext:Context, color: Int) = ContextCompat.getColor(mContext, color)
 
     fun getEmptyView(mContext:Context, s: String) : View {
         val view = LayoutInflater.from(mContext).inflate(R.layout.empty_view, null)
@@ -79,6 +81,8 @@ object AppUtils{
         DataSupport.deleteAll(Equip::class.java)
         DataSupport.deleteAll(Boss::class.java)
         DataSupport.deleteAll(Exclusive::class.java)
+        DataSupport.deleteAll(Hero::class.java)
+        DataSupport.deleteAll(Skill::class.java)
     }
 
     fun needEquip(s: String): List<String> {

@@ -4,25 +4,18 @@ import android.content.Context
 import android.support.design.widget.TabLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.smallcat.theworld.model.db.Boss
-import org.litepal.crud.DataSupport
 
 /**
  * @author smallCut
  * @date 2018/9/13
  */
 object DataUtil{
-    private val professionList = arrayOf("神射手", "狙击手", "雷霆行者", "追星剑圣", "刺客", "机械师", "拳师", "旅行商人", "收割者",
+
+    private val professionList = arrayOf("神射手", "狙击手", "雷霆行者", "追星剑圣", "刺客", "赏金猎人", "机械师", "拳师", "旅行商人", "收割者",
             "附魔师", "魅影十字军", "圣光十字军", "狂战士", "黑暗骑士", "魔枪斗士", "剑之骑士", "冰法", "火法", "月法", "风法", "精灵召唤师", "灵魂织女",
             "牧师", "炼金术士", "血法", "巫术师", "电法")
 
-    fun getProfession(position:Int):String{
-        return professionList[position]
-    }
-
-    fun getBossList(): List<Boss> {
-        return DataSupport.findAll(Boss::class.java)
-    }
+    fun getProfession(position:Int) = professionList[position]
 
     fun reflex(tabLayout: TabLayout) {
         //了解源码得知 线的宽度是根据 tabView的宽度来设置的

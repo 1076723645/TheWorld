@@ -15,6 +15,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.smallcat.theworld.R
 import com.smallcat.theworld.model.bean.ImgData
+import com.smallcat.theworld.model.db.Hero
 import com.smallcat.theworld.utils.DataUtil
 
 /**
@@ -24,7 +25,7 @@ import com.smallcat.theworld.utils.DataUtil
 class ExclusiveAdapter(data: MutableList<ImgData>?) : BaseQuickAdapter<ImgData, BaseViewHolder>(R.layout.item_profession, data) {
 
     override fun convert(viewHolder: BaseViewHolder, item: ImgData) {
-        viewHolder.setText(R.id.tv_profession_name, DataUtil.getProfession(viewHolder.adapterPosition))
+        viewHolder.setText(R.id.tv_profession_name, item.name)
 
         val imageView = viewHolder.getView<ImageView>(R.id.iv_profession)
         //存在记录的高度时先Layout再异步加载图片
