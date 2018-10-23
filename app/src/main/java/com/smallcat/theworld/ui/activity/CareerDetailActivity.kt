@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.activity_career_detail.*
 
 class CareerDetailActivity : RxActivity() {
 
-
     override val layoutId: Int
         get() = R.layout.activity_career_detail
 

@@ -24,6 +24,9 @@ import com.smallcat.theworld.utils.DataUtil
  */
 class ExclusiveAdapter(data: MutableList<ImgData>?) : BaseQuickAdapter<ImgData, BaseViewHolder>(R.layout.item_profession, data) {
 
+    private val options = RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+
     override fun convert(viewHolder: BaseViewHolder, item: ImgData) {
         viewHolder.setText(R.id.tv_profession_name, item.name)
 
@@ -57,7 +60,6 @@ class ExclusiveAdapter(data: MutableList<ImgData>?) : BaseQuickAdapter<ImgData, 
                 }
             }
         }
-        Glide.with(mContext).asBitmap().load(item.imgUrl).into(simpleTarget)
-
+        Glide.with(mContext).asBitmap().load(item.imgUrl).apply(options).into(simpleTarget)
     }
 }

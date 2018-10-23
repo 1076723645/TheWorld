@@ -1,11 +1,15 @@
 package com.smallcat.theworld.ui.activity
 
+import android.Manifest
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.pgyersdk.crash.PgyCrashManager
+import com.smallcat.theworld.App
 import com.smallcat.theworld.model.db.*
 import com.smallcat.theworld.utils.*
+import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -30,18 +34,30 @@ class SplashActivity : AppCompatActivity() {
         AppStatusManager.getInstance().appStatus = AppStatusManager.AppStatusConstant.APP_NORMAL
         super.onCreate(savedInstanceState)
         fitSystemAllScroll(this)
-        initData()
+        val rxPermissions = RxPermissions(this)
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe { granted ->
+                    if (!granted) { // Always true pre-M
+                        ToastUtil.shortShow("需要读写权限")
+                    }
+                    initData()
+                }
     }
 
     private fun initData(){
+        PgyCrashManager.register()
         val oldVersion = sharedPref.versionName
         val newVersion = AppUtils.getVerName(this)
         var isFirst = sharedPref.isFirst
 
         if (oldVersion != newVersion){
             isFirst = true
-            CleanMessageUtil.cleanApplicationData(this)
             AppUtils.clean()
+            try {
+                CleanMessageUtil.cleanApplicationData(App.getInstance())
+            }catch (e :Exception){
+                ToastUtil.shortShow("清除旧数据错误，请重新安装程序")
+            }
             sharedPref.versionName = newVersion
         }
 
@@ -127,12 +143,14 @@ class SplashActivity : AppCompatActivity() {
                     }
                     fileName1 -> {
                         if (k == 0) {
+                            val imgArray: IntArray = PictureRes.getImgList("技能")
                             for (i in 1 until sheetRows) {//从第二行开始读
                                 val skill = Skill()
                                 skill.heroName = sheet.getCell(0, i).contents
                                 skill.skillKey = sheet.getCell(1, i).contents
                                 skill.skillName = sheet.getCell(2, i).contents
                                 skill.skillEffect = sheet.getCell(3, i).contents
+                                skill.imgId = imgArray[i - 1]
                                 skillList.add(skill)
                             }
                         }
@@ -187,7 +205,7 @@ class SplashActivity : AppCompatActivity() {
             }
             workbook.close()
         } catch (e: Exception) {
-            LogUtil.e("read error=$e")
+            ToastUtil.shortShow("read error=$e")
         }
     }
 

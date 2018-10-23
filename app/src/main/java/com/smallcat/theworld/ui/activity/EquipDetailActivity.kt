@@ -18,6 +18,7 @@ import butterknife.BindView
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.model.db.Equip
+import com.smallcat.theworld.model.db.Hero
 import com.smallcat.theworld.ui.adapter.AccessAdapter
 import com.smallcat.theworld.utils.AppUtils
 import org.litepal.crud.DataSupport
@@ -192,10 +193,16 @@ class EquipDetailActivity : BaseActivity() {
                     tvExclusive.text = exclusive
                     tvExclusive.setOnClickListener {
                         val name = exclusive.substring(0, exclusive.indexOf('-'))
-                        val intent = Intent(this@EquipDetailActivity, CareerDetailActivity::class.java)
-                        intent.putExtra("name", name)
-                        intent.putExtra("position", 2)
-                        startActivity(intent)
+                        val data = DataSupport.select("heroName", "imgId")
+                                .where("heroName = ?", name).find(Hero::class.java)
+                        data?.let {list ->
+                            Intent(this@EquipDetailActivity, CareerDetailActivity::class.java).apply {
+                                putExtra("name", list[0].heroName)
+                                putExtra("imgId", list[0].imgId)
+                                putExtra("position", 2)
+                                startActivity(this)
+                            }
+                        }
                     }
                     layout.addView(v)
                 }

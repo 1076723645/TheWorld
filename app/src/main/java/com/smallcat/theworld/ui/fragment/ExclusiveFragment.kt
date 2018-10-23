@@ -1,28 +1,18 @@
 package com.smallcat.theworld.ui.fragment
 
 
-import android.app.ActivityOptions
 import android.content.Intent
-import android.os.Build
-import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxFragment
 import com.smallcat.theworld.model.bean.ImgData
-import com.smallcat.theworld.model.db.Exclusive
 import com.smallcat.theworld.model.db.Hero
 import com.smallcat.theworld.ui.activity.CareerDetailActivity
-import com.smallcat.theworld.ui.activity.CareerIntroduceActivity
 import com.smallcat.theworld.ui.adapter.ExclusiveAdapter
-import com.smallcat.theworld.utils.DataUtil
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import me.yokeyword.fragmentation.SupportFragment
 import org.litepal.crud.DataSupport
 import java.util.*
 
@@ -48,7 +38,6 @@ class ExclusiveFragment : RxFragment() {
             intent.putExtra("name", mData[position].name)
             intent.putExtra("imgId", mData[position].imgUrl)
             startActivity(intent)
-
         }
         recyclerView.adapter = adapter
         loadData()
