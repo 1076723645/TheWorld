@@ -52,9 +52,9 @@ class SplashActivity : AppCompatActivity() {
 
         if (oldVersion != newVersion){
             isFirst = true
-            AppUtils.clean()
             try {
                 CleanMessageUtil.cleanApplicationData(App.getInstance())
+                AppUtils.clean()
             }catch (e :Exception){
                 ToastUtil.shortShow("清除旧数据错误，请重新安装程序")
             }
@@ -87,7 +87,7 @@ class SplashActivity : AppCompatActivity() {
                 .subscribe ({
                     ToastUtil.shortShow(it)
                 },{
-                    ToastUtil.shortShow("加载错误,请重试")
+                    ToastUtil.shortShow("未知错误,请重新安装")
                 },{
                     sharedPref.isFirst = false
                     cleanList()

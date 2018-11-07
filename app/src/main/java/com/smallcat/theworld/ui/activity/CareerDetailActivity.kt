@@ -1,6 +1,7 @@
 package com.smallcat.theworld.ui.activity
 
 import android.view.MenuItem
+import com.bumptech.glide.Glide
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.ui.adapter.HeroFragAdapter
@@ -27,8 +28,10 @@ class CareerDetailActivity : RxActivity() {
         iv_bg.setImageResource(imgId)
         val adapter = HeroFragAdapter(supportFragmentManager, title)
         view_pager.adapter = adapter
+        view_pager.offscreenPageLimit = 3
         tab.setupWithViewPager(view_pager)
         view_pager.currentItem = mPosition
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
