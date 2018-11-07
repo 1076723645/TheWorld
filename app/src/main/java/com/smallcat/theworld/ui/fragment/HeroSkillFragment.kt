@@ -40,6 +40,7 @@ class HeroSkillFragment : RxFragment() {
     override fun initView() {
         val layoutManager = LinearLayoutManager(mContext)
         layoutManager.orientation = RecyclerView.HORIZONTAL
+        mChoosePosition = 0
         adapter = ChoosePicAdapter(list)
         adapter.setOnItemClickListener { _, _, position ->
             list[mChoosePosition].isSelected = false

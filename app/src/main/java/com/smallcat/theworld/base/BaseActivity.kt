@@ -45,7 +45,9 @@ abstract class BaseActivity : SupportActivity() {
     private fun checkAppStatus() {
         if (AppStatusManager.getInstance().appStatus == AppStatusManager.AppStatusConstant.APP_FORCE_KILLED) {
             LogUtil.e("activity被回收")
-            App.reInitApp()
+            val intent = Intent(this, SplashActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
         }else{
             LogUtil.e("正常启动")
         }

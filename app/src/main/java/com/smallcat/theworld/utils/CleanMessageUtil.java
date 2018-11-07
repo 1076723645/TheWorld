@@ -74,6 +74,28 @@ public class CleanMessageUtil {
         }
     }
 
+    public static void deleteFile(File file) {
+        if (!file.exists()) {
+            return;
+        } else {
+            if (file.isFile()) {
+                file.delete();
+                return;
+            }
+            if (file.isDirectory()) {
+                File[] childFile = file.listFiles();
+                if (childFile == null || childFile.length == 0) {
+                    file.delete();
+                    return;
+                }
+                for (File f : childFile) {
+                    deleteFile(f);
+                }
+                file.delete();
+            }
+        }
+    }
+
     /** * 删除方法 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理 * * @param directory */
     private static void deleteFilesByDirectory(File directory) {
         if (directory != null && directory.exists() && directory.isDirectory()) {

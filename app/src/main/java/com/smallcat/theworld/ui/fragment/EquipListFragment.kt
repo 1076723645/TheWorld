@@ -3,11 +3,13 @@ package com.smallcat.theworld.ui.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxFragment
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import com.smallcat.theworld.ui.adapter.EquipAdapter
+import com.smallcat.theworld.utils.AppUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -35,7 +37,8 @@ class EquipListFragment : RxFragment() {
     override val layoutId: Int
         get() = R.layout.fragment_equip_list
 
-    override fun initView() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val recyclerView = mView.findViewById<RecyclerView>(R.id.rv_equip)
         adapter = EquipAdapter(null)
         adapter.setOnItemClickListener { _, _, position ->
@@ -44,7 +47,11 @@ class EquipListFragment : RxFragment() {
                 startActivity(this)
             }
         }
+        adapter.emptyView = AppUtils.getEmptyView(mContext, "数据加载中")
         recyclerView.adapter = adapter
+    }
+
+    override fun initView() {
         loadData()
     }
 

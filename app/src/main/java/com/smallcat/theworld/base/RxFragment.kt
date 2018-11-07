@@ -6,9 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import me.yokeyword.fragmentation.SupportFragment
+import org.reactivestreams.Subscriber
 
 /**
  * Created by smallCut on 2018/4/27.
@@ -55,7 +59,6 @@ abstract class RxFragment : SupportFragment() {
         }
         mCompositeDisposable!!.add(disposable)
     }
-
     /**
      * 懒加载
      */

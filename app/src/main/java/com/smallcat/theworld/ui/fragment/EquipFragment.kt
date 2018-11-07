@@ -28,6 +28,7 @@ class EquipFragment : SupportFragment() {
         val tab = v.findViewById<TabLayout>(R.id.tab_equip)
         val adapter = EquipFragAdapter(activity!!.supportFragmentManager)
         viewPager.adapter = adapter
+        viewPager.offscreenPageLimit = 3
         tab.setupWithViewPager(viewPager)
     }
 }

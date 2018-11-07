@@ -115,8 +115,8 @@ public class PictureRes {
             //黑骑
             R.drawable.ship_53, R.drawable.nail_40, R.drawable.nail_49,
             //大锤
-            R.drawable.wuqi_125, R.drawable.wuqi_112, R.drawable.wuqi_155, R.drawable.wuqi_80, R.drawable.wuqi_159, R.drawable.ship_36, R.drawable.ship_60,
-            R.drawable.ship_56,
+            R.drawable.wuqi_125, R.drawable.wuqi_112, R.drawable.wuqi_155, R.drawable.wuqi_80, R.drawable.wuqi_159, R.drawable.ship_36, R.drawable.ship_56,
+            R.drawable.ship_60,
             //魅影
             R.drawable.wuqi_65, R.drawable.wuqi_117, R.drawable.wuqi_116, R.drawable.ship_60,
             //魔枪
@@ -163,6 +163,94 @@ public class PictureRes {
             R.drawable.wuqi_152
     };
 
+    private static final int[] SKILL_LIST = new int[]{
+            //魅影
+            R.drawable.my_d,R.drawable.my_q, R.drawable.my_w, R.drawable.my_e, R.drawable.my_r, R.drawable.my_t, R.drawable.my_f,
+            R.drawable.my_rr,
+            //大锤
+            R.color.reg_choose_color, R.drawable.dc_dq,R.drawable.dc_dw, R.drawable.dc_de, R.drawable.dc_dr, R.drawable.dc_q, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color,R.drawable.dc_t,R.drawable.dc_f,
+            //机械
+            R.color.reg_choose_color,R.drawable.jx_q, R.drawable.jx_w, R.drawable.jx_e, R.drawable.jx_r, R.drawable.jx_t, R.drawable.jx_f,
+            //血法
+            R.color.reg_choose_color,R.color.reg_choose_color, R.drawable.xf_w, R.drawable.xf_e, R.drawable.xf_r, R.drawable.xf_t, R.drawable.xf_f,
+            //牧师
+            R.color.reg_choose_color,R.color.reg_choose_color, R.color.reg_choose_color, R.drawable.ms_e, R.drawable.ms_r, R.drawable.ms_t,
+            R.drawable.ms_f,
+            //神射手
+            R.drawable.ss_d,R.drawable.ss_q, R.drawable.ss_w, R.drawable.ss_e, R.drawable.ss_r, R.drawable.ss_t,
+            R.drawable.ss_f,
+            //背包
+            R.drawable.bbx_d,R.drawable.bbx_q, R.drawable.bbx_w, R.drawable.bbx_e, R.drawable.bbx_r, R.drawable.bbx_t,
+            R.drawable.bbx_f,
+            //魔枪
+            R.drawable.mq_d,R.drawable.mq_q, R.drawable.mq_w, R.drawable.mq_e, R.drawable.mq_r, R.drawable.mq_t,
+            R.drawable.mq_f,
+            //电法
+            R.color.reg_choose_color,R.drawable.df_q, R.drawable.df_w, R.drawable.df_e, R.drawable.df_r, R.drawable.df_t,
+            R.drawable.df_f,
+            //月法
+            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            //冰法
+            R.color.reg_choose_color,R.drawable.bf_q, R.drawable.bf_w, R.drawable.bf_e, R.drawable.bf_r, R.drawable.bf_t,
+            R.drawable.bf_f,
+            //黑骑
+            R.color.reg_choose_color,R.drawable.hq_q, R.drawable.hq_w, R.drawable.hq_e, R.drawable.hq_r, R.drawable.hq_t,
+            R.drawable.hq_f,
+            //拳师
+            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color,R.drawable.qs_f,
+            //附魔师
+            R.drawable.fm_d,R.drawable.fm_q, R.drawable.fm_w, R.drawable.fm_e, R.drawable.fm_r, R.drawable.fm_t,
+            R.drawable.fm_f,
+            //赏金猎人
+            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color,R.color.reg_choose_color,
+            //收割者
+            R.drawable.sgz_d,R.drawable.sgz_q, R.color.reg_choose_color, R.drawable.sgz_e, R.color.reg_choose_color, R.drawable.sgz_t,
+            R.drawable.sgz_f,
+            //c8
+            R.drawable.c8_d,R.drawable.c8_q, R.drawable.c8_w, R.drawable.c8_e, R.drawable.c8_e2, R.drawable.c8_r,
+            R.drawable.c8_t,R.drawable.c8_f,
+            //js
+            R.color.reg_choose_color,R.drawable.js_q, R.drawable.js_qw, R.drawable.js_w, R.drawable.js_we, R.drawable.js_e,
+            R.drawable.js_eq,R.drawable.js_r,R.drawable.js_t,R.drawable.js_f,
+            //kz
+            R.drawable.kz_d,R.drawable.kz_q, R.drawable.kz_w, R.drawable.kz_e, R.drawable.kz_r, R.drawable.kz_t,
+            R.drawable.kz_f,
+            //jj
+            R.drawable.jj_d,R.drawable.jj_q, R.drawable.jj_w, R.drawable.jj_e, R.drawable.jj_r, R.drawable.jj_t,
+            R.drawable.jj_f,
+            //火法
+            R.color.reg_choose_color,R.drawable.hf_q, R.drawable.hf_w, R.drawable.hf_e,  R.color.reg_choose_color, R.drawable.hf_t,
+            R.color.reg_choose_color,
+            //风法
+            R.drawable.ff_d,R.drawable.ff_q, R.drawable.ff_w, R.drawable.ff_e, R.drawable.ff_r,
+            R.drawable.ff_t, R.drawable.ff_f,
+            //巫术
+            R.color.reg_choose_color,R.drawable.ws_q,R.drawable.ws_w,R.drawable.ws_e,
+            R.drawable.ws_r,R.drawable.ws_t,R.drawable.ws_f,
+            //召唤
+            R.drawable.zh_d,R.drawable.zh_q, R.drawable.zh_w, R.drawable.zh_e, R.drawable.zh_r,
+            R.drawable.zh_t, R.drawable.zh_f,
+            //闪闪
+            R.color.reg_choose_color,R.drawable.shanshan_q,R.drawable.shanshan_w,R.color.reg_choose_color,
+            R.drawable.shanshan_r,R.color.reg_choose_color,R.drawable.shanshan_f,
+            //织女
+            R.drawable.zn_d,R.drawable.zn_q, R.color.reg_choose_color, R.drawable.zn_w, R.drawable.zn_e,
+            R.drawable.zn_r, R.color.reg_choose_color,R.color.reg_choose_color,
+            //炼金
+            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            //ck
+            R.color.reg_choose_color,R.drawable.ck_q, R.drawable.ck_w, R.drawable.ck_e, R.drawable.ck_r,
+            R.drawable.ck_t, R.drawable.ck_f
+    };
+
     private static final int[] HERO_LIST = new int[]{R.drawable.zy_my, R.drawable.zy_dc, R.drawable.zy_mq, R.drawable.zy_kz, R.drawable.zy_c8,
             R.drawable.zy_bbx,R.drawable.zy_hq, R.drawable.zy_jx, R.drawable.zy_33, R.drawable.zy_qs, R.drawable.zy_js, R.drawable.ss1,
             R.drawable.zy_jj, R.drawable.zy_ck, R.drawable.zy_fm, R.drawable.zy_skz, R.drawable.zy_sj, R.drawable.zy_hf, R.drawable.zy_bf,
@@ -191,6 +279,8 @@ public class PictureRes {
                 return HERO_LIST;
             case "专属":
                 return EXCLUSIVE_LIST;
+            case "技能":
+                return SKILL_LIST;
             default:
                 return imgList;
         }

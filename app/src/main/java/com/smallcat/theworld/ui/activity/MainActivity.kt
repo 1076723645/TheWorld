@@ -128,12 +128,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     }
 
                     override fun checkUpdateFailed(e: Exception) {
-                        dismissLoading()
-                        if (type != 0) {
-                            ToastUtil.shortShow("更新异常")
-                        }else{
-                            if (sharedPref.isShow){
-                                showDialog()
+                        runOnUiThread {
+                            dismissLoading()
+                            if (type != 0) {
+                                ToastUtil.shortShow("更新异常")
+                            }else{
+                                if (sharedPref.isShow){
+                                    showDialog()
+                                }
                             }
                         }
                     }
@@ -181,10 +183,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             MATERIAL -> return fg4
         }
         return fg1
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-
     }
 
     override fun onBackPressedSupport() {
