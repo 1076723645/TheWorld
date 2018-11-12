@@ -16,8 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
- * @author smallcut
+ * @author hui
  * @date 2018/8/9
  */
 public class App extends Application {

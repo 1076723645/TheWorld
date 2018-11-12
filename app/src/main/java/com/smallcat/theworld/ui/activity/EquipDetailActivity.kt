@@ -75,7 +75,7 @@ class EquipDetailActivity : BaseActivity() {
         tvType.setTextColor(color)
         tvQul.text = quality
         tvQul.setTextColor(color)
-        if (equip.equipmentProperty.isNotEmpty()){
+        if (equip.equipmentProperty.isNotEmpty()) {
             tvProperty.text = equip.equipmentProperty
             tvProperty.visibility = View.VISIBLE
         }
@@ -90,7 +90,7 @@ class EquipDetailActivity : BaseActivity() {
             /**
              * 2选1的情况
              */
-            if (name.contains("/")){
+            if (name.contains("/")) {
                 dialog = Dialog(mContext, R.style.CustomDialog)
                 val v1 = LayoutInflater.from(mContext).inflate(R.layout.dialog_choose, null)
                 dialog!!.setContentView(v1)
@@ -102,11 +102,11 @@ class EquipDetailActivity : BaseActivity() {
                 val choose2 = name.substring(name.indexOf('/') + 1)
                 tvName1.text = choose1
                 tvName2.text = choose2
-                tvName1.setOnClickListener{
+                tvName1.setOnClickListener {
                     AppUtils.goEquipDetailActivity(mContext, choose1)
                     dialog!!.dismiss()
                 }
-                tvName2.setOnClickListener{
+                tvName2.setOnClickListener {
                     AppUtils.goEquipDetailActivity(mContext, choose2)
                     dialog!!.dismiss()
                 }
@@ -116,7 +116,7 @@ class EquipDetailActivity : BaseActivity() {
             /**
              * boss掉落的情况
              */
-            if (name.contains("[")){
+            if (name.contains("[")) {
                 name = name.substring(0, name.indexOf('['))
                 if (name == "远古法爷" || name == "巨人法爷") {
                     name = "法爷"
@@ -128,7 +128,7 @@ class EquipDetailActivity : BaseActivity() {
             /**
              * 正常情况
              */
-            if (!AppUtils.goEquipDetailActivity(mContext, name)){
+            if (!AppUtils.goEquipDetailActivity(mContext, name)) {
                 AppUtils.goBossDetailActivity(mContext, name)
             }
         }
@@ -140,7 +140,7 @@ class EquipDetailActivity : BaseActivity() {
          * 进阶装备
          */
         advanceList = equip.advanceList as ArrayList<String>
-        if (advanceList.size == 0){
+        if (advanceList.size == 0) {
             val equipList = DataSupport.where("access like ?", "%$equipName%").find(Equip::class.java)
             for (i in 0 until equipList.size) {
                 val mEquip = equipList[i]
@@ -148,7 +148,7 @@ class EquipDetailActivity : BaseActivity() {
                 for (j in 0 until mList.size) {
                     if (mList[j] == equipName) {
                         advanceList.add(mEquip.equipName)
-                    }else if (mList[j].contains("/")){
+                    } else if (mList[j].contains("/")) {
                         val choose1 = mList[j].substring(0, mList[j].indexOf('/'))
                         val choose2 = mList[j].substring(mList[j].indexOf('/') + 1)
                         if (equipName == choose1 || equipName == choose2) {
@@ -157,7 +157,7 @@ class EquipDetailActivity : BaseActivity() {
                     }
                 }
             }
-            if (advanceList.isNotEmpty()){
+            if (advanceList.isNotEmpty()) {
                 equip.advanceList = advanceList
                 equip.save()
             }
@@ -168,7 +168,7 @@ class EquipDetailActivity : BaseActivity() {
                 val inflatedView = viewStub.inflate()
                 val advanceView = inflatedView.findViewById<RecyclerView>(R.id.rv_advance)
                 val adapter = AccessAdapter(advanceList)
-                adapter.setOnItemClickListener{ _, _, position ->
+                adapter.setOnItemClickListener { _, _, position ->
                     AppUtils.goEquipDetailActivity(mContext, advanceList[position])
                 }
                 advanceView.adapter = adapter
@@ -195,7 +195,7 @@ class EquipDetailActivity : BaseActivity() {
                         val name = exclusive.substring(0, exclusive.indexOf('-'))
                         val data = DataSupport.select("heroName", "imgId")
                                 .where("heroName = ?", name).find(Hero::class.java)
-                        data?.let {list ->
+                        data?.let { list ->
                             Intent(this@EquipDetailActivity, CareerDetailActivity::class.java).apply {
                                 putExtra("name", list[0].heroName)
                                 putExtra("imgId", list[0].imgId)
@@ -211,7 +211,7 @@ class EquipDetailActivity : BaseActivity() {
     }
 
     override fun onDestroy() {
-        if (dialog != null && dialog!!.isShowing){
+        if (dialog != null && dialog!!.isShowing) {
             dialog!!.dismiss()
         }
         super.onDestroy()
