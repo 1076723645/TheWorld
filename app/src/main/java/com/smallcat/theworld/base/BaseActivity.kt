@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import butterknife.ButterKnife
 import butterknife.Unbinder
@@ -17,6 +16,7 @@ import com.smallcat.theworld.utils.LogUtil
 import com.smallcat.theworld.utils.adaptScreen4VerticalSlide
 import com.smallcat.theworld.utils.sharedPref
 import me.yokeyword.fragmentation.SupportActivity
+
 
 /**
  * Created by smallCut on 2018/4/27.
@@ -48,7 +48,7 @@ abstract class BaseActivity : SupportActivity() {
             val intent = Intent(this, SplashActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
-        }else{
+        } else {
             LogUtil.e("正常启动")
         }
     }
@@ -62,9 +62,9 @@ abstract class BaseActivity : SupportActivity() {
     protected open fun fitSystem() {}
 
     protected open fun initTheme() {
-        if (!sharedPref.isBlack){
+        if (!sharedPref.isBlack) {
             setTheme(R.style.AppTheme)
-        }else{
+        } else {
             setTheme(R.style.BlackTheme)
         }
     }

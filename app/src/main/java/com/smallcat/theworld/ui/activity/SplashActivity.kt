@@ -1,6 +1,7 @@
 package com.smallcat.theworld.ui.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -30,6 +31,7 @@ class SplashActivity : AppCompatActivity() {
     private val heroList = ArrayList<Hero>()
     private val skillList = ArrayList<Skill>()
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         AppStatusManager.getInstance().appStatus = AppStatusManager.AppStatusConstant.APP_NORMAL
         super.onCreate(savedInstanceState)
@@ -73,6 +75,7 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("CheckResult")
     private fun getData(){
         Observable.create<String> {
             it.onNext("初始化数据中，请耐心等待QAQ")
@@ -142,7 +145,7 @@ class SplashActivity : AppCompatActivity() {
                         }
                     }
                     fileName1 -> {
-                        if (k == 0) {
+                        if (k == 1) {
                             val imgArray: IntArray = PictureRes.getImgList("技能")
                             for (i in 1 until sheetRows) {//从第二行开始读
                                 val skill = Skill()
@@ -155,13 +158,18 @@ class SplashActivity : AppCompatActivity() {
                             }
                         }
 
-                        if (k == 1) {
+                        if (k == 0) {
                             val imgArray: IntArray = PictureRes.getImgList("英雄")
                             for (i in 1 until sheetRows) {//从第二行开始读
                                 val hero = Hero()
                                 val name = sheet.getCell(0, i).contents
                                 hero.heroName = name
                                 hero.back = sheet.getCell(1, i).contents
+                                hero.type = sheet.getCell(2, i).contents
+                                hero.main = sheet.getCell(3, i).contents
+                                hero.distance= sheet.getCell(4, i).contents
+                                hero.position = sheet.getCell(5, i).contents
+                                hero.speed = sheet.getCell(6, i).contents
                                 hero.imgId = imgArray[i - 1]
                                 heroList.add(hero)
                             }

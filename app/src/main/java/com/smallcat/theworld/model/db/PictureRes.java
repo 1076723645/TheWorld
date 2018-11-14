@@ -168,7 +168,7 @@ public class PictureRes {
             R.drawable.my_d,R.drawable.my_q, R.drawable.my_w, R.drawable.my_e, R.drawable.my_r, R.drawable.my_t, R.drawable.my_f,
             R.drawable.my_rr,
             //大锤
-            R.color.reg_choose_color, R.drawable.dc_dq,R.drawable.dc_dw, R.drawable.dc_de, R.drawable.dc_dr, R.drawable.dc_q, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.drawable.dc_dq,R.drawable.dc_dw, R.drawable.dc_de, R.drawable.dc_dr, R.drawable.dc_q, R.drawable.dc_w,
             R.color.reg_choose_color, R.color.reg_choose_color,R.drawable.dc_t,R.drawable.dc_f,
             //机械
             R.color.reg_choose_color,R.drawable.jx_q, R.drawable.jx_w, R.drawable.jx_e, R.drawable.jx_r, R.drawable.jx_t, R.drawable.jx_f,
@@ -252,7 +252,7 @@ public class PictureRes {
     };
 
     private static final int[] HERO_LIST = new int[]{R.drawable.zy_my, R.drawable.zy_dc, R.drawable.zy_mq, R.drawable.zy_kz, R.drawable.zy_c8,
-            R.drawable.zy_bbx,R.drawable.zy_hq, R.drawable.zy_jx, R.drawable.zy_33, R.drawable.zy_qs, R.drawable.zy_js, R.drawable.ss1,
+            R.drawable.zy_bbx,R.drawable.zy_hq, R.drawable.zy_jx, R.drawable.zy_33, R.drawable.zy_qs, R.drawable.zy_js, R.drawable.zy_ss,
             R.drawable.zy_jj, R.drawable.zy_ck, R.drawable.zy_fm, R.drawable.zy_skz, R.drawable.zy_sj, R.drawable.zy_hf, R.drawable.zy_bf,
             R.drawable.zy_ff, R.drawable.zy_yf, R.drawable.zz_df, R.drawable.zy_ms, R.drawable.zy_zh, R.drawable.zy_cn, R.drawable.zy_ws,
             R.drawable.zy_lj, R.drawable.zy_xf};

@@ -23,7 +23,7 @@ public class App extends Application {
 
     private static App mApplication;
 
-    private List<Activity> mActivists = Collections.synchronizedList(new LinkedList<Activity>());
+    private List<Activity> mActivists = Collections.synchronizedList(new LinkedList<>());
 
     public static App getInstance() {
         return mApplication;

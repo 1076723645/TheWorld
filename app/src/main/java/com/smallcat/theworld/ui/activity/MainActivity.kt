@@ -1,6 +1,7 @@
 package com.smallcat.theworld.ui.activity
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -91,6 +92,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         btnIndex.setOnClickListener { dialog.dismiss() }
     }
 
+    @SuppressLint("CheckResult")
     private fun checkPermission(type: Int){
         val rxPermissions = RxPermissions(this)
         rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -144,7 +146,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun showUpdateDialog(appBean: AppBean){
-        val dialog = AlertDialog.Builder(this)
+        val dialog = AlertDialog.Builder(this@MainActivity)
         dialog.setTitle("V${appBean.versionName}")
                 .setMessage(appBean.releaseNote)
                 .setPositiveButton("确定更新") { _, _ ->

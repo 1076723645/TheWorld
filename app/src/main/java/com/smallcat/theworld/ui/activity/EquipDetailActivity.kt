@@ -21,6 +21,7 @@ import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Hero
 import com.smallcat.theworld.ui.adapter.AccessAdapter
 import com.smallcat.theworld.utils.AppUtils
+import com.smallcat.theworld.utils.ToastUtil
 import org.litepal.crud.DataSupport
 import java.util.*
 
@@ -195,10 +196,12 @@ class EquipDetailActivity : BaseActivity() {
                         val name = exclusive.substring(0, exclusive.indexOf('-'))
                         val data = DataSupport.select("heroName", "imgId")
                                 .where("heroName = ?", name).find(Hero::class.java)
-                        data?.let { list ->
+                        if (data.isEmpty()){
+                            ToastUtil.shortShow("出现bug了，快去反馈吧")
+                        }else{
                             Intent(this@EquipDetailActivity, CareerDetailActivity::class.java).apply {
-                                putExtra("name", list[0].heroName)
-                                putExtra("imgId", list[0].imgId)
+                                putExtra("name", data[0].heroName)
+                                putExtra("imgId", data[0].imgId)
                                 putExtra("position", 2)
                                 startActivity(this)
                             }

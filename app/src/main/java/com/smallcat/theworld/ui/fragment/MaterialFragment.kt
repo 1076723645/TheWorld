@@ -36,10 +36,4 @@ class MaterialFragment : SupportFragment() {
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        /*super.onSaveInstanceState(outState);
-         防止Activity切换到后台之后，由于内存不够，Activity被系统回收，但附属在上面的fragment被保存了。
-         在切换到前台的时候，activity被重新实例化，而fragment再getActivity()时，get的是之前被回收掉的，
-         而不是重新实例化的activity，整个APP会卡住*/
-    }
 }
