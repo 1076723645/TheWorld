@@ -10,6 +10,7 @@ import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import com.smallcat.theworld.ui.adapter.EquipAdapter
 import com.smallcat.theworld.utils.AppUtils
+import com.smallcat.theworld.utils.sharedPref
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -25,12 +26,12 @@ class EquipListFragment : RxFragment() {
     private lateinit var adapter: EquipAdapter
     private val tabTitles = arrayOf("武器", "头盔", "衣服", "饰品", "翅膀")
     private var flag: Int = 0
+    private var isBack = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val bundle = this.arguments
-        if (bundle != null) {
-            flag = bundle.getInt("index")
+        arguments?.let {
+            flag = it.getInt("index")
         }
     }
 
@@ -52,34 +53,37 @@ class EquipListFragment : RxFragment() {
     }
 
     override fun initView() {
+        isBack = mContext.sharedPref.isBack
         loadData()
     }
 
-    private fun loadData(){
+    private fun loadData() {
         addSubscribe(Observable.create<List<Equip>> {
-            val list  = DataSupport.where("type = ?", tabTitles[flag]).find(Equip::class.java)
+            val list = if (isBack) {
+                DataSupport.where("type = ?", tabTitles[flag]).order("id desc").find(Equip::class.java)
+            } else {
+                DataSupport.where("type = ?", tabTitles[flag]).find(Equip::class.java)
+            }
             it.onNext(list)
         }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe{
+                .subscribe {
                     showList(it)
                 })
     }
 
-    private fun showList(data:List<Equip>){
+    private fun showList(data: List<Equip>) {
         mEquipList = data
         adapter.setNewData(mEquipList)
     }
 
     companion object {
-
-        fun newInstance(position: Int): EquipListFragment {
-            val bundle = Bundle()
-            bundle.putInt("index", position)
-            val fragment = EquipListFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
+        fun newInstance(position: Int): EquipListFragment =
+                EquipListFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("index", position)
+                    }
+                }
     }
 }

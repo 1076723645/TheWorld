@@ -27,14 +27,14 @@
                 android:text="设置"
                 android:textSize="11sp"
                 android:textColor="@color/reg_choose_color"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
                 tools:ignore="SmallSp" />
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="0.5dp"
                 android:background="@color/line_color"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="16dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -46,7 +46,7 @@
                     android:text="提示"
                     android:textSize="15sp"
                     android:textColor="@color/text_color_black"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
                     android:layout_weight="1"/>
                 <com.suke.widget.SwitchButton
                     android:id="@+id/sb_tip"
@@ -60,8 +60,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0.5dp"
                 android:background="@color/line_color"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="装备倒序"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_color_black"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"/>
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/sb_back"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
+                    app:sb_show_indicator="false"
+                    app:sb_border_width="0.5dp"/>
+            </LinearLayout>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:background="@color/line_color"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="16dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -74,7 +102,7 @@
                     android:text="深色模式"
                     android:textSize="15sp"
                     android:textColor="@color/text_color_black"
-                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
                     android:layout_weight="1"/>
                 <com.suke.widget.SwitchButton
                     android:id="@+id/sb_night"

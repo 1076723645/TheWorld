@@ -28,5 +28,6 @@
     <color name="coupon_color_more">#ffc000</color>
     <color name="color_default">#fafafa</color>
     <color name="black">#000000</color>
+    <color name="color_33">#333333</color>
 
 </resources>

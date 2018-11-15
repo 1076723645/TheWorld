@@ -23,6 +23,7 @@ class SettingActivity : BaseActivity() {
 
     private var isChangeTheme: Boolean = false
     private var isBlack: Boolean = false
+    private var isChangeOrder = false
 
     override val layoutId: Int
         get() = R.layout.activity_setting
@@ -37,8 +38,17 @@ class SettingActivity : BaseActivity() {
         sb_tip.setOnCheckedChangeListener { _, isChecked ->
             sharedPref.isShow = isChecked
         }
+        sb_back.isChecked = sharedPref.isBack
+        sb_back.setOnCheckedChangeListener{ _, isChecked ->
+            sharedPref.isBack = isChecked
+            isChangeOrder = true
+        }
         iv_back.setOnClickListener {
             if (isChangeTheme){
+                App.getInstance().finishAllActivityExcept(this)
+                startActivity(MainActivity::class.java)
+            }
+            if (isChangeOrder) {
                 App.getInstance().finishAllActivityExcept(this)
                 startActivity(MainActivity::class.java)
             }
@@ -126,6 +136,10 @@ class SettingActivity : BaseActivity() {
 
     override fun onBackPressedSupport() {
         if (isChangeTheme) {
+            App.getInstance().finishAllActivityExcept(this)
+            startActivity(MainActivity::class.java)
+        }
+        if (isChangeOrder) {
             App.getInstance().finishAllActivityExcept(this)
             startActivity(MainActivity::class.java)
         }

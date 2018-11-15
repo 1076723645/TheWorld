@@ -36,12 +36,13 @@
             android:layout_marginStart="8dp"
             android:textColor="?attr/colorAccent"
             android:text="816760537"/>
+
         <TextView
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
-            android:text="3.bug反馈QQ号"/>
+            android:layout_marginTop="16dp"
+            android:text="3.bug反馈QQ号"
+            android:textColor="@color/text_color_black" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,15 +66,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/text_color_black"
-            android:text="5.对游戏内不良玩家举报邮箱：被举报玩家的游戏ID/举报理由/截图/rep缺一不可"/>
+            android:text="5.手动下载以及历史版本下载网址"/>
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="?attr/colorAccent"
             android:layout_marginStart="8dp"
-            android:autoLink="email"
-            android:text="232031706@qq.com"/>
+            android:autoLink="web"
+            android:text="https://www.pgyer.com/QX6L"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="300dp"

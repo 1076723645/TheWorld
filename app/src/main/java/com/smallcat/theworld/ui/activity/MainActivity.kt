@@ -3,16 +3,18 @@ package com.smallcat.theworld.ui.activity
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.pgyersdk.update.PgyUpdateManager
+import com.pgyersdk.update.UpdateManagerListener
+import com.pgyersdk.update.javabean.AppBean
 import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
@@ -20,13 +22,12 @@ import com.smallcat.theworld.ui.fragment.BossFragment
 import com.smallcat.theworld.ui.fragment.EquipFragment
 import com.smallcat.theworld.ui.fragment.ExclusiveFragment
 import com.smallcat.theworld.ui.fragment.MaterialFragment
-import me.yokeyword.fragmentation.ISupportFragment
-import com.pgyersdk.update.PgyUpdateManager
-import com.pgyersdk.update.javabean.AppBean
-import com.pgyersdk.update.UpdateManagerListener
+import com.smallcat.theworld.utils.fitSystemAllScroll
+import com.smallcat.theworld.utils.logE
+import com.smallcat.theworld.utils.sharedPref
+import com.smallcat.theworld.utils.toast
 import com.tbruyelle.rxpermissions2.RxPermissions
-import android.support.v7.app.AlertDialog
-import com.smallcat.theworld.utils.*
+import me.yokeyword.fragmentation.ISupportFragment
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -82,11 +83,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         dialog.setCancelable(true)
         val btnReal = view.findViewById<Button>(R.id.btn_go)
         val btnIndex = view.findViewById<Button>(R.id.btn_cancel)
-        val email = view.findViewById<TextView>(R.id.tv_email)
-        email.setTextIsSelectable(true)
         dialog.show()
         btnReal.setOnClickListener {
-            SharedPref.newInstance().isShow = false
+            sharedPref.isShow = false
             dialog.dismiss()
         }
         btnIndex.setOnClickListener { dialog.dismiss() }
@@ -100,8 +99,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     if (granted) { // Always true pre-M
                         upDateApp(type)
                     } else {
-                        dismissLoading()
-                        ToastUtil.shortShow("需要读写权限")
+                        "需要读写权限".toast()
                     }
                 }
     }
@@ -115,7 +113,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     override fun onNoUpdateAvailable() {
                         dismissLoading()
                         if (type != 0) {
-                            ToastUtil.shortShow("当前是最新版本")
+                            "当前是最新版本".toast()
                         }else{
                             if (sharedPref.isShow){
                                 showDialog()
@@ -125,7 +123,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
                     override fun onUpdateAvailable(appBean: AppBean) {
                         //有更新回调此方法
-                        LogUtil.e(appBean.toString())
+                        dismissLoading()
+                        appBean.releaseNote.logE()
                         showUpdateDialog(appBean)
                     }
 
@@ -133,7 +132,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         runOnUiThread {
                             dismissLoading()
                             if (type != 0) {
-                                ToastUtil.shortShow("更新异常")
+                                "更新异常".toast()
                             }else{
                                 if (sharedPref.isShow){
                                     showDialog()
@@ -146,15 +145,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun showUpdateDialog(appBean: AppBean){
-        val dialog = AlertDialog.Builder(this@MainActivity)
-        dialog.setTitle("V${appBean.versionName}")
-                .setMessage(appBean.releaseNote)
-                .setPositiveButton("确定更新") { _, _ ->
-                    PgyUpdateManager.downLoadApk(appBean.downloadURL)
-                }
-                .setNegativeButton("暂不更新", null)
+        val dialog = Dialog(mContext, R.style.CustomDialog)
+        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
+        val tvMsg = view.findViewById<EditText>(R.id.tv_msg)
+        val tvSure = view.findViewById<TextView>(R.id.tv_download)
+        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
+        tvMsg.setText(appBean.releaseNote)
+        tvSure.setOnClickListener {
+            dialog.dismiss()
+            PgyUpdateManager.downLoadApk(appBean.downloadURL)
+        }
+        tvCancel.setOnClickListener{ dialog!!.dismiss() }
+        dialog.setContentView(view)
+        dialog.setCanceledOnTouchOutside(false)
         dialog.setCancelable(false)
-        dialog.create()
         dialog.show()
     }
 
@@ -194,7 +198,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             App.getInstance().exitApp()
         } else {
             lastBackTime = currentBackTime
-            ToastUtil.shortShow("再按一次退出")
+            "再按一次退出".toast()
         }
     }
 }
