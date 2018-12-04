@@ -8,19 +8,19 @@ import com.smallcat.theworld.App
  * @author smallCut
  * @date 2018/4/27
  */
-open class SharedPref {
-    private val KEY_BLACK = "isBlack"
-    private val KEY_FIRST= "isFirst"
-    private val KEY_PHONE= "usePhone"
-    private var KEY_VERSION = "versionName"
-    private var KEY_BACK = "history"
+class SharedPref {
 
     private val prefs: SharedPreferences = App.getInstance().applicationContext.getSharedPreferences(SharedPref.PREFS_KEY, Context.MODE_PRIVATE)
 
-
     companion object {
+        private const val KEY_BLACK = "isBlack"
+        private const val KEY_FIRST= "isFirst"
+        private const val KEY_PHONE= "usePhone"
+        private const val KEY_VERSION = "versionName"
+        private const val KEY_BACK = "history"
+        private const val PREFS_KEY = "park"
+
         fun newInstance() = SharedPref()
-        const val PREFS_KEY = "park"
     }
 
     var isBlack: Boolean

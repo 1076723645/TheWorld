@@ -74,7 +74,7 @@ public class PictureRes {
             , R.drawable.chib_6, R.drawable.chib_7, R.drawable.chib_8, R.drawable.chib_9, R.drawable.chib_10, R.drawable.chib_sx, R.drawable.chib_11
             , R.drawable.chib_12, R.drawable.chib_13, R.drawable.chib_14, R.drawable.chib_15, R.drawable.chib_16, R.drawable.chib_18, R.drawable.chib_19
             , R.drawable.chib_20, R.drawable.chib_21, R.drawable.chib_22, R.drawable.chib_23, R.drawable.chib_24, R.drawable.chib_25, R.drawable.chib_26
-            , R.drawable.chib_27};
+            , R.drawable.chib_27, R.drawable.chib_shenyuxueyi };
 
     private static final int[] huizList = new int[]{R.drawable.huiz_1, R.drawable.huiz_2, R.drawable.huiz_3, R.drawable.huiz_4, R.drawable.huiz_5
             , R.drawable.huiz_6, R.drawable.huiz_7, R.drawable.huiz_8, R.drawable.huiz_9, R.drawable.huiz_10, R.drawable.huiz_11, R.drawable.huiz_12
@@ -145,12 +145,12 @@ public class PictureRes {
             R.drawable.wuqi_88, R.drawable.wuqi_106, R.drawable.nail_27, R.drawable.nail_38, R.drawable.head_39, R.drawable.ship_32,
             R.drawable.ship_36, R.drawable.ship_56, R.drawable.ship_57,
             //召唤
-            R.drawable.wuqi_71, R.drawable.wuqi_132, R.drawable.wuqi_62, R.drawable.wuqi_108,
+            R.drawable.wuqi_71, R.drawable.wuqi_132, R.drawable.wuqi_163, R.drawable.wuqi_62, R.drawable.wuqi_108,
             R.drawable.wuqi_88, R.drawable.wuqi_106, R.drawable.wuqi_hundunbishou,
             //巫术
             R.drawable.chib_15, R.drawable.ship_61, R.drawable.ship_62,
             //炼金
-            R.drawable.ship_31, R.drawable.ship_29, R.drawable.wuqi_48, R.drawable.wuqi_62, R.drawable.wuqi_108,
+            R.drawable.ship_29, R.drawable.wuqi_48, R.drawable.wuqi_62, R.drawable.wuqi_108,
             //血法
             R.drawable.ship_6, R.drawable.ship_37, R.drawable.wuqi_72,
             //电法

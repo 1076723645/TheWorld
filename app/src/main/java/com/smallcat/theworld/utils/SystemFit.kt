@@ -9,10 +9,9 @@ import android.view.WindowManager
 /**
  * Created by smallCut on 2018/6/4.
  */
-
 fun fitSystemAllScroll(activity: Activity) {
+    val decorView = activity.window.decorView
     if (Build.VERSION.SDK_INT >= 21) {
-        val decorView = activity.window.decorView
         decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         activity.window.statusBarColor = Color.TRANSPARENT
     }

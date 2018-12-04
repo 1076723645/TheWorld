@@ -15,6 +15,7 @@ import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.utils.AppUtils
+import com.smallcat.theworld.utils.getResourceColor
 import com.smallcat.theworld.utils.sharedPref
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
@@ -87,7 +88,7 @@ class SettingActivity : BaseActivity() {
             val typedValue = TypedValue()
             val theme = theme
             theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
-            window.statusBarColor = resources.getColor(typedValue.resourceId)
+            window.statusBarColor = getResourceColor(typedValue.resourceId)
         }
     }
 

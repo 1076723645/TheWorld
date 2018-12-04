@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.res.Resources
 import com.smallcat.theworld.App
 
-
 /**
  * @author smallCut
  * @date 2018/9/28

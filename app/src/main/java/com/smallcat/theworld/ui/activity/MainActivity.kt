@@ -38,14 +38,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var fg3: BossFragment
     private lateinit var fg4: MaterialFragment
 
-    private val EQUIP = 1
-    private val EXCLUSIVE = 2
-    private val BOSS = 3
-    private val MATERIAL = 4
+    companion object {
+        private const val EQUIP = 1
+        private const val EXCLUSIVE = 2
+        private const val BOSS = 3
+        private const val MATERIAL = 4
+    }
 
     private var show = EQUIP
     private var hide = EQUIP
     private var lastBackTime = 0L
+
+    private var dialog:Dialog? = null
+    private var noticeDialog:Dialog? = null
 
     override val layoutId: Int
         get() = R.layout.activity_main
@@ -76,23 +81,25 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun showDialog() {
-        val dialog = Dialog(this, R.style.CustomDialog)
+        if (noticeDialog  == null){
+            noticeDialog = Dialog(this, R.style.CustomDialog)
+        }
         val view = LayoutInflater.from(this).inflate(R.layout.dialog_notice, null)
-        dialog.setContentView(view)
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.setCancelable(true)
+        noticeDialog?.setContentView(view)
+        noticeDialog?.setCanceledOnTouchOutside(false)
+        noticeDialog?.setCancelable(true)
         val btnReal = view.findViewById<Button>(R.id.btn_go)
         val btnIndex = view.findViewById<Button>(R.id.btn_cancel)
-        dialog.show()
+        noticeDialog?.show()
         btnReal.setOnClickListener {
             sharedPref.isShow = false
-            dialog.dismiss()
+            noticeDialog?.dismiss()
         }
-        btnIndex.setOnClickListener { dialog.dismiss() }
+        btnIndex.setOnClickListener { noticeDialog?.dismiss() }
     }
 
     @SuppressLint("CheckResult")
-    private fun checkPermission(type: Int){
+    private fun   checkPermission(type: Int){
         val rxPermissions = RxPermissions(this)
         rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe { granted ->
@@ -134,7 +141,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             if (type != 0) {
                                 "更新异常".toast()
                             }else{
-                                if (sharedPref.isShow){
+                                if (sharedPref.isShow && !this@MainActivity.isFinishing){
                                     showDialog()
                                 }
                             }
@@ -145,24 +152,27 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun showUpdateDialog(appBean: AppBean){
-        val dialog = Dialog(mContext, R.style.CustomDialog)
+        if(dialog == null){
+            dialog = Dialog(mContext, R.style.CustomDialog)
+        }
         val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
         val tvMsg = view.findViewById<EditText>(R.id.tv_msg)
         val tvSure = view.findViewById<TextView>(R.id.tv_download)
         val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
         tvMsg.setText(appBean.releaseNote)
         tvSure.setOnClickListener {
-            dialog.dismiss()
+            dialog?.dismiss()
             PgyUpdateManager.downLoadApk(appBean.downloadURL)
         }
         tvCancel.setOnClickListener{ dialog!!.dismiss() }
-        dialog.setContentView(view)
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.setCancelable(false)
-        dialog.show()
+        dialog?.setContentView(view)
+        dialog?.setCanceledOnTouchOutside(false)
+        dialog?.setCancelable(false)
+        dialog?.show()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        mDrawerLayout.closeDrawers()
         when (item.itemId) {
             R.id.nav_equip -> show = EQUIP
             R.id.nav_career -> show = EXCLUSIVE
@@ -177,7 +187,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         showHideFragment(getFragment(show), getFragment(hide))
         hide = show
-        mDrawerLayout.closeDrawers()
         return true
     }
 
@@ -189,6 +198,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             MATERIAL -> return fg4
         }
         return fg1
+    }
+
+    override fun onDestroy() {
+        if (dialog != null && dialog!!.isShowing){
+            dialog!!.dismiss()
+        }
+        if (noticeDialog != null && noticeDialog!!.isShowing){
+            noticeDialog!!.dismiss()
+        }
+        super.onDestroy()
     }
 
     override fun onBackPressedSupport() {

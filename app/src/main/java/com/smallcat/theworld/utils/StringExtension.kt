@@ -3,6 +3,7 @@ package com.smallcat.theworld.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.support.v4.content.ContextCompat
 import android.widget.Toast
 import com.smallcat.theworld.App
 
@@ -41,3 +42,4 @@ fun String.hide4(): String{
     return this.replace(subString, "****")
 }
 
+fun Context.getResourceColor(color:Int) = ContextCompat.getColor(this, color)

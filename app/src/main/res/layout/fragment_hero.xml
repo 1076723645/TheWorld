@@ -71,5 +71,5 @@
         android:background="@color/white"
         android:gravity="center"
         android:visibility="gone"
-        android:text="没有专属的可怜孩子"/>
+        android:text="这英雄太强了，不需要专属"/>
 </android.support.constraint.ConstraintLayout>

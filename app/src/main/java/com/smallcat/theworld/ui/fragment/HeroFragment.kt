@@ -20,7 +20,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_hero.*
 import org.litepal.crud.DataSupport
 
-
 /**
  * @author hui
  * @date 2018/10/10
@@ -31,18 +30,16 @@ class HeroFragment : RxFragment() {
     private lateinit var adapter: ChoosePicAdapter
     private lateinit var dataList: List<Exclusive>
 
-    private var heroName: String = ""
+    private var heroName: String? = ""
     private var mChoosePosition = 0
-
 
     override val layoutId: Int
         get() = R.layout.fragment_hero
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val bundle = this.arguments
-        if (bundle != null) {
-            heroName = bundle.getString("name")
+        arguments?.let {
+            heroName = it.getString("name")
         }
     }
 

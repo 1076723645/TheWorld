@@ -24,7 +24,7 @@ class HeroSkillFragment : RxFragment() {
     private lateinit var dataList: List<Skill>
 
     private var mChoosePosition = 0
-    private var heroName = ""
+    private var heroName:String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

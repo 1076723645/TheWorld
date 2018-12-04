@@ -12,4 +12,5 @@ class AccessAdapter(data: MutableList<String>?) : BaseQuickAdapter<String, BaseV
     override fun convert(viewHolder: BaseViewHolder, item: String) {
         viewHolder.setText(R.id.tv_name, item)
     }
+
 }

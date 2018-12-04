@@ -33,7 +33,6 @@ class MaterialFragment : SupportFragment() {
         DataUtil.reflex(tab)
         viewPager.offscreenPageLimit = 2
         viewPager.adapter = adapter
-
     }
 
 }

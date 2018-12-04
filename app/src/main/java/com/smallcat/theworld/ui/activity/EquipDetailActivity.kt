@@ -46,7 +46,7 @@ class EquipDetailActivity : BaseActivity() {
     @BindView(R.id.fab)
     lateinit var fab: FloatingActionButton
 
-    private var equip = Equip()
+    private lateinit var equip: Equip
     private var dataList = ArrayList<String>()//装备数据
     private var advanceList = ArrayList<String>()//进阶
     private var exclusiveList: List<String> = ArrayList()//专属

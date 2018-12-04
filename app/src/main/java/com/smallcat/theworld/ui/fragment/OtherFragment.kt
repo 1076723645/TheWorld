@@ -68,10 +68,6 @@ class OtherFragment : RxFragment() {
         adapter.setNewData(mEquipList)
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        //super.onSaveInstanceState(outState);
-    }
-
     companion object {
         fun newInstance(position: Int): OtherFragment {
             val bundle = Bundle()

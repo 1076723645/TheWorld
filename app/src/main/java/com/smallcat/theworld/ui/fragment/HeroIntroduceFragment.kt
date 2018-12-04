@@ -14,16 +14,15 @@ import org.litepal.crud.DataSupport
 
 class HeroIntroduceFragment : RxFragment() {
 
-    private lateinit var heroName:String
+    private var heroName:String? = ""
 
     override val layoutId: Int
         get() = R.layout.fragment_hero_introduce
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val bundle = this.arguments
-        if (bundle != null) {
-            heroName = bundle.getString("name")
+        arguments?.let {
+            heroName = it.getString("name")
         }
     }
 

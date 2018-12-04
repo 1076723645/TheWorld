@@ -31,7 +31,6 @@ class CareerDetailActivity : RxActivity() {
         view_pager.offscreenPageLimit = 3
         tab.setupWithViewPager(view_pager)
         view_pager.currentItem = mPosition
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
