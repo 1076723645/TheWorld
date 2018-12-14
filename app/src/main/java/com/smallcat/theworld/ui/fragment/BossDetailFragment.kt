@@ -1,6 +1,5 @@
 package com.smallcat.theworld.ui.fragment
 
-
 import android.os.Bundle
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseFragment
@@ -25,5 +24,7 @@ class BossDetailFragment : BaseFragment() {
         val data = arguments?.getString("index")
         tv_skill.text = data
     }
+
+
 
 }
