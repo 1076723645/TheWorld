@@ -19,7 +19,6 @@ class Record:DataSupport(){
         get() = if (field == null) "" else field//移动速度
     var back:String? = null
         get() = if (field == null) "" else field//背景故事
-
     var imgId:Int = 0
 
 }

@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textColor="?attr/colorAccent"
-            android:text="816760537"/>
+            android:text="724273000"/>
 
         <TextView
             android:layout_width="match_parent"

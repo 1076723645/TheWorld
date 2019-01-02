@@ -8,8 +8,6 @@ import com.smallcat.theworld.base.RxActivity
  */
 class MyWorldActivity : RxActivity() {
 
-
-
     override val layoutId: Int
         get() = R.layout.activity_my_world
 

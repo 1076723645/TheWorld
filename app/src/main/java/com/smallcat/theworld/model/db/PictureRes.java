@@ -53,11 +53,11 @@ public class PictureRes {
     private static final int[] imgList3 = new int[]{ R.drawable.nail_2, R.drawable.nail_3, R.drawable.nail_4, R.drawable.nail_5
             , R.drawable.nail_6, R.drawable.nail_7, R.drawable.nail_8, R.drawable.nail_9, R.drawable.nail_10, R.drawable.nail_11, R.drawable.nail_12
             , R.drawable.nail_13, R.drawable.nail_14, R.drawable.nail_15, R.drawable.nail_16, R.drawable.nail_17, R.drawable.nail_18, R.drawable.nail_19
-            , R.drawable.nail_20, R.drawable.nail_21, R.drawable.nail_22, R.drawable.nail_23, R.drawable.nail_24, R.drawable.nail_25, R.drawable.nail_26
+            , R.drawable.nail_20, R.drawable.nail_21, R.drawable.nail_22, R.drawable.nail_50, R.drawable.nail_24, R.drawable.nail_25, R.drawable.nail_26
             , R.drawable.nail_27, R.drawable.nail_28, R.drawable.nail_29, R.drawable.nail_30, R.drawable.nail_31, R.drawable.nail_32, R.drawable.nail_33
             , R.drawable.nail_34, R.drawable.nail_35, R.drawable.nail_36, R.drawable.nail_37, R.drawable.nail_38, R.drawable.nail_39, R.drawable.nail_40
             , R.drawable.nail_41, R.drawable.nail_42, R.drawable.nail_43, R.drawable.nail_44, R.drawable.nail_45, R.drawable.nail_46, R.drawable.nail_47
-            , R.drawable.nail_48, R.drawable.nail_50, R.drawable.nail_51, R.drawable.nail_49};
+            , R.drawable.nail_48, R.drawable.nail_chuxuejiazhou, R.drawable.nail_51, R.drawable.nail_49};
 
     private static final int[] imgList4 = new int[]{R.drawable.ship_1, R.drawable.ship_2, R.drawable.ship_3, R.drawable.ship_4, R.drawable.ship_5
             , R.drawable.ship_6, R.drawable.ship_7, R.drawable.ship_8, R.drawable.ship_9, R.drawable.ship_10, R.drawable.ship_11, R.drawable.ship_12
