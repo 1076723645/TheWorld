@@ -20,7 +20,7 @@ import org.litepal.crud.DataSupport
  */
 class BossFragment : RxFragment() {
 
-    private lateinit var list:List<Boss>
+    private lateinit var list: List<Boss>
     private lateinit var adapter: BossAdapter
 
     override val layoutId: Int
@@ -38,19 +38,19 @@ class BossFragment : RxFragment() {
         loadData()
     }
 
-    private fun loadData(){
+    private fun loadData() {
         addSubscribe(Observable.create<List<Boss>> {
-            val list  = DataSupport.findAll(Boss::class.java)
+            val list = DataSupport.findAll(Boss::class.java)
             it.onNext(list)
         }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe{
+                .subscribe {
                     showList(it)
                 })
     }
 
-    private fun showList(data: List<Boss>){
+    private fun showList(data: List<Boss>) {
         list = data
         adapter.setNewData(list)
     }

@@ -49,8 +49,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private var hide = EQUIP
     private var lastBackTime = 0L
 
-    private var dialog:Dialog? = null
-    private var noticeDialog:Dialog? = null
+    private var dialog: Dialog? = null
+    private var noticeDialog: Dialog? = null
 
     override val layoutId: Int
         get() = R.layout.activity_main
@@ -81,7 +81,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun showDialog() {
-        if (noticeDialog  == null){
+        if (noticeDialog == null) {
             noticeDialog = Dialog(this, R.style.CustomDialog)
         }
         val view = LayoutInflater.from(this).inflate(R.layout.dialog_notice, null)
@@ -99,7 +99,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     @SuppressLint("CheckResult")
-    private fun   checkPermission(type: Int){
+    private fun checkPermission(type: Int) {
         val rxPermissions = RxPermissions(this)
         rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe { granted ->
@@ -111,7 +111,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
     }
 
-    private fun upDateApp(type: Int){
+    private fun upDateApp(type: Int) {
         PgyUpdateManager.Builder()
                 .setForced(false)                //设置是否强制更新,非自定义回调更新接口此方法有用
                 .setUserCanRetry(true)         //失败后是否提示重新下载，非自定义下载 apk 回调此方法有用
@@ -121,8 +121,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         dismissLoading()
                         if (type != 0) {
                             "当前是最新版本".toast()
-                        }else{
-                            if (sharedPref.isShow){
+                        } else {
+                            if (sharedPref.isShow) {
                                 showDialog()
                             }
                         }
@@ -140,8 +140,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             dismissLoading()
                             if (type != 0) {
                                 "更新异常".toast()
-                            }else{
-                                if (sharedPref.isShow && !this@MainActivity.isFinishing){
+                            } else {
+                                if (sharedPref.isShow && !this@MainActivity.isFinishing) {
                                     showDialog()
                                 }
                             }
@@ -151,8 +151,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 .register()
     }
 
-    private fun showUpdateDialog(appBean: AppBean){
-        if(dialog == null){
+    private fun showUpdateDialog(appBean: AppBean) {
+        if (dialog == null) {
             dialog = Dialog(mContext, R.style.CustomDialog)
         }
         val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
@@ -164,7 +164,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             dialog?.dismiss()
             PgyUpdateManager.downLoadApk(appBean.downloadURL)
         }
-        tvCancel.setOnClickListener{ dialog!!.dismiss() }
+        tvCancel.setOnClickListener { dialog!!.dismiss() }
         dialog?.setContentView(view)
         dialog?.setCanceledOnTouchOutside(false)
         dialog?.setCancelable(false)
@@ -201,10 +201,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onDestroy() {
-        if (dialog != null && dialog!!.isShowing){
+        if (dialog != null && dialog!!.isShowing) {
             dialog!!.dismiss()
         }
-        if (noticeDialog != null && noticeDialog!!.isShowing){
+        if (noticeDialog != null && noticeDialog!!.isShowing) {
             noticeDialog!!.dismiss()
         }
         super.onDestroy()

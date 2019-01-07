@@ -103,4 +103,12 @@ object AppUtils{
         a = sb.toString().split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         return Arrays.asList(*a)
     }
+
+    fun stringToList(str: String?): List<String> {
+        if (str == null || str == "") {
+            return ArrayList()
+        }
+        val array = str.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        return ArrayList(Arrays.asList(*array))
+    }
 }

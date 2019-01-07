@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.smallcat.theworld.ui.fragment.BossDetailFragment
+import com.smallcat.theworld.ui.fragment.BossDropFragment
 import java.util.ArrayList
 
 /**
@@ -20,6 +21,9 @@ class BossPageAdapter(fm: FragmentManager, data: List<String>) : FragmentPagerAd
     }
 
     override fun getItem(position: Int): Fragment {
+        if (position == 0){
+            return BossDropFragment.newInstance(data[position])
+        }
         return BossDetailFragment.newInstance(data[position])
     }
 
