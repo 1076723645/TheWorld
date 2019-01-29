@@ -35,8 +35,7 @@ class ExclusiveFragment : RxFragment() {
         adapter = ExclusiveAdapter(mData)
         adapter.setOnItemClickListener { _, _, position ->
             val intent = Intent(context , CareerDetailActivity::class.java)
-            intent.putExtra("name", mData[position].name)
-            intent.putExtra("imgId", mData[position].imgUrl)
+            intent.putExtra("data", mData[position])
             startActivity(intent)
         }
         recyclerView.adapter = adapter

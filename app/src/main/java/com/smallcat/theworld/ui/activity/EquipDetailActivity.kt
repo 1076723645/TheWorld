@@ -17,6 +17,7 @@ import android.widget.TextView
 import butterknife.BindView
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.model.bean.ImgData
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Hero
 import com.smallcat.theworld.ui.adapter.AccessAdapter
@@ -200,8 +201,10 @@ class EquipDetailActivity : BaseActivity() {
                             ToastUtil.shortShow("出现bug了，快去反馈吧")
                         }else{
                             Intent(this@EquipDetailActivity, CareerDetailActivity::class.java).apply {
-                                putExtra("name", data[0].heroName)
-                                putExtra("imgId", data[0].imgId)
+                                val bean = ImgData()
+                                bean.imgUrl = data[0].imgId
+                                bean.name = data[0].heroName!!
+                                putExtra("data", bean)
                                 putExtra("position", 2)
                                 startActivity(this)
                             }

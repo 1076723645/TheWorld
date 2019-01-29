@@ -1,10 +1,12 @@
 package com.smallcat.theworld.model.bean
 
+import java.io.Serializable
+
 /**
  * @author smallCut
  * @date 2018/9/12
  */
-class ImgData {
+class ImgData : Serializable {
 
     var name = ""
     var imgUrl: Int = 0

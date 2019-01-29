@@ -136,11 +136,7 @@ class SettingActivity : BaseActivity() {
 
 
     override fun onBackPressedSupport() {
-        if (isChangeTheme) {
-            App.getInstance().finishAllActivityExcept(this)
-            startActivity(MainActivity::class.java)
-        }
-        if (isChangeOrder) {
+        if (isChangeTheme || isChangeOrder) {
             App.getInstance().finishAllActivityExcept(this)
             startActivity(MainActivity::class.java)
         }

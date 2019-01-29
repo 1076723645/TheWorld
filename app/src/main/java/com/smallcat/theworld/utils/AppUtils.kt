@@ -18,7 +18,7 @@ import java.util.*
  * @author smallCut
  * @date 2018/9/10
  */
-object AppUtils{
+object AppUtils {
 
     fun getVerName(context: Context): String {
         var verName = ""
@@ -31,8 +31,8 @@ object AppUtils{
         return verName
     }
 
-    fun getColor(mContext:Context, qul: String): Int {
-        val color= when{
+    fun getColor(mContext: Context, qul: String): Int {
+        val color = when {
             qul.contains("罕见") -> R.color.lightskyblue
             qul.contains("天绝史诗") -> R.color.mediumslateblue
             qul.contains("传奇至宝") -> R.color.royalblue
@@ -43,31 +43,33 @@ object AppUtils{
         return getResourcesColor(mContext, color)
     }
 
-    fun getResourcesColor(mContext:Context, color: Int) = ContextCompat.getColor(mContext, color)
+    fun getResourcesColor(mContext: Context, color: Int) = ContextCompat.getColor(mContext, color)
 
-    fun getEmptyView(mContext:Context, s: String) : View {
+    fun getEmptyView(mContext: Context, s: String): View {
         val view = LayoutInflater.from(mContext).inflate(R.layout.empty_view, null)
         val text = view.findViewById<TextView>(R.id.tv_none)
         text.text = s
         return view
     }
 
-    fun goEquipDetailActivity(mContext:Context, name: String) : Boolean{
+    fun goEquipDetailActivity(mContext: Context, name: String): Boolean {
         val data = DataSupport.select("id")
                 .where("equipName = ?", name).find(Equip::class.java)
-        if (data.isNotEmpty()){
+        if (data.isNotEmpty()) {
             val intent = Intent(mContext, EquipDetailActivity::class.java)
             intent.putExtra("id", data[0].id.toString())
             mContext.startActivity(intent)
             return true
+        } else {
+            "物品不存在".toast()
         }
         return false
     }
 
-    fun goBossDetailActivity(mContext:Context, name: String) : Boolean{
+    fun goBossDetailActivity(mContext: Context, name: String): Boolean {
         val data = DataSupport.select("id")
                 .where("bossName like ?", "%$name%").find(Boss::class.java)
-        if (data.isNotEmpty()){
+        if (data.isNotEmpty()) {
             val intent = Intent(mContext, BossDetailActivity::class.java)
             intent.putExtra("id", data[0].id.toString())
             mContext.startActivity(intent)
@@ -77,7 +79,7 @@ object AppUtils{
     }
 
 
-    fun clean(){
+    fun clean() {
         DataSupport.deleteAll(Equip::class.java)
         DataSupport.deleteAll(Boss::class.java)
         DataSupport.deleteAll(Exclusive::class.java)

@@ -10,8 +10,8 @@ android {
         applicationId "com.smallcat.theworld"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 271
-        versionName "2.7.1"
+        versionCode 274
+        versionName "2.7.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
