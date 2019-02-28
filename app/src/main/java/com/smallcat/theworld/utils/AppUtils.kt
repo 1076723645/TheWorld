@@ -60,8 +60,6 @@ object AppUtils {
             intent.putExtra("id", data[0].id.toString())
             mContext.startActivity(intent)
             return true
-        } else {
-            "物品不存在".toast()
         }
         return false
     }

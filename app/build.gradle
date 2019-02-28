@@ -10,8 +10,8 @@ android {
         applicationId "com.smallcat.theworld"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 274
-        versionName "2.7.4"
+        versionCode 281
+        versionName "2.8.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -52,7 +52,7 @@ dependencies {
     implementation 'com.hynnet:jxl:2.6.12.1'
     implementation 'org.litepal.android:core:1.6.1'
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
-    implementation 'com.pgyersdk:sdk:3.0.2'
+    implementation 'com.pgyersdk:sdk:3.0.4'
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 
     testImplementation 'junit:junit:4.12'

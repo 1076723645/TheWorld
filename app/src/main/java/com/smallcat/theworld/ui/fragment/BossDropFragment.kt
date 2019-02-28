@@ -10,7 +10,6 @@ import com.smallcat.theworld.utils.AppUtils
 import com.smallcat.theworld.utils.toast
 import kotlinx.android.synthetic.main.fragment_boss_drop.*
 
-private const val ARG_PARAM1 = "param1"
 
 class BossDropFragment : BaseFragment() {
 
@@ -27,11 +26,11 @@ class BossDropFragment : BaseFragment() {
         val adapter = AccessAdapter(list)
         adapter.setOnItemClickListener { _, _, position ->
             val index = list[position].indexOf("—")
-            if (index == -1){
+            if (index == -1) {
                 "error".toast()
                 return@setOnItemClickListener
             }
-            val name = list[position].substring(0, index)
+            val name = list[position].substring(0, index).trim()
             AppUtils.goEquipDetailActivity(mContext, name)
         }
         rv_list.isNestedScrollingEnabled = false
@@ -39,6 +38,7 @@ class BossDropFragment : BaseFragment() {
     }
 
     companion object {
+        private const val ARG_PARAM1 = "param1"
         fun newInstance(data: String): BossDropFragment {
             val bundle = Bundle()
             bundle.putString(ARG_PARAM1, data)

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="250dp"
-    android:background="@drawable/zy_hq">
+    android:background="@drawable/zy_jh">
 
     <ImageView
         android:id="@+id/nav_icon"

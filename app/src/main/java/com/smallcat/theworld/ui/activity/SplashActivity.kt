@@ -213,7 +213,7 @@ class SplashActivity : AppCompatActivity() {
             }
             workbook.close()
         } catch (e: Exception) {
-            ToastUtil.shortShow("read error=$e")
+            LogUtil.e("read error=$e")
         }
     }
 

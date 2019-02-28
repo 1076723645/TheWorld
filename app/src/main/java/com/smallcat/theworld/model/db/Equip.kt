@@ -14,7 +14,7 @@ class Equip(
         var equipmentProperty: String = "",//属性
         var dataList: List<String> = ArrayList(),//合成列表
         var advanceList: List<String> = ArrayList(), //可合成列表
-        var access: String = "",//获取
+        var access: String = "",//获取方法
         var exclusive: String = "",//专属
         var type: String = "",//种类
         var imgId: Int = 0

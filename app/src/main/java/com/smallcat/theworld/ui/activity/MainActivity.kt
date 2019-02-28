@@ -129,10 +129,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     }
 
                     override fun onUpdateAvailable(appBean: AppBean) {
-                        //有更新回调此方法
-                        dismissLoading()
-                        appBean.releaseNote.logE()
-                        showUpdateDialog(appBean)
+                        runOnUiThread {
+                            //有更新回调此方法
+                            dismissLoading()
+                            appBean.releaseNote.logE()
+                            showUpdateDialog(appBean)
+                        }
                     }
 
                     override fun checkUpdateFailed(e: Exception) {
@@ -198,16 +200,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             MATERIAL -> return fg4
         }
         return fg1
-    }
-
-    override fun onDestroy() {
-        if (dialog != null && dialog!!.isShowing) {
-            dialog!!.dismiss()
-        }
-        if (noticeDialog != null && noticeDialog!!.isShowing) {
-            noticeDialog!!.dismiss()
-        }
-        super.onDestroy()
     }
 
     override fun onBackPressedSupport() {

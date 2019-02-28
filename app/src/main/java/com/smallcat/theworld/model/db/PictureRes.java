@@ -4,7 +4,6 @@ package com.smallcat.theworld.model.db;
 import com.smallcat.theworld.R;
 
 /**
- *
  * @author hui
  * @date 2017/12/27
  */
@@ -42,7 +41,7 @@ public class PictureRes {
             , R.drawable.wuqi_158, R.drawable.wuqi_159, R.drawable.wuqi_161, R.drawable.wuqi_162, R.drawable.wuqi_163, R.drawable.wuqi_164, R.drawable.wuqi_165
             , R.drawable.wuqi_160};
 
-    private static final int[] imgList2 = new int[]{ R.drawable.head_2
+    private static final int[] imgList2 = new int[]{R.drawable.head_2
             , R.drawable.head_7, R.drawable.head_8, R.drawable.head_9, R.drawable.head_10, R.drawable.head_11, R.drawable.head_12
             , R.drawable.head_13, R.drawable.head_14, R.drawable.head_15, R.drawable.head_16, R.drawable.head_17, R.drawable.head_18, R.drawable.head_19
             , R.drawable.head_20, R.drawable.head_21, R.drawable.head_22, R.drawable.head_23, R.drawable.head_24, R.drawable.head_25, R.drawable.head_26
@@ -50,7 +49,7 @@ public class PictureRes {
             , R.drawable.head_34, R.drawable.head_35, R.drawable.head_36, R.drawable.head_37, R.drawable.head_38, R.drawable.head_39, R.drawable.head_40
             , R.drawable.head_42, R.drawable.head_43, R.drawable.head_44, R.drawable.head_45, R.drawable.head_46, R.drawable.head_47};
 
-    private static final int[] imgList3 = new int[]{ R.drawable.nail_2, R.drawable.nail_3, R.drawable.nail_4, R.drawable.nail_5
+    private static final int[] imgList3 = new int[]{R.drawable.nail_2, R.drawable.nail_3, R.drawable.nail_4, R.drawable.nail_5
             , R.drawable.nail_6, R.drawable.nail_7, R.drawable.nail_8, R.drawable.nail_9, R.drawable.nail_10, R.drawable.nail_11, R.drawable.nail_12
             , R.drawable.nail_13, R.drawable.nail_14, R.drawable.nail_15, R.drawable.nail_16, R.drawable.nail_17, R.drawable.nail_18, R.drawable.nail_19
             , R.drawable.nail_20, R.drawable.nail_21, R.drawable.nail_22, R.drawable.nail_50, R.drawable.nail_24, R.drawable.nail_25, R.drawable.nail_26
@@ -67,14 +66,14 @@ public class PictureRes {
             , R.drawable.ship_34, R.drawable.ship_35, R.drawable.ship_36, R.drawable.ship_61, R.drawable.ship_37, R.drawable.ship_38, R.drawable.ship_39
             , R.drawable.ship_40, R.drawable.ship_41, R.drawable.ship_42, R.drawable.ship_43, R.drawable.ship_44, R.drawable.ship_45, R.drawable.ship_46, R.drawable.ship_47
             , R.drawable.ship_48, R.drawable.ship_49, R.drawable.ship_50, R.drawable.ship_51, R.drawable.ship_52, R.drawable.ship_53, R.drawable.ship_54
-            , R.drawable.ship_55, R.drawable.ship_56, R.drawable.ship_58, R.drawable.ship_60, R.drawable.ship_62 , R.drawable.ship_63, R.drawable.ship_64
+            , R.drawable.ship_55, R.drawable.ship_56, R.drawable.ship_58, R.drawable.ship_60, R.drawable.ship_62, R.drawable.ship_63, R.drawable.ship_64
             , R.drawable.ship_57, R.drawable.ship_59};
 
     private static final int[] imgList = new int[]{R.drawable.chib_1, R.drawable.chib_2, R.drawable.chib_3, R.drawable.chib_4, R.drawable.chib_5
             , R.drawable.chib_6, R.drawable.chib_7, R.drawable.chib_8, R.drawable.chib_9, R.drawable.chib_10, R.drawable.chib_sx, R.drawable.chib_11
             , R.drawable.chib_12, R.drawable.chib_13, R.drawable.chib_14, R.drawable.chib_15, R.drawable.chib_16, R.drawable.chib_18, R.drawable.chib_19
             , R.drawable.chib_20, R.drawable.chib_21, R.drawable.chib_22, R.drawable.chib_23, R.drawable.chib_24, R.drawable.chib_25, R.drawable.chib_26
-            , R.drawable.chib_27, R.drawable.chib_shenyuxueyi };
+            , R.drawable.chib_27, R.drawable.chib_shenyuxueyi, R.drawable.cb_kanbeier};
 
     private static final int[] huizList = new int[]{R.drawable.huiz_1, R.drawable.huiz_2, R.drawable.huiz_3, R.drawable.huiz_4, R.drawable.huiz_5
             , R.drawable.huiz_6, R.drawable.huiz_7, R.drawable.huiz_8, R.drawable.huiz_9, R.drawable.huiz_10, R.drawable.huiz_11, R.drawable.huiz_12
@@ -100,7 +99,7 @@ public class PictureRes {
             , R.drawable.bs_14, R.drawable.bs_15, R.drawable.bs_16, R.drawable.bs_17, R.drawable.bs_18, R.drawable.bs_19, R.drawable.bs_20
             , R.drawable.bs_21, R.drawable.bs_22, R.drawable.bs_23, R.drawable.bs_24, R.drawable.bs_25, R.drawable.bs_26, R.drawable.bs_27
             , R.drawable.bs_28, R.drawable.bs_29, R.drawable.bs_30, R.drawable.bs_31, R.drawable.bs_32, R.drawable.bs_33, R.drawable.bs_34
-            , R.drawable.bs_35, R.drawable.bs_36, R.drawable.bs_38, R.drawable.bs_37 };
+            , R.drawable.bs_35, R.drawable.bs_36, R.drawable.bs_38, R.drawable.bs_37};
 
     private static final int[] EXCLUSIVE_LIST = new int[]{
             //背包
@@ -161,99 +160,103 @@ public class PictureRes {
 
     private static final int[] SKILL_LIST = new int[]{
             //魅影
-            R.drawable.my_d,R.drawable.my_q, R.drawable.my_w, R.drawable.my_e, R.drawable.my_r, R.drawable.my_t, R.drawable.my_f,
+            R.drawable.my_d, R.drawable.my_q, R.drawable.my_w, R.drawable.my_e, R.drawable.my_r, R.drawable.my_t, R.drawable.my_f,
             R.drawable.my_rr,
             //大锤
-            R.color.reg_choose_color, R.drawable.dc_dq,R.drawable.dc_dw, R.drawable.dc_de, R.drawable.dc_dr, R.drawable.dc_q, R.drawable.dc_w,
-            R.color.reg_choose_color, R.color.reg_choose_color,R.drawable.dc_t,R.drawable.dc_f,
+            R.color.reg_choose_color, R.drawable.dc_dq, R.drawable.dc_dw, R.drawable.dc_de, R.drawable.dc_dr, R.drawable.dc_q, R.drawable.dc_w,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.drawable.dc_t, R.drawable.dc_f,
             //机械
-            R.color.reg_choose_color,R.drawable.jx_q, R.drawable.jx_w, R.drawable.jx_e, R.drawable.jx_r, R.drawable.jx_t, R.drawable.jx_f,
+            R.color.reg_choose_color, R.drawable.jx_q, R.drawable.jx_w, R.drawable.jx_e, R.drawable.jx_r, R.drawable.jx_t, R.drawable.jx_f,
             //血法
-            R.color.reg_choose_color,R.color.reg_choose_color, R.drawable.xf_w, R.drawable.xf_e, R.drawable.xf_r, R.drawable.xf_t, R.drawable.xf_f,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.drawable.xf_w, R.drawable.xf_e, R.drawable.xf_r, R.drawable.xf_t, R.drawable.xf_f,
             //牧师
-            R.color.reg_choose_color,R.color.reg_choose_color, R.color.reg_choose_color, R.drawable.ms_e, R.drawable.ms_r, R.drawable.ms_t,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.drawable.ms_e, R.drawable.ms_r, R.drawable.ms_t,
             R.drawable.ms_f,
             //神射手
-            R.drawable.ss_d,R.drawable.ss_q, R.drawable.ss_w, R.drawable.ss_e, R.drawable.ss_r, R.drawable.ss_t,
+            R.drawable.ss_d, R.drawable.ss_q, R.drawable.ss_w, R.drawable.ss_e, R.drawable.ss_r, R.drawable.ss_t,
             R.drawable.ss_f,
             //背包
-            R.drawable.bbx_d,R.drawable.bbx_q, R.drawable.bbx_w, R.drawable.bbx_e, R.drawable.bbx_r, R.drawable.bbx_t,
+            R.drawable.bbx_d, R.drawable.bbx_q, R.drawable.bbx_w, R.drawable.bbx_e, R.drawable.bbx_r, R.drawable.bbx_t,
             R.drawable.bbx_f,
             //魔枪
-            R.drawable.mq_d,R.drawable.mq_q, R.drawable.mq_w, R.drawable.mq_e, R.drawable.mq_r, R.drawable.mq_t,
+            R.drawable.mq_d, R.drawable.mq_q, R.drawable.mq_w, R.drawable.mq_e, R.drawable.mq_r, R.drawable.mq_t,
             R.drawable.mq_f,
             //电法
-            R.color.reg_choose_color,R.drawable.df_q, R.drawable.df_w, R.drawable.df_e, R.drawable.df_r, R.drawable.df_t,
+            R.color.reg_choose_color, R.drawable.df_q, R.drawable.df_w, R.drawable.df_e, R.drawable.df_r, R.drawable.df_t,
             R.drawable.df_f,
             //月法
-            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
-            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
             //冰法
-            R.color.reg_choose_color,R.drawable.bf_q, R.drawable.bf_w, R.drawable.bf_e, R.drawable.bf_r, R.drawable.bf_t,
+            R.color.reg_choose_color, R.drawable.bf_q, R.drawable.bf_w, R.drawable.bf_e, R.drawable.bf_r, R.drawable.bf_t,
             R.drawable.bf_f,
             //黑骑
-            R.color.reg_choose_color,R.drawable.hq_q, R.drawable.hq_w, R.drawable.hq_e, R.drawable.hq_r, R.drawable.hq_t,
+            R.color.reg_choose_color, R.drawable.hq_q, R.drawable.hq_w, R.drawable.hq_e, R.drawable.hq_r, R.drawable.hq_t,
             R.drawable.hq_f,
             //拳师
-            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
-            R.color.reg_choose_color,R.drawable.qs_f,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.drawable.qs_f,
             //附魔师
-            R.drawable.fm_d,R.drawable.fm_q, R.drawable.fm_w, R.drawable.fm_e, R.drawable.fm_r, R.drawable.fm_t,
+            R.drawable.fm_d, R.drawable.fm_q, R.drawable.fm_w, R.drawable.fm_e, R.drawable.fm_r, R.drawable.fm_t,
             R.drawable.fm_f,
             //赏金猎人
-            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
-            R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color,
             //收割者
-            R.drawable.sgz_d,R.drawable.sgz_q, R.color.reg_choose_color, R.drawable.sgz_e, R.color.reg_choose_color, R.drawable.sgz_t,
+            R.drawable.sgz_d, R.drawable.sgz_q, R.color.reg_choose_color, R.drawable.sgz_e, R.color.reg_choose_color, R.drawable.sgz_t,
             R.drawable.sgz_f,
             //c8
-            R.drawable.c8_d,R.drawable.c8_q, R.drawable.c8_w, R.drawable.c8_e, R.drawable.c8_e2, R.drawable.c8_r,
-            R.drawable.c8_t,R.drawable.c8_f,
+            R.drawable.c8_d, R.drawable.c8_q, R.drawable.c8_w, R.drawable.c8_e, R.drawable.c8_e2, R.drawable.c8_r,
+            R.drawable.c8_t, R.drawable.c8_f,
             //js
-            R.color.reg_choose_color,R.drawable.js_q, R.drawable.js_qw, R.drawable.js_w, R.drawable.js_we, R.drawable.js_e,
-            R.drawable.js_eq,R.drawable.js_r,R.drawable.js_t,R.drawable.js_f,
+            R.color.reg_choose_color, R.drawable.js_q, R.drawable.js_qw, R.drawable.js_w, R.drawable.js_we, R.drawable.js_e,
+            R.drawable.js_eq, R.drawable.js_r, R.drawable.js_t, R.drawable.js_f,
             //kz
-            R.drawable.kz_d,R.drawable.kz_q, R.drawable.kz_w, R.drawable.kz_e, R.drawable.kz_r, R.drawable.kz_t,
+            R.drawable.kz_d, R.drawable.kz_q, R.drawable.kz_w, R.drawable.kz_e, R.drawable.kz_r, R.drawable.kz_t,
             R.drawable.kz_f,
             //jj
-            R.drawable.jj_d,R.drawable.jj_q, R.drawable.jj_w, R.drawable.jj_e, R.drawable.jj_r, R.drawable.jj_t,
+            R.drawable.jj_d, R.drawable.jj_q, R.drawable.jj_w, R.drawable.jj_e, R.drawable.jj_r, R.drawable.jj_t,
             R.drawable.jj_f,
             //火法
-            R.color.reg_choose_color,R.drawable.hf_q, R.drawable.hf_w, R.drawable.hf_e,  R.color.reg_choose_color, R.drawable.hf_t,
+            R.color.reg_choose_color, R.drawable.hf_q, R.drawable.hf_w, R.drawable.hf_e, R.color.reg_choose_color, R.drawable.hf_t,
             R.color.reg_choose_color,
             //风法
-            R.drawable.ff_d,R.drawable.ff_q, R.drawable.ff_w, R.drawable.ff_e, R.drawable.ff_r,
+            R.drawable.ff_d, R.drawable.ff_q, R.drawable.ff_w, R.drawable.ff_e, R.drawable.ff_r,
             R.drawable.ff_t, R.drawable.ff_f,
             //巫术
-            R.color.reg_choose_color,R.drawable.ws_q,R.drawable.ws_w,R.drawable.ws_e,
-            R.drawable.ws_r,R.drawable.ws_t,R.drawable.ws_f,
+            R.color.reg_choose_color, R.drawable.ws_q, R.drawable.ws_w, R.drawable.ws_e,
+            R.drawable.ws_r, R.drawable.ws_t, R.drawable.ws_f,
             //召唤
-            R.drawable.zh_d,R.drawable.zh_q, R.drawable.zh_w, R.drawable.zh_e, R.drawable.zh_r,
+            R.drawable.zh_d, R.drawable.zh_q, R.drawable.zh_w, R.drawable.zh_e, R.drawable.zh_r,
             R.drawable.zh_t, R.drawable.zh_f,
             //闪闪
-            R.color.reg_choose_color,R.drawable.shanshan_q,R.drawable.shanshan_w,R.color.reg_choose_color,
-            R.drawable.shanshan_r,R.color.reg_choose_color,R.drawable.shanshan_f,
+            R.color.reg_choose_color, R.drawable.shanshan_q, R.drawable.shanshan_w, R.color.reg_choose_color,
+            R.drawable.shanshan_r, R.color.reg_choose_color, R.drawable.shanshan_f,
             //织女
-            R.drawable.zn_d,R.drawable.zn_q, R.color.reg_choose_color, R.drawable.zn_w, R.drawable.zn_e,
-            R.drawable.zn_r, R.color.reg_choose_color,R.color.reg_choose_color,
+            R.drawable.zn_d, R.drawable.zn_q, R.color.reg_choose_color, R.drawable.zn_w, R.drawable.zn_e,
+            R.drawable.zn_r, R.color.reg_choose_color, R.color.reg_choose_color,
             //炼金
-            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
-            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
-            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
-            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
-            R.color.reg_choose_color,R.color.reg_choose_color,R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
             //ck
-            R.color.reg_choose_color,R.drawable.ck_q, R.drawable.ck_w, R.drawable.ck_e, R.drawable.ck_r,
-            R.drawable.ck_t, R.drawable.ck_f
+            R.color.reg_choose_color, R.drawable.ck_q, R.drawable.ck_w, R.drawable.ck_e, R.drawable.ck_r,
+            R.drawable.ck_t, R.drawable.ck_f,
+            //无极剑魂
+            R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color, R.color.reg_choose_color,
+            R.color.reg_choose_color, R.color.reg_choose_color
     };
 
     private static final int[] HERO_LIST = new int[]{R.drawable.zy_my, R.drawable.zy_dc, R.drawable.zy_mq, R.drawable.zy_kz, R.drawable.zy_c8,
-            R.drawable.zy_bbx,R.drawable.zy_hq, R.drawable.zy_jx, R.drawable.zy_33, R.drawable.zy_qs, R.drawable.zy_js, R.drawable.zy_ss,
+            R.drawable.zy_bbx, R.drawable.zy_hq, R.drawable.zy_jx, R.drawable.zy_33, R.drawable.zy_qs, R.drawable.zy_jh, R.drawable.zy_js,
+            R.drawable.zy_ss,
             R.drawable.zy_jj, R.drawable.zy_ck, R.drawable.zy_fm, R.drawable.zy_skz, R.drawable.zy_sj, R.drawable.zy_hf, R.drawable.zy_bf,
             R.drawable.zy_ff, R.drawable.zy_yf, R.drawable.zz_df, R.drawable.zy_ms, R.drawable.zy_zh, R.drawable.zy_cn, R.drawable.zy_ws,
             R.drawable.zy_lj, R.drawable.zy_xf};
 
-    public static int[] getImgList(String type){
+    public static int[] getImgList(String type) {
         switch (type) {
             case "武器":
                 return imgList0;
