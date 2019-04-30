@@ -66,7 +66,7 @@ public class CleanMessageUtil {
     public static void cleanApplicationData(Context context, String... filepath) {
         cleanInternalCache(context);
         cleanExternalCache(context);
-        cleanDatabases(context);
+        //cleanDatabases(context);
         cleanSharedPreference(context);
         cleanFiles(context);
         for (String filePath : filepath) {

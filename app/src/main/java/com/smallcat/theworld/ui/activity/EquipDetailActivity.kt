@@ -3,10 +3,7 @@ package com.smallcat.theworld.ui.activity
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
-import android.os.Build
-import android.support.annotation.RequiresApi
 import android.support.design.widget.FloatingActionButton
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +15,12 @@ import butterknife.BindView
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.model.bean.ImgData
+import com.smallcat.theworld.model.bean.MsgEvent
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Hero
 import com.smallcat.theworld.ui.adapter.AccessAdapter
 import com.smallcat.theworld.utils.AppUtils
+import com.smallcat.theworld.utils.RxBus
 import com.smallcat.theworld.utils.ToastUtil
 import org.litepal.crud.DataSupport
 import java.util.*
@@ -46,13 +45,14 @@ class EquipDetailActivity : BaseActivity() {
     lateinit var rvAccess: RecyclerView
     @BindView(R.id.fab)
     lateinit var fab: FloatingActionButton
+    @BindView(R.id.fab_edit)
+    lateinit var fabEdit: FloatingActionButton
 
     private lateinit var equip: Equip
     private var dataList = ArrayList<String>()//装备数据
     private var advanceList = ArrayList<String>()//进阶
     private var exclusiveList: List<String> = ArrayList()//专属
     private var dialog: Dialog? = null
-
     override val layoutId: Int
         get() = R.layout.activity_equip_detail
 
@@ -62,7 +62,23 @@ class EquipDetailActivity : BaseActivity() {
         equip = DataSupport.where("id = ?", equipId).find(Equip::class.java)[0]
         ivBack.setOnClickListener { onBackPressed() }
         fab.setOnClickListener { startActivityFinish(MainActivity::class.java) }
-
+        fabEdit.setOnClickListener {
+            if (equip.isAdd == 1){
+                equip.isAdd = 0
+                equip.save()
+                ToastUtil.shortShow("移除成功")
+                fabEdit.setImageResource(R.drawable.ic_add_black_24dp)
+            }else{
+                equip.isAdd = 1
+                equip.save()
+                ToastUtil.shortShow("添加成功")
+                fabEdit.setImageResource(R.drawable.ic_remove_24dp)
+            }
+            RxBus.post(MsgEvent("msg", 1))
+        }
+        if (equip.isAdd == 1){
+            fabEdit.setImageResource(R.drawable.ic_remove_24dp)
+        }
         /**
          * 基础属性
          */
@@ -70,13 +86,15 @@ class EquipDetailActivity : BaseActivity() {
         val color = AppUtils.getColor(mContext, quality)
         val equipName = equip.equipName
         tvName.text = equipName
-        ivEquip.setImageResource(equip.imgId)
         tvLevel.text = "Lv ${equip.level}"
         tvLevel.setTextColor(color)
         tvType.text = equip.type
         tvType.setTextColor(color)
         tvQul.text = quality
         tvQul.setTextColor(color)
+        if(equip.imgId != 0) {
+            ivEquip.setImageResource(equip.imgId)
+        }
         if (equip.equipmentProperty.isNotEmpty()) {
             tvProperty.text = equip.equipmentProperty
             tvProperty.visibility = View.VISIBLE
@@ -197,9 +215,9 @@ class EquipDetailActivity : BaseActivity() {
                         val name = exclusive.substring(0, exclusive.indexOf('-'))
                         val data = DataSupport.select("heroName", "imgId")
                                 .where("heroName = ?", name).find(Hero::class.java)
-                        if (data.isEmpty()){
+                        if (data.isEmpty()) {
                             ToastUtil.shortShow("出现bug了，快去反馈吧")
-                        }else{
+                        } else {
                             Intent(this@EquipDetailActivity, CareerDetailActivity::class.java).apply {
                                 val bean = ImgData()
                                 bean.imgUrl = data[0].imgId

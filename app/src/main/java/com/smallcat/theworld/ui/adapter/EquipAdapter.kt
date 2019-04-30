@@ -20,6 +20,10 @@ class EquipAdapter(data: List<Equip>?) : BaseQuickAdapter<Equip, BaseViewHolder>
         val tvQul = viewHolder.getView<TextView>(R.id.tv_qul)
         tvQul.text = item.quality
         tvQul.setTextColor(AppUtils.getColor(mContext, item.quality))
-        Glide.with(mContext).load(item.imgId).into(viewHolder.getView(R.id.iv_equip))
+        if (item.imgId != 0) {
+            viewHolder.setImageResource(R.id.iv_equip, item.imgId)
+        } else {
+            viewHolder.setImageResource(R.id.iv_equip, R.color.color_cc)
+        }
     }
 }

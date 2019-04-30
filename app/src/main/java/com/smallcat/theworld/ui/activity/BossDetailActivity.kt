@@ -10,7 +10,6 @@ import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.model.db.Boss
 import com.smallcat.theworld.ui.adapter.BossPageAdapter
-import com.smallcat.theworld.utils.DataUtil
 import kotlinx.android.synthetic.main.activity_boss_detail.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import org.litepal.crud.DataSupport
@@ -57,7 +56,7 @@ class BossDetailActivity : BaseActivity() {
         vp_boss.offscreenPageLimit = 2
         vp_boss.resetHeight(0)
         tab_boss.setupWithViewPager(vp_boss)
-        DataUtil.reflex(tab_boss)
+        //DataUtil.reflex(tab_boss)
     }
 
     @OnClick(R.id.iv_back, R.id.iv_boss)

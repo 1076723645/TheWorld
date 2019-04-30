@@ -24,7 +24,7 @@ class OtherFragment : RxFragment() {
 
     private lateinit var mEquipList: List<Equip>
     private lateinit var adapter: OtherAdapter
-    private val tabTitles = arrayOf("材料", "徽章", "其他")
+    private val tabTitles = arrayOf("材料", "藏品", "其他")
     private var flag: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {

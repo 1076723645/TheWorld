@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/index_bg_color"
+        app:tabIndicatorFullWidth="false"
         app:tabIndicatorColor="?attr/colorAccent"
         app:tabSelectedTextColor="?attr/colorAccent"
         app:tabTextColor="@color/text_color_black"/>

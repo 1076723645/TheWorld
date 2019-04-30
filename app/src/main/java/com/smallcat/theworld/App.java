@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.smallcat.theworld.ui.activity.SplashActivity;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import org.litepal.LitePal;
 
@@ -40,6 +41,8 @@ public class App extends Application {
         Configuration config = new Configuration();
         config.setToDefaults();
         res.updateConfiguration(config, res.getDisplayMetrics());
+
+        CrashReport.initCrashReport(getApplicationContext(), "99e89589c4", false);
 
         LitePal.initialize(this);
     }

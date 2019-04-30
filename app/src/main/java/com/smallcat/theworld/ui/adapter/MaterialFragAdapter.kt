@@ -11,7 +11,7 @@ import com.smallcat.theworld.ui.fragment.OtherFragment
  */
 class MaterialFragAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    private val tabTitles = arrayOf("材料", "徽章", "其他")
+    private val tabTitles = arrayOf("材料", "藏品", "其他")
 
     override fun getItem(position: Int): Fragment {
         return OtherFragment.newInstance(position)

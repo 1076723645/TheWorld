@@ -6,10 +6,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxFragment
+import com.smallcat.theworld.model.bean.MsgEvent
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import com.smallcat.theworld.ui.adapter.EquipAdapter
 import com.smallcat.theworld.utils.AppUtils
+import com.smallcat.theworld.utils.RxBus
 import com.smallcat.theworld.utils.sharedPref
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,23 +22,14 @@ import org.litepal.crud.DataSupport
 /**
  * @author Administrator
  */
-class EquipListFragment : RxFragment() {
+class MyEquipListFragment : RxFragment() {
 
     private lateinit var mEquipList: List<Equip>
     private lateinit var adapter: EquipAdapter
-    private val tabTitles = arrayOf("我的", "武器", "头盔", "衣服", "饰品", "翅膀")
-    private var flag: Int = 0
     private var isBack = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            flag = it.getInt("index")
-        }
-    }
-
     override val layoutId: Int
-        get() = R.layout.fragment_equip_list
+        get() = R.layout.fragment_my_equip_list
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,8 +41,9 @@ class EquipListFragment : RxFragment() {
                 startActivity(this)
             }
         }
-        adapter.emptyView = AppUtils.getEmptyView(mContext, "数据加载中")
+        adapter.emptyView = AppUtils.getEmptyView(mContext, "您还没有添加装备哦")
         recyclerView.adapter = adapter
+        registerEvent()
     }
 
     override fun initView() {
@@ -59,11 +53,7 @@ class EquipListFragment : RxFragment() {
 
     private fun loadData() {
         addSubscribe(Observable.create<List<Equip>> {
-            val list = if (isBack) {
-                DataSupport.where("type = ?", tabTitles[flag]).order("id desc").find(Equip::class.java)
-            } else {
-                DataSupport.where("type = ?", tabTitles[flag]).find(Equip::class.java)
-            }
+            val list = DataSupport.where("isAdd = ?", "1").find(Equip::class.java)
             it.onNext(list)
         }
                 .subscribeOn(Schedulers.io())
@@ -78,12 +68,12 @@ class EquipListFragment : RxFragment() {
         adapter.setNewData(mEquipList)
     }
 
-    companion object {
-        fun newInstance(position: Int): EquipListFragment =
-                EquipListFragment().apply {
-                    arguments = Bundle().apply {
-                        putInt("index", position)
-                    }
-                }
+    private fun registerEvent(){
+        addSubscribe(RxBus.toObservable(MsgEvent::class.java)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    loadData()
+                })
     }
 }

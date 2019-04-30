@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
  */
 
 public class FixedViewPager extends ViewPager {
+
     private int current;
     private int viewHeight = 0;
 

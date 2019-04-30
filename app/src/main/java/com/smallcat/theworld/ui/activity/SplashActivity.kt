@@ -6,7 +6,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.pgyersdk.crash.PgyCrashManager
 import com.smallcat.theworld.App
 import com.smallcat.theworld.model.db.*
 import com.smallcat.theworld.utils.*
@@ -23,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
     private val fileName2 = "boss.xls"
     private val fileName1 = "hero.xls"
     private val tabTitles = arrayOf("武器", "头盔", "衣服", "饰品", "翅膀")
-    private val types = arrayOf("boss", "材料", "徽章", "其他")
+    private val types = arrayOf("boss", "材料", "藏品", "其他")
 
     private val exclusiveList = ArrayList<Exclusive>()
     private val equipList = ArrayList<Equip>()
@@ -47,7 +46,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun initData(){
-        PgyCrashManager.register()
         val oldVersion = sharedPref.versionName
         val newVersion = AppUtils.getVerName(this)
         var isFirst = sharedPref.isFirst
@@ -204,7 +202,9 @@ class SplashActivity : AppCompatActivity() {
                                 equip.equipmentProperty = (sheet.getCell(2, i).contents)
                                 equip.dataList = AppUtils.needEquip(access)
                                 equip.type = types[k]
-                                equip.imgId = imgArray[i - 1]
+                                if (i <= imgArray.size) {
+                                    equip.imgId = imgArray[i - 1]
+                                }
                                 equipList.add(equip)
                             }
                         }

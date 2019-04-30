@@ -268,7 +268,7 @@ public class PictureRes {
                 return imgList3;
             case "饰品":
                 return imgList4;
-            case "徽章":
+            case "藏品":
                 return huizList;
             case "其他":
                 return gao;

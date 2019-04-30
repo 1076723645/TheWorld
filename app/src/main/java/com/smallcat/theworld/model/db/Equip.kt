@@ -17,5 +17,6 @@ class Equip(
         var access: String = "",//获取方法
         var exclusive: String = "",//专属
         var type: String = "",//种类
+        var isAdd: Int = 0,//收藏 0没有 1添加
         var imgId: Int = 0
 ) : DataSupport()

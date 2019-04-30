@@ -30,7 +30,7 @@ class MaterialFragment : SupportFragment() {
         val tab = v!!.findViewById<TabLayout>(R.id.tab_material)
         val adapter = MaterialFragAdapter(activity!!.supportFragmentManager)
         tab.setupWithViewPager(viewPager)
-        DataUtil.reflex(tab)
+        //DataUtil.reflex(tab)
         viewPager.offscreenPageLimit = 2
         viewPager.adapter = adapter
     }

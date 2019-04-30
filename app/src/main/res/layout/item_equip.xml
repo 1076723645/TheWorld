@@ -14,7 +14,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/wuqi_100"/>
+        android:src="@color/color_cc"/>
 
     <TextView
         android:id="@+id/tv_name"

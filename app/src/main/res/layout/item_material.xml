@@ -11,7 +11,7 @@
         android:id="@+id/iv_material"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/ship_1"
+        android:src="@color/color_cc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

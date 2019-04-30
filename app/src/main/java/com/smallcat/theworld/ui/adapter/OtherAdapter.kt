@@ -14,6 +14,10 @@ class OtherAdapter(data: List<Equip>?) : BaseQuickAdapter<Equip, BaseViewHolder>
 
     override fun convert(viewHolder: BaseViewHolder, item: Equip) {
         viewHolder.setText(R.id.tv_name, item.equipName)
-                .setImageResource(R.id.iv_material, item.imgId)
+        if (item.imgId != 0) {
+            viewHolder.setImageResource(R.id.iv_material, item.imgId)
+        } else {
+            viewHolder.setImageResource(R.id.iv_material, R.color.color_cc)
+        }
     }
 }
