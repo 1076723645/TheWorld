@@ -20,6 +20,7 @@ import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Hero
 import com.smallcat.theworld.ui.adapter.AccessAdapter
 import com.smallcat.theworld.utils.AppUtils
+import com.smallcat.theworld.utils.LogUtil
 import com.smallcat.theworld.utils.RxBus
 import com.smallcat.theworld.utils.ToastUtil
 import org.litepal.crud.DataSupport
@@ -53,6 +54,7 @@ class EquipDetailActivity : BaseActivity() {
     private var advanceList = ArrayList<String>()//进阶
     private var exclusiveList: List<String> = ArrayList()//专属
     private var dialog: Dialog? = null
+
     override val layoutId: Int
         get() = R.layout.activity_equip_detail
 
@@ -212,6 +214,10 @@ class EquipDetailActivity : BaseActivity() {
                     val exclusive = exclusiveList[i]
                     tvExclusive.text = exclusive
                     tvExclusive.setOnClickListener {
+                        if(!exclusive.contains("-")){
+                            ToastUtil.shortShow("出现bug了，快去反馈吧")
+                            return@setOnClickListener
+                        }
                         val name = exclusive.substring(0, exclusive.indexOf('-'))
                         val data = DataSupport.select("heroName", "imgId")
                                 .where("heroName = ?", name).find(Hero::class.java)

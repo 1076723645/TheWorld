@@ -3,14 +3,17 @@ package com.smallcat.theworld.ui.activity
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
+import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.support.v7.widget.Toolbar
 import android.util.TypedValue
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
@@ -25,6 +28,7 @@ class SettingActivity : BaseActivity() {
     private var isChangeTheme: Boolean = false
     private var isBlack: Boolean = false
     private var isChangeOrder = false
+    private var noticeDialog: Dialog? = null
 
     override val layoutId: Int
         get() = R.layout.activity_setting
@@ -38,6 +42,9 @@ class SettingActivity : BaseActivity() {
         sb_night.setOnCheckedChangeListener { _, _ ->  changeTheme() }
         sb_tip.setOnCheckedChangeListener { _, isChecked ->
             sharedPref.isShow = isChecked
+            if (isChecked) {
+                showDialog()
+            }
         }
         sb_back.isChecked = sharedPref.isBack
         sb_back.setOnCheckedChangeListener{ _, isChecked ->
@@ -111,6 +118,24 @@ class SettingActivity : BaseActivity() {
             })
             objectAnimator.start()
         }
+    }
+
+    private fun showDialog() {
+        if (noticeDialog == null) {
+            noticeDialog = Dialog(this, R.style.CustomDialog)
+        }
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_notice, null)
+        noticeDialog?.setContentView(view)
+        noticeDialog?.setCanceledOnTouchOutside(false)
+        noticeDialog?.setCancelable(true)
+        val btnReal = view.findViewById<Button>(R.id.btn_go)
+        val btnIndex = view.findViewById<Button>(R.id.btn_cancel)
+        noticeDialog?.show()
+        btnReal.setOnClickListener {
+            sb_tip.isChecked = false
+            noticeDialog?.dismiss()
+        }
+        btnIndex.setOnClickListener { noticeDialog?.dismiss() }
     }
 
     /**

@@ -18,6 +18,7 @@ import com.smallcat.theworld.utils.adaptScreen4VerticalSlide
 import com.smallcat.theworld.utils.sharedPref
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.normal_toolbar.*
 import me.yokeyword.fragmentation.SupportActivity
 
 /**
@@ -40,6 +41,7 @@ abstract class RxActivity : SupportActivity() {
         adaptScreen4VerticalSlide(this, 360)
         setContentView(layoutId)
         mContext = this
+        iv_back?.setOnClickListener { finish() }
         initData()
     }
 

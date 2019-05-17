@@ -54,7 +54,7 @@ class SearchActivity : BaseActivity() {
                 if (charSequence.isNotEmpty()) {
                     val equips = DataSupport
                             .where("equipName like ?", "%$charSequence%")
-                            .order("quality")
+                            .order("quality desc")
                             .find(Equip::class.java)
                     val result = equips.size
                     if (result == 0) {

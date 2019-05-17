@@ -8,8 +8,10 @@ import android.os.Bundle
 import android.os.Handler
 import com.smallcat.theworld.App
 import com.smallcat.theworld.model.db.*
+import com.smallcat.theworld.model.getHeroImg
 import com.smallcat.theworld.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.tencent.bugly.crashreport.CrashReport
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -52,8 +54,8 @@ class SplashActivity : AppCompatActivity() {
 
         if (oldVersion != newVersion){
             isFirst = true
+            sharedPref.recoveryRecord = true
             try {
-                CleanMessageUtil.cleanApplicationData(App.getInstance())
                 AppUtils.clean()
             }catch (e :Exception){
                 ToastUtil.shortShow("清除旧数据错误，请重新安装程序")
@@ -81,6 +83,10 @@ class SplashActivity : AppCompatActivity() {
             getXlsData(fileName2)
             getXlsData(fileName1)
             saveData()
+            if (sharedPref.recoveryRecord){
+                it.onNext("存档恢复中，请耐心等待QAQ")
+                recoveryRecord()
+            }
             it.onComplete()
         }
                 .subscribeOn(Schedulers.io())
@@ -232,4 +238,14 @@ class SplashActivity : AppCompatActivity() {
         heroList.clear()
         skillList.clear()
     }
+
+    private fun recoveryRecord(){
+        val bagList = DataSupport.findAll(RecordThing::class.java)
+        for (i in bagList){
+            val data = DataSupport.where("equipName = ?", i.equipName).find(Equip::class.java)
+            i.equipImg = data[0].imgId
+        }
+        DataSupport.saveAll(bagList)
+    }
+
 }

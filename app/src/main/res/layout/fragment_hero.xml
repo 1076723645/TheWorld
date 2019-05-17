@@ -71,5 +71,8 @@
         android:background="@color/white"
         android:gravity="center"
         android:visibility="gone"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorAccent"
         android:text="这英雄太强了，不需要专属"/>
 </android.support.constraint.ConstraintLayout>

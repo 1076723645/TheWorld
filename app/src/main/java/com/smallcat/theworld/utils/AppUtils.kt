@@ -1,5 +1,6 @@
 package com.smallcat.theworld.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,6 +13,7 @@ import com.smallcat.theworld.model.db.*
 import com.smallcat.theworld.ui.activity.BossDetailActivity
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import org.litepal.crud.DataSupport
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -50,6 +52,10 @@ object AppUtils {
         val text = view.findViewById<TextView>(R.id.tv_none)
         text.text = s
         return view
+    }
+
+    fun getFooterView(mContext: Context): View {
+        return LayoutInflater.from(mContext).inflate(R.layout.footer_view, null)
     }
 
     fun goEquipDetailActivity(mContext: Context, name: String): Boolean {
@@ -110,5 +116,20 @@ object AppUtils {
         }
         val array = str.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         return ArrayList(Arrays.asList(*array))
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getTimeDetail(time: Long): String {
+        val df = SimpleDateFormat("yyyy-MM-dd HH:mm")
+        return df.format(Date(time))
+    }
+
+    fun checkContain(list:MutableList<Equip>, equip: Equip):Boolean{
+        for (i in list.indices){
+            if (list[i].id == equip.id){
+                return true
+            }
+        }
+        return false
     }
 }

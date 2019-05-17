@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <include layout="@layout/normal_toolbar"/>
+        <include layout="@layout/normal_toolbar" />
 
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/appBar"
         android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -32,9 +35,9 @@
                     android:id="@+id/iv_equip"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_marginBottom="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -55,8 +58,8 @@
                     android:id="@+id/tv_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginBottom="4dp"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_equip"
                     app:layout_constraintStart_toEndOf="@+id/iv_equip"
                     tools:text="380级" />
@@ -65,35 +68,39 @@
                     android:id="@+id/tv_qul"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_equip"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_equip"
                     app:layout_constraintTop_toTopOf="@+id/iv_equip"
                     tools:text="禁断圣物" />
             </android.support.constraint.ConstraintLayout>
+
             <TextView
                 android:id="@+id/tv_equip_property"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginBottom="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="#F1F1F6" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 android:gravity="center|left"
                 tools:ignore="RtlHardcoded">
+
                 <View
                     android:layout_width="4dp"
                     android:layout_height="18dp"
@@ -108,46 +115,51 @@
                     android:textColor="@color/text_color_black"
                     android:textSize="16sp" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/line_color" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_access"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
             <ViewStub
                 android:id="@+id/vs_advance"
-                android:layout="@layout/vs_jinjie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:layout="@layout/vs_jinjie" />
+
             <ViewStub
                 android:id="@+id/vs_exclusive"
-                android:layout="@layout/vs_zhuans"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:layout="@layout/vs_zhuans" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fab_edit"
-        android:layout_gravity="bottom|end"
+        android:layout_above="@id/fab"
+        android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="90dp"
-        app:srcCompat="@drawable/ic_add_black_24dp"/>
+        app:fabSize="mini"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fab"
-        android:layout_gravity="bottom|end"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
         android:background="?attr/colorPrimary"
         android:src="@drawable/home"
-        android:layout_margin="16dp"
-        app:backgroundTint="#fff"/>
-</android.support.design.widget.CoordinatorLayout>
+        app:backgroundTint="#fff"
+        app:fabSize="mini" />
+</RelativeLayout>

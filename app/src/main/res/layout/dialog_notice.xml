@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="3.bug反馈QQ号"
+            android:text="3.QQ(bug反馈/内容投稿/修改建议)"
             android:textColor="@color/text_color_black" />
         <TextView
             android:layout_width="match_parent"

@@ -3,6 +3,7 @@ package com.smallcat.theworld.ui.activity
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.os.Handler
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -22,13 +23,9 @@ import com.smallcat.theworld.ui.fragment.BossFragment
 import com.smallcat.theworld.ui.fragment.EquipFragment
 import com.smallcat.theworld.ui.fragment.ExclusiveFragment
 import com.smallcat.theworld.ui.fragment.MaterialFragment
-import com.smallcat.theworld.utils.fitSystemAllScroll
-import com.smallcat.theworld.utils.logE
-import com.smallcat.theworld.utils.sharedPref
-import com.smallcat.theworld.utils.toast
+import com.smallcat.theworld.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 import me.yokeyword.fragmentation.ISupportFragment
-
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -101,12 +98,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     @SuppressLint("CheckResult")
     private fun checkPermission(type: Int) {
         val rxPermissions = RxPermissions(this)
-        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe { granted ->
                     if (granted) { // Always true pre-M
                         upDateApp(type)
                     } else {
-                        "需要读写权限".toast()
+                        "没有读写权限，app部分功能将失效".toast()
                     }
                 }
     }
@@ -164,6 +161,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         tvMsg.setText(appBean.releaseNote)
         tvSure.setOnClickListener {
             dialog?.dismiss()
+            LogUtil.e(appBean.downloadURL)
             PgyUpdateManager.downLoadApk(appBean.downloadURL)
         }
         tvCancel.setOnClickListener { dialog!!.dismiss() }
@@ -174,21 +172,32 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        mDrawerLayout.closeDrawers()
         when (item.itemId) {
             R.id.nav_equip -> show = EQUIP
             R.id.nav_career -> show = EXCLUSIVE
             R.id.nav_boss -> show = BOSS
             R.id.nav_task -> show = MATERIAL
-            R.id.nav_setting -> startActivity(SettingActivity::class.java)
-            R.id.nav_tips -> showDialog()
+            R.id.nav_setting -> {
+                startActivity(SettingActivity::class.java)
+                return true
+            }
+            R.id.nav_my -> {
+                startActivity(MyWorldActivity::class.java)
+                return true
+            }
             R.id.nav_update -> {
                 showLoading()
                 checkPermission(1)
             }
+            R.id.nav_tips -> {
+                Handler().postDelayed({ showDialog() }, 250)
+            }
+
         }
+        mDrawerLayout.closeDrawers()
         showHideFragment(getFragment(show), getFragment(hide))
         hide = show
+
         return true
     }
 

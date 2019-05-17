@@ -10,10 +10,11 @@ android {
         applicationId "com.smallcat.theworld"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 291
-        versionName "2.9.1"
+        versionCode 2105
+        versionName "2.10.13"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -49,7 +50,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
-    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     kapt 'com.github.bumptech.glide:compiler:4.7.1'
 
@@ -57,6 +58,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.hynnet:jxl:2.6.12.1'
     implementation 'org.litepal.android:core:1.6.1'
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.2'
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
     implementation 'com.pgyersdk:sdk:3.0.4'
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'

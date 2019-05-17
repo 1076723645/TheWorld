@@ -306,7 +306,7 @@
                     android:layout_marginEnd="24dp"
                     android:textSize="13sp"
                     android:textColor="@color/route_view_text_color_gray"
-                    android:text="飞舞拉面，AliceG"/>
+                    android:text="广阔的沙漠，拉面，AliceG"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
