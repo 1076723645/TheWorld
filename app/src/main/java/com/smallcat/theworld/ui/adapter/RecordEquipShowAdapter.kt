@@ -11,11 +11,10 @@ import com.smallcat.theworld.model.db.RecordThing
 /**
  * Created by smallCut on 2018/7/19.
  */
-class RecordEquipAdapter(data: MutableList<RecordThing>) : BaseQuickAdapter<RecordThing, BaseViewHolder>(R.layout.item_record_equip, data) {
+class RecordEquipShowAdapter(data: MutableList<RecordThing>) : BaseQuickAdapter<RecordThing, BaseViewHolder>(R.layout.item_record_equip_show, data) {
 
     override fun convert(viewHolder: BaseViewHolder, item: RecordThing) {
         viewHolder.setText(R.id.tv_name, item.equipName)
-                .addOnClickListener(R.id.iv_delete)
 
         if (item.equipImg != 0) {
             viewHolder.setImageResource(R.id.iv_img, item.equipImg)

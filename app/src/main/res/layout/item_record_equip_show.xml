@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="5dp">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_add_picture"
+        app:layout_constraintDimensionRatio="h,1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:gravity="center"
+        android:text="2"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/iv_img"
+        app:layout_constraintEnd_toEndOf="@id/iv_img" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lines="2"
+        android:text="高洁七星龙渊剑"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/iv_img"
+        app:layout_constraintStart_toStartOf="@id/iv_img"
+        app:layout_constraintTop_toBottomOf="@id/iv_img" />
+</android.support.constraint.ConstraintLayout>

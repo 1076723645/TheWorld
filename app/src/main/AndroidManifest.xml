@@ -30,7 +30,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:networkSecurityConfig">
-        <activity android:name=".ui.activity.RecordEditActivity"></activity>
+        <activity android:name=".ui.activity.WebActivity"></activity>
+        <activity android:name=".ui.activity.RecordEditActivity" />
         <activity android:name=".ui.activity.EquipAddActivity" />
         <activity android:name="com.pgyersdk.feedback.FeedbackActivity" />
 

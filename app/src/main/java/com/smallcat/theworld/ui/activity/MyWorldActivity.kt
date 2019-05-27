@@ -1,5 +1,6 @@
 package com.smallcat.theworld.ui.activity
 
+import android.app.Dialog
 import android.content.Intent
 import android.support.v7.app.AlertDialog
 import com.smallcat.theworld.R
@@ -16,7 +17,9 @@ import kotlinx.android.synthetic.main.activity_my_world.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import org.litepal.crud.DataSupport
 import android.util.TypedValue
-
+import android.view.LayoutInflater
+import android.widget.EditText
+import android.widget.TextView
 
 
 /**
@@ -37,14 +40,14 @@ class MyWorldActivity : RxActivity() {
         adapter = MyRecordAdapter(list)
         adapter.emptyView = AppUtils.getEmptyView(mContext, "快去添加存档吧")
         adapter.setOnItemChildClickListener { _, view, position ->
-            when(view.id){
+            when (view.id) {
                 R.id.tv_delete -> showSureDialog(position)
                 R.id.cb_default -> changeDefaultChoose(position)
                 R.id.tv_edit -> startActivity(RecordEditActivity.getIntent(mContext, list[position].id))
             }
         }
         adapter.setOnItemClickListener { _, _, position ->
-            startActivity(RecordEditActivity.getIntent(mContext, list[position].id))
+            startActivity(RecordDetailActivity.getIntent(mContext, list[position].id))
         }
         rv_list.adapter = adapter
         refresh_layout.setColorSchemeResources(getColorPrimary())
@@ -74,8 +77,8 @@ class MyWorldActivity : RxActivity() {
             it.onNext(data)
 
             val oldChooseId = sharedPref.chooseId
-            for (i in data.indices){
-                if (oldChooseId == data[i].id){
+            for (i in data.indices) {
+                if (oldChooseId == data[i].id) {
                     mChoosePos = i
                     break
                 }
@@ -96,21 +99,32 @@ class MyWorldActivity : RxActivity() {
         adapter.setNewData(list)
     }
 
-    private fun showSureDialog(position: Int){
-        val dialog = AlertDialog.Builder(mContext)
-                .setMessage("确定删除存档吗")
-                .setPositiveButton("确定") { _, _ ->
-                    val data = list[position]
-                    data.delete()
-                    list.removeAt(position)
-                    adapter.notifyItemRemoved(position)
-                }
-                .setNegativeButton("取消",null)
-                .create()
+    private fun showSureDialog(position: Int) {
+        val dialog = Dialog(mContext, R.style.CustomDialog)
+        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
+        val tvMsg = view.findViewById<EditText>(R.id.tv_msg)
+        val tvTitle = view.findViewById<TextView>(R.id.textView6)
+        val tvSure = view.findViewById<TextView>(R.id.tv_download)
+        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
+        tvMsg.setText("确定删除存档吗")
+        tvTitle.text = "提示"
+        tvSure.setOnClickListener {
+            val data = list[position]
+            data.delete()
+            list.removeAt(position)
+            adapter.notifyItemRemoved(position)
+            dialog.dismiss()
+        }
+        tvSure.text = "确定"
+        tvCancel.text = "取消"
+        tvCancel.setOnClickListener { dialog.dismiss() }
+        dialog.setContentView(view)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.setCancelable(false)
         dialog.show()
     }
 
-    private fun changeDefaultChoose(position: Int){
+    private fun changeDefaultChoose(position: Int) {
         val oldData = list[mChoosePos]
         oldData.isDefault = false
         adapter.notifyItemChanged(mChoosePos)

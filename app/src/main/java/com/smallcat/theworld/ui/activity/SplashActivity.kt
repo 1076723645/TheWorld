@@ -31,6 +31,7 @@ class SplashActivity : AppCompatActivity() {
     private val bossList = ArrayList<Boss>()
     private val heroList = ArrayList<Hero>()
     private val skillList = ArrayList<Skill>()
+    private val heroStrategyList = ArrayList<HeroStrategy>()
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -178,6 +179,18 @@ class SplashActivity : AppCompatActivity() {
                                 heroList.add(hero)
                             }
                         }
+
+                        if (k == 2) {
+                            for (i in 1 until sheetRows) {//从第二行开始读
+                                val heroStrategy = HeroStrategy()
+                                heroStrategy.heroName = sheet.getCell(0, i).contents
+                                heroStrategy.address= sheet.getCell(1, i).contents
+                                heroStrategy.title = sheet.getCell(2, i).contents
+                                heroStrategy.auther = sheet.getCell(3, i).contents
+                                heroStrategy.version = sheet.getCell(4, i).contents
+                                heroStrategyList.add(heroStrategy)
+                            }
+                        }
                     }
                     fileName2 -> {
                         if (k == 0) {
@@ -229,6 +242,7 @@ class SplashActivity : AppCompatActivity() {
         DataSupport.saveAll(bossList)
         DataSupport.saveAll(skillList)
         DataSupport.saveAll(heroList)
+        DataSupport.saveAll(heroStrategyList)
     }
 
     private fun cleanList(){
@@ -237,6 +251,7 @@ class SplashActivity : AppCompatActivity() {
         exclusiveList.clear()
         heroList.clear()
         skillList.clear()
+        heroStrategyList.clear()
     }
 
     private fun recoveryRecord(){

@@ -1,6 +1,7 @@
 package com.smallcat.theworld.ui.activity
 
 import android.app.Dialog
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AlertDialog
@@ -10,7 +11,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
-import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.MyRecord
@@ -24,6 +24,9 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_record_edit.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import org.litepal.crud.DataSupport
+import com.smallcat.theworld.R
+import android.content.ClipData
+import android.support.v7.widget.GridLayoutManager
 
 
 class RecordEditActivity : RxActivity() {
@@ -60,11 +63,13 @@ class RecordEditActivity : RxActivity() {
         tv_right.setOnClickListener {
             DataSupport.saveAll(targetEquips)
             DataSupport.saveAll(wearEquips)
-            for (i in deleteList){
+            for (i in deleteList) {
                 DataSupport.delete(RecordThing::class.java, i.id)
             }
             record.recordCode = et_record.text.toString()
-            record.recordLevel = et_level.text.toString().toInt()
+            if (et_level.text.isNotEmpty()){
+                record.recordLevel = et_level.text.toString().toInt()
+            }
             record.updateTime = System.currentTimeMillis()
             record.save()
             ToastUtil.shortShow("保存成功")
@@ -72,10 +77,28 @@ class RecordEditActivity : RxActivity() {
         tv_build.setOnClickListener {
             buildThing()
         }
+        tv_copy.setOnClickListener {
+            // 得到剪贴板管理器
+            val clipboard = mContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            // 创建一个剪贴数据集，包含一个普通文本数据条目（需要复制的数据）
+            val clipData = ClipData.newPlainText(null, et_record.text.toString())
+            // 把数据集设置（复制）到剪贴板
+            clipboard.primaryClip = clipData
+            ToastUtil.shortShow("复制成功")
+        }
         recordId = intent.getLongExtra(TAG, 0)
 
         targetAdapter = RecordEquipAdapter(targetEquips)
         targetAdapter.addFooterView(getFooterView(mContext, 0))
+        targetAdapter.setOnItemClickListener { _, _, position ->
+            val list = DataSupport.where("equipName = ?", targetEquips[position].equipName).find(Equip::class.java)
+            if (list.isNotEmpty()) {
+                Intent(mContext, EquipDetailActivity::class.java).apply {
+                    putExtra("id", list[0].id.toString())
+                    startActivity(this)
+                }
+            }
+        }
         targetAdapter.setOnItemChildClickListener { _, _, position ->
             if (targetEquips[position].number == 1) {
                 deleteList.add(targetEquips[position])
@@ -86,12 +109,22 @@ class RecordEditActivity : RxActivity() {
                 targetAdapter.notifyItemChanged(position)
             }
         }
-        val layoutManager = StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL)
+        val layoutManager = GridLayoutManager(mContext, 5)
         rv_target.layoutManager = layoutManager
+        rv_target.isNestedScrollingEnabled = false
         rv_target.adapter = targetAdapter
 
         wearAdapter = RecordEquipAdapter(wearEquips)
         wearAdapter.addFooterView(getFooterView(mContext, 1))
+        wearAdapter.setOnItemClickListener { _, _, position ->
+            val list = DataSupport.where("equipName = ?", wearEquips[position].equipName).find(Equip::class.java)
+            if (list.isNotEmpty()) {
+                Intent(mContext, EquipDetailActivity::class.java).apply {
+                    putExtra("id", list[0].id.toString())
+                    startActivity(this)
+                }
+            }
+        }
         wearAdapter.setOnItemChildClickListener { _, _, position ->
             if (wearEquips[position].number == 1) {
                 deleteList.add(wearEquips[position])
@@ -102,8 +135,9 @@ class RecordEditActivity : RxActivity() {
                 wearAdapter.notifyItemChanged(position)
             }
         }
-        val layout1 = StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL)
+        val layout1 = GridLayoutManager(mContext, 5)
         rv_have.layoutManager = layout1
+        rv_have.isNestedScrollingEnabled = false
         rv_have.adapter = wearAdapter
 
         loadData()
@@ -118,6 +152,9 @@ class RecordEditActivity : RxActivity() {
         return view
     }
 
+    /**
+     *  设置dialog的宽度为屏幕的80%解决部分手机超出屏幕的问题
+     */
     private fun showChooseDialog(type: Int) {
         val requestCode: Int
         val array: Array<String>
@@ -340,9 +377,9 @@ class RecordEditActivity : RxActivity() {
         } else {
             mList.add(name)
         }
-        for (i in wearEquips.size - 1 downTo 0){
-            for (j in mList){
-                if (wearEquips[i].equipName == j){
+        for (i in wearEquips.size - 1 downTo 0) {
+            for (j in mList) {
+                if (wearEquips[i].equipName == j) {
                     deleteList.add(wearEquips[i])
                     wearEquips.removeAt(i)
                     break

@@ -27,7 +27,6 @@ class BossDropFragment : BaseFragment() {
         adapter.setOnItemClickListener { _, _, position ->
             val index = list[position].indexOf("—")
             if (index == -1) {
-                "error".toast()
                 return@setOnItemClickListener
             }
             val name = list[position].substring(0, index).trim()

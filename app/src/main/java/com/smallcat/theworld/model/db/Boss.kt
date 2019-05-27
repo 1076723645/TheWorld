@@ -33,5 +33,3 @@ class Boss : DataSupport() {
         get() = if (field == null) "" else field//策略
     var imgId: Int = 0
 }
-
-

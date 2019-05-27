@@ -31,4 +31,7 @@
     <color name="color_33">#333333</color>
     <color name="color_cc">#cccccc</color>
 
+    <color name="green">#279B5E</color>
+    <color name="red">#C61A1A</color>
+
 </resources>

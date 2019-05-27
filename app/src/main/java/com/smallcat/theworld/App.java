@@ -8,7 +8,9 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.smallcat.theworld.ui.activity.SplashActivity;
+import com.smallcat.theworld.utils.LogUtil;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.smtt.sdk.QbSdk;
 
 import org.litepal.LitePal;
 
@@ -43,8 +45,25 @@ public class App extends Application {
         res.updateConfiguration(config, res.getDisplayMetrics());
 
         CrashReport.initCrashReport(getApplicationContext(), "99e89589c4", false);
-
+        initX5WebView();
         LitePal.initialize(this);
+    }
+
+    private void initX5WebView(){
+        QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
+
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+                LogUtil.e("x5", " onViewInitFinished is " + arg0);
+            }
+
+            @Override
+            public void onCoreInitFinished() {
+            }
+        };
+        //x5内核初始化接口
+        QbSdk.initX5Environment(getApplicationContext(),  cb);
     }
 
     private void registerActivityListener() {

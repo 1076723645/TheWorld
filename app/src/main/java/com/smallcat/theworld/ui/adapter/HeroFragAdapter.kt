@@ -3,10 +3,7 @@ package com.smallcat.theworld.ui.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import com.smallcat.theworld.ui.fragment.HeroFragment
-import com.smallcat.theworld.ui.fragment.HeroIntroduceFragment
-import com.smallcat.theworld.ui.fragment.HeroSkillFragment
-import com.smallcat.theworld.ui.fragment.RecommendFragment
+import com.smallcat.theworld.ui.fragment.*
 
 /**
  * @author smallCut
@@ -22,7 +19,7 @@ class HeroFragAdapter(fm: FragmentManager, val name:String) : FragmentPagerAdapt
             1 -> return HeroIntroduceFragment.newInstance(name)
             2 -> return HeroFragment.newInstance(name)
             3 -> return RecommendFragment()
-            4 -> return RecommendFragment()
+            4 -> return HeroStrategyFragment.newInstance(name)
         }
         return HeroSkillFragment.newInstance(name)
     }

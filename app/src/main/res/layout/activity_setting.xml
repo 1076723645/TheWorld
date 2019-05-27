@@ -228,7 +228,7 @@
                     android:layout_marginEnd="24dp"
                     android:textSize="13sp"
                     android:textColor="@color/route_view_text_color_gray"
-                    android:text="晴空雨落，小背包"/>
+                    android:text="脱俗小哥，晴空雨落，小背包"/>
             </LinearLayout>
             <View
                 android:layout_width="wrap_content"
@@ -254,7 +254,7 @@
                     android:layout_marginEnd="24dp"
                     android:textSize="13sp"
                     android:textColor="@color/route_view_text_color_gray"
-                    android:text="白衣沐雪"/>
+                    android:text="app助手群群友"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"

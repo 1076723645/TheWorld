@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group
         android:id="@+id/g1"
         android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_record"
+            android:title="存档篇"
+            android:icon="@drawable/ic_archive_black_24dp" />
         <item
             android:id="@+id/nav_equip"
             android:title="装备篇"
@@ -13,13 +16,13 @@
             android:title="材料篇"
             android:icon="@drawable/ic_material"/>
         <item
-            android:id="@+id/nav_career"
-            android:title="职业篇"
-            android:icon="@drawable/ic_career" />
-        <item
             android:id="@+id/nav_boss"
             android:title="BOSS篇"
             android:icon="@drawable/ic_boss" />
+        <item
+            android:id="@+id/nav_career"
+            android:title="职业篇"
+            android:icon="@drawable/ic_career" />
     </group>
 
     <group android:id="@+id/g2"
@@ -29,14 +32,14 @@
 
         <item
             android:id="@+id/nav_setting"
-            android:title="设置" />
+            android:title="设置"/>
 
         <item
             android:id="@+id/nav_update"
-            android:title="检查更新" />
+            android:title="检查更新"/>
 
         <item
             android:id="@+id/nav_tips"
-            android:title="提示" />
+            android:title="提示"/>
     </group>
 </menu>

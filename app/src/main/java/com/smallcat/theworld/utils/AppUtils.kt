@@ -89,6 +89,7 @@ object AppUtils {
         DataSupport.deleteAll(Exclusive::class.java)
         DataSupport.deleteAll(Hero::class.java)
         DataSupport.deleteAll(Skill::class.java)
+        DataSupport.deleteAll(HeroStrategy::class.java)
     }
 
     fun needEquip(s: String): List<String> {

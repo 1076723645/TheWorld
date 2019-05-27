@@ -27,6 +27,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
@@ -180,14 +181,25 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
                 android:background="@null"
                 android:hint="存档代码"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text2" />
+
+            <TextView
+                android:id="@+id/tv_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="点击复制代码"
+                android:textSize="16sp"
+                android:textColor="@color/rate_text_color"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintTop_toBottomOf="@id/et_record"
+                app:layout_constraintStart_toStartOf="@id/et_record"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v4.widget.NestedScrollView>
