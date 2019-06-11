@@ -11,7 +11,7 @@ import com.smallcat.theworld.model.db.RecordThing
 /**
  * Created by smallCut on 2018/7/19.
  */
-class RecordEquipShowAdapter(data: MutableList<RecordThing>) : BaseQuickAdapter<RecordThing, BaseViewHolder>(R.layout.item_record_equip_show, data) {
+class RecordEquipShowAdapter(data: MutableList<RecordThing>?) : BaseQuickAdapter<RecordThing, BaseViewHolder>(R.layout.item_record_equip_show, data) {
 
     override fun convert(viewHolder: BaseViewHolder, item: RecordThing) {
         viewHolder.setText(R.id.tv_name, item.equipName)

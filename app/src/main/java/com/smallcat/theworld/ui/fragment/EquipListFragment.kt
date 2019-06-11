@@ -48,6 +48,7 @@ class EquipListFragment : RxFragment() {
                 startActivity(this)
             }
         }
+        adapter.openLoadAnimation()
         adapter.emptyView = AppUtils.getEmptyView(mContext, "数据加载中")
         recyclerView.adapter = adapter
     }
@@ -86,4 +87,5 @@ class EquipListFragment : RxFragment() {
                     }
                 }
     }
+
 }

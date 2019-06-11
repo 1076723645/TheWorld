@@ -2,13 +2,15 @@ package com.smallcat.theworld.ui.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+import android.media.AudioManager
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
-import com.smallcat.theworld.App
+import android.support.v7.app.AppCompatActivity
+import com.smallcat.theworld.R
 import com.smallcat.theworld.model.db.*
-import com.smallcat.theworld.model.getHeroImg
 import com.smallcat.theworld.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.tencent.bugly.crashreport.CrashReport
@@ -17,6 +19,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import jxl.Workbook
 import org.litepal.crud.DataSupport
+
 
 class SplashActivity : AppCompatActivity() {
 
@@ -33,6 +36,8 @@ class SplashActivity : AppCompatActivity() {
     private val skillList = ArrayList<Skill>()
     private val heroStrategyList = ArrayList<HeroStrategy>()
 
+    private var mMediaPlayer: MediaPlayer? = null
+
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         AppStatusManager.getInstance().appStatus = AppStatusManager.AppStatusConstant.APP_NORMAL
@@ -42,24 +47,23 @@ class SplashActivity : AppCompatActivity() {
         rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe { granted ->
                     if (!granted) { // Always true pre-M
-                        ToastUtil.shortShow("需要读写权限")
+                        "需要读写权限".toast()
                     }
                     initData()
                 }
     }
 
-    private fun initData(){
+    private fun initData() {
         val oldVersion = sharedPref.versionName
         val newVersion = AppUtils.getVerName(this)
         var isFirst = sharedPref.isFirst
-
-        if (oldVersion != newVersion){
+        if (oldVersion != newVersion) {
             isFirst = true
             sharedPref.recoveryRecord = true
             try {
                 AppUtils.clean()
-            }catch (e :Exception){
-                ToastUtil.shortShow("清除旧数据错误，请重新安装程序")
+            } catch (e: Exception) {
+                "清除旧数据错误，请重新安装程序".toast()
             }
             sharedPref.versionName = newVersion
         }
@@ -68,23 +72,53 @@ class SplashActivity : AppCompatActivity() {
             //第一次打开
             getData()
         } else {
-            Handler().postDelayed({
-                val intent = Intent(this@SplashActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }, 500)
+            whiteOrBlack()
         }
     }
 
+    /**
+     * 欧皇还是非酋
+     * 基础概率0.6%。每次黑提高0.01%
+     */
+    private fun whiteOrBlack() {
+        val number = DataUtil.randInt(1, 10000)
+        //number.toString().logE()
+        var times = sharedPref.times
+        val length = times + 60
+        if (number in 1..length) {
+            //播放ding，开启手机扬声器模式
+            mMediaPlayer = MediaPlayer.create(this, R.raw.ding)
+            val mAudioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+            mAudioManager.mode = AudioManager.MODE_NORMAL
+            mAudioManager.isSpeakerphoneOn = true
+            mMediaPlayer?.setOnCompletionListener { goMain() }
+            mMediaPlayer?.start()
+            "第${times + 1}次掉落了极寒碎片, 你今天很欧哦QAQ".toast()
+            sharedPref.times = 0
+        } else {
+            times++
+            sharedPref.times = times
+            goMain()
+        }
+    }
+
+    private fun goMain() {
+        Handler().postDelayed({
+            val intent = Intent(this@SplashActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }, 500)
+    }
+
     @SuppressLint("CheckResult")
-    private fun getData(){
+    private fun getData() {
         Observable.create<String> {
             it.onNext("初始化数据中，请耐心等待QAQ")
             getXlsData(fileName)
             getXlsData(fileName2)
             getXlsData(fileName1)
             saveData()
-            if (sharedPref.recoveryRecord){
+            if (sharedPref.recoveryRecord) {
                 it.onNext("存档恢复中，请耐心等待QAQ")
                 recoveryRecord()
             }
@@ -92,11 +126,11 @@ class SplashActivity : AppCompatActivity() {
         }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe ({
+                .subscribe({
                     ToastUtil.shortShow(it)
-                },{
+                }, {
                     ToastUtil.shortShow("未知错误,请重新安装")
-                },{
+                }, {
                     sharedPref.isFirst = false
                     cleanList()
                     val intent = Intent(this@SplashActivity, MainActivity::class.java)
@@ -118,7 +152,7 @@ class SplashActivity : AppCompatActivity() {
                 Log.d("AAA", "the name of sheet is  " + sheet.getName());
                 Log.d("AAA", "total rows is 行=" + sheetRows);
                 Log.d("AAA", "total cols is 列=" + sheetColumns);*/
-                when(xlsName){
+                when (xlsName) {
                     fileName -> {
                         if (k == 5) {
                             val imgArray: IntArray = PictureRes.getImgList("专属")
@@ -172,7 +206,7 @@ class SplashActivity : AppCompatActivity() {
                                 hero.back = sheet.getCell(1, i).contents
                                 hero.type = sheet.getCell(2, i).contents
                                 hero.main = sheet.getCell(3, i).contents
-                                hero.distance= sheet.getCell(4, i).contents
+                                hero.distance = sheet.getCell(4, i).contents
                                 hero.position = sheet.getCell(5, i).contents
                                 hero.speed = sheet.getCell(6, i).contents
                                 hero.imgId = imgArray[i - 1]
@@ -184,7 +218,7 @@ class SplashActivity : AppCompatActivity() {
                             for (i in 1 until sheetRows) {//从第二行开始读
                                 val heroStrategy = HeroStrategy()
                                 heroStrategy.heroName = sheet.getCell(0, i).contents
-                                heroStrategy.address= sheet.getCell(1, i).contents
+                                heroStrategy.address = sheet.getCell(1, i).contents
                                 heroStrategy.title = sheet.getCell(2, i).contents
                                 heroStrategy.auther = sheet.getCell(3, i).contents
                                 heroStrategy.version = sheet.getCell(4, i).contents
@@ -233,10 +267,11 @@ class SplashActivity : AppCompatActivity() {
             workbook.close()
         } catch (e: Exception) {
             LogUtil.e("read error=$e")
+            CrashReport.postCatchedException(e)
         }
     }
 
-    private fun saveData(){
+    private fun saveData() {
         DataSupport.saveAll(equipList)
         DataSupport.saveAll(exclusiveList)
         DataSupport.saveAll(bossList)
@@ -245,7 +280,7 @@ class SplashActivity : AppCompatActivity() {
         DataSupport.saveAll(heroStrategyList)
     }
 
-    private fun cleanList(){
+    private fun cleanList() {
         equipList.clear()
         bossList.clear()
         exclusiveList.clear()
@@ -254,13 +289,17 @@ class SplashActivity : AppCompatActivity() {
         heroStrategyList.clear()
     }
 
-    private fun recoveryRecord(){
+    private fun recoveryRecord() {
         val bagList = DataSupport.findAll(RecordThing::class.java)
-        for (i in bagList){
+        for (i in bagList) {
             val data = DataSupport.where("equipName = ?", i.equipName).find(Equip::class.java)
             i.equipImg = data[0].imgId
         }
         DataSupport.saveAll(bagList)
     }
 
+    override fun onDestroy() {
+        mMediaPlayer?.release()
+        super.onDestroy()
+    }
 }

@@ -41,12 +41,18 @@ public class PictureRes {
             , R.drawable.wuqi_160, R.drawable.wuqi_wenyi, R.drawable.wuqi_menghuanzhijian, R.drawable.wuqi_daxuese, R.drawable.wuqi_huihuang};
 
     private static final int[] imgList2 = new int[]{R.drawable.head_2
-            , R.drawable.head_7, R.drawable.head_8, R.drawable.head_9, R.drawable.head_10, R.drawable.head_11, R.drawable.head_12
-            , R.drawable.head_13, R.drawable.head_14, R.drawable.head_15, R.drawable.head_16, R.drawable.head_17, R.drawable.head_18, R.drawable.head_19
-            , R.drawable.head_20, R.drawable.head_21, R.drawable.head_22, R.drawable.head_23, R.drawable.head_24, R.drawable.head_25, R.drawable.head_26
-            , R.drawable.head_27, R.drawable.head_28, R.drawable.head_29, R.drawable.head_30, R.drawable.head_31, R.drawable.head_32, R.drawable.head_33
-            , R.drawable.head_34, R.drawable.head_35, R.drawable.head_36, R.drawable.head_37, R.drawable.head_38, R.drawable.head_39, R.drawable.head_40
-            , R.drawable.head_42, R.drawable.head_43, R.drawable.head_44, R.drawable.head_45, R.drawable.head_46, R.drawable.head_47};
+            , R.drawable.head_7, R.drawable.head_8, R.drawable.head_9, R.drawable.head_10
+            , R.drawable.head_11, R.drawable.head_12
+            , R.drawable.head_13, R.drawable.head_14, R.drawable.head_15, R.drawable.head_16
+            , R.drawable.head_17, R.drawable.head_18, R.drawable.head_19
+            , R.drawable.head_20, R.drawable.head_21, R.drawable.head_22, R.drawable.head_23
+            , R.drawable.head_24, R.drawable.head_25, R.drawable.head_26
+            , R.drawable.head_27, R.drawable.head_28, R.drawable.head_29, R.drawable.head_30
+            , R.drawable.head_31, R.drawable.head_32, R.drawable.head_33
+            , R.drawable.head_34, R.drawable.head_35, R.drawable.head_36, R.drawable.head_37
+            , R.drawable.head_38, R.drawable.head_39, R.drawable.head_40
+            , R.drawable.head_42, R.drawable.head_43, R.drawable.head_44, R.drawable.head_45
+            , R.drawable.head_46, R.drawable.head_47, R.drawable.head_dagouyan};
 
     private static final int[] imgList3 = new int[]{R.drawable.nail_2, R.drawable.nail_3, R.drawable.nail_4, R.drawable.nail_5
             , R.drawable.nail_6, R.drawable.nail_7, R.drawable.nail_8, R.drawable.nail_9, R.drawable.nail_10, R.drawable.nail_11, R.drawable.nail_12
@@ -78,7 +84,8 @@ public class PictureRes {
     private static final int[] huizList = new int[]{R.drawable.huiz_1, R.drawable.huiz_2, R.drawable.huiz_3, R.drawable.huiz_4, R.drawable.huiz_5
             , R.drawable.huiz_6, R.drawable.huiz_7, R.drawable.huiz_8, R.drawable.huiz_9, R.drawable.huiz_10, R.drawable.huiz_11, R.drawable.huiz_12
             , R.drawable.huiz_13, R.drawable.huiz_14, R.drawable.huiz_15, R.drawable.huiz_16, R.drawable.huiz_17, R.drawable.huiz_18, R.drawable.huiz_19
-            , R.drawable.huiz_20, R.drawable.huiz_21};
+            , R.drawable.huiz_20, R.drawable.huiz_21, R.drawable.huiz_yinmiao, R.drawable.huiz_youling, R.drawable.huiz_haiyang, R.drawable.huiz_xinnian
+            , R.drawable.huiz_xinnian, R.drawable.cangp_sdfuz, R.drawable.head_9, R.drawable.head_9};
 
     private static final int[] cailList = new int[]{R.drawable.cail_0, R.drawable.cail_1, R.drawable.cail_2, R.drawable.cail_3, R.drawable.cail_4, R.drawable.cail_5
             , R.drawable.cail_6, R.drawable.cail_7, R.drawable.cail_8, R.drawable.cail_9, R.drawable.cail_10, R.drawable.cail_11, R.drawable.cail_12
@@ -247,7 +254,13 @@ public class PictureRes {
             R.drawable.ck_t, R.drawable.ck_f,
             //无极剑魂
             R.drawable.jh_d, R.drawable.jh_a,  R.drawable.jh_q, R.drawable.jh_w, R.drawable.jh_e, R.drawable.jh_r,
-            R.drawable.jh_t, R.drawable.jh_f
+            R.drawable.jh_t, R.drawable.jh_f,
+            //幽人
+            R.drawable.youren_d, R.drawable.youren_q, R.drawable.youren_w, R.drawable.youren_e, R.drawable.youren_r,
+            R.drawable.youren_t, R.drawable.youren_f,
+            //女巫
+            R.drawable.nvwu_d, R.drawable.nvwu_q, R.drawable.nvwu_w, R.drawable.nvwu_e, R.drawable.nvwu_r,
+            R.drawable.nvwu_t, R.drawable.nvwu_f,
     };
 
     private static final int[] HERO_LIST = new int[]{R.drawable.zy_my, R.drawable.zy_dc, R.drawable.zy_mq, R.drawable.zy_kz, R.drawable.zy_c8,
@@ -255,7 +268,7 @@ public class PictureRes {
             R.drawable.zy_ss,
             R.drawable.zy_jj, R.drawable.zy_ck, R.drawable.zy_fm, R.drawable.zy_skz, R.drawable.zy_sj, R.drawable.zy_hf, R.drawable.zy_bf,
             R.drawable.zy_ff, R.drawable.zy_yf, R.drawable.zz_df, R.drawable.zy_ms, R.drawable.zy_zh, R.drawable.zy_cn, R.drawable.zy_ws,
-            R.drawable.zy_lj, R.drawable.zy_xf};
+            R.drawable.zy_lj, R.drawable.zy_xf, R.drawable.zy_youren, R.drawable.zy_nvwu};
 
     public static int[] getImgList(String type) {
         switch (type) {

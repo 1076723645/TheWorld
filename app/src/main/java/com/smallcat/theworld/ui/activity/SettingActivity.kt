@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
@@ -14,12 +15,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.bumptech.glide.Glide
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureConfig
 import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
-import com.smallcat.theworld.utils.AppUtils
-import com.smallcat.theworld.utils.getResourceColor
-import com.smallcat.theworld.utils.sharedPref
+import com.smallcat.theworld.utils.*
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
 
@@ -46,11 +48,17 @@ class SettingActivity : BaseActivity() {
                 showDialog()
             }
         }
+        /*val path = sharedPref.splashPath
+        if (path != "") {
+            Glide.with(this).load(path).into(iv_splash)
+        }
+        ll_splash.setOnClickListener { DataUtil.addPicture(this, 1, PictureConfig.CHOOSE_REQUEST) }*/
         sb_back.isChecked = sharedPref.isBack
         sb_back.setOnCheckedChangeListener{ _, isChecked ->
             sharedPref.isBack = isChecked
             isChangeOrder = true
         }
+        tv_times.text = "${sharedPref.times}"
         iv_back.setOnClickListener {
             if (isChangeTheme){
                 App.getInstance().finishAllActivityExcept(this)
@@ -159,6 +167,22 @@ class SettingActivity : BaseActivity() {
         return bitmap
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PictureConfig.CHOOSE_REQUEST) {
+                var path = ""
+                val selectList = PictureSelector.obtainMultipleResult(data)
+                if (selectList[0].isCompressed) {
+                    path = selectList[0].compressPath
+                } else {
+                    "图片压缩失败".toast()
+                }
+                Glide.with(this).load(path).into(iv_splash)
+                sharedPref.splashPath = path
+            }
+        }
+    }
 
     override fun onBackPressedSupport() {
         if (isChangeTheme || isChangeOrder) {

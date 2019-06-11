@@ -2,8 +2,13 @@ package com.smallcat.theworld.ui.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
+import android.os.Build
+import android.os.Bundle
 import android.os.Handler
+import android.os.PersistableBundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -13,16 +18,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.pgyersdk.update.PgyUpdateManager
 import com.pgyersdk.update.UpdateManagerListener
 import com.pgyersdk.update.javabean.AppBean
 import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
-import com.smallcat.theworld.ui.fragment.BossFragment
-import com.smallcat.theworld.ui.fragment.EquipFragment
-import com.smallcat.theworld.ui.fragment.ExclusiveFragment
-import com.smallcat.theworld.ui.fragment.MaterialFragment
+import com.smallcat.theworld.ui.fragment.*
 import com.smallcat.theworld.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 import me.yokeyword.fragmentation.ISupportFragment
@@ -59,9 +62,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun initData() {
         val navView = findViewById<NavigationView>(R.id.nav_view)
         navView.setNavigationItemSelectedListener(this)
+        mDrawerLayout = findViewById(R.id.drawer_layout)
         navView.setCheckedItem(R.id.nav_equip)
 
-        mDrawerLayout = findViewById(R.id.drawer_layout)
+        /*val path = sharedPref.splashPath
+        if (path != "") {
+            val headView = navView.getHeaderView(0)
+            val ivBg = headView.findViewById<ImageView>(R.id.iv_bg)
+            ivBg.setImageResource(R.drawable.zy_ss)
+        }*/
 
         val ivHead = findViewById<ImageView>(R.id.iv_logo)
         ivHead.setOnClickListener { mDrawerLayout.openDrawer(GravityCompat.START) }
@@ -151,24 +160,33 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun showUpdateDialog(appBean: AppBean) {
-        if (dialog == null) {
-            dialog = Dialog(mContext, R.style.CustomDialog)
+        if (Build.VERSION.SDK_INT >= 21) {
+            if (dialog == null) {
+                dialog = Dialog(mContext, R.style.CustomDialog)
+            }
+            val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
+            val tvMsg = view.findViewById<EditText>(R.id.tv_msg)
+            val tvSure = view.findViewById<TextView>(R.id.tv_download)
+            val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
+            tvMsg.setText(appBean.releaseNote)
+            tvSure.setOnClickListener {
+                dialog?.dismiss()
+                LogUtil.e(appBean.downloadURL)
+                PgyUpdateManager.downLoadApk(appBean.downloadURL)
+            }
+            tvCancel.setOnClickListener { dialog!!.dismiss() }
+            dialog?.setContentView(view)
+            dialog?.setCanceledOnTouchOutside(false)
+            dialog?.setCancelable(false)
+            dialog?.show()
+        } else {
+            val dialog = AlertDialog.Builder(mContext)
+                    .setMessage(appBean.releaseNote)
+                    .setPositiveButton("确定更新") { _, _ -> PgyUpdateManager.downLoadApk(appBean.downloadURL) }
+                    .setNegativeButton("取消更新", null)
+                    .create()
+            dialog.show()
         }
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
-        val tvMsg = view.findViewById<EditText>(R.id.tv_msg)
-        val tvSure = view.findViewById<TextView>(R.id.tv_download)
-        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
-        tvMsg.setText(appBean.releaseNote)
-        tvSure.setOnClickListener {
-            dialog?.dismiss()
-            LogUtil.e(appBean.downloadURL)
-            PgyUpdateManager.downLoadApk(appBean.downloadURL)
-        }
-        tvCancel.setOnClickListener { dialog!!.dismiss() }
-        dialog?.setContentView(view)
-        dialog?.setCanceledOnTouchOutside(false)
-        dialog?.setCancelable(false)
-        dialog?.show()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -179,10 +197,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_task -> show = MATERIAL
             R.id.nav_setting -> {
                 startActivity(SettingActivity::class.java)
-                return true
-            }
-            R.id.nav_my -> {
-                startActivity(MyWorldActivity::class.java)
                 return true
             }
             R.id.nav_update -> {

@@ -1,25 +1,20 @@
 package com.smallcat.theworld.ui.activity
 
-import android.app.Dialog
 import android.content.Intent
 import android.support.v7.app.AlertDialog
+import android.util.TypedValue
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
+import com.smallcat.theworld.model.bean.MsgEvent
 import com.smallcat.theworld.model.db.MyRecord
 import com.smallcat.theworld.ui.adapter.MyRecordAdapter
-import com.smallcat.theworld.utils.AppUtils
-import com.smallcat.theworld.utils.CircularAnimUtil
-import com.smallcat.theworld.utils.sharedPref
+import com.smallcat.theworld.utils.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_my_world.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import org.litepal.crud.DataSupport
-import android.util.TypedValue
-import android.view.LayoutInflater
-import android.widget.EditText
-import android.widget.TextView
 
 
 /**
@@ -50,8 +45,6 @@ class MyWorldActivity : RxActivity() {
             startActivity(RecordDetailActivity.getIntent(mContext, list[position].id))
         }
         rv_list.adapter = adapter
-        refresh_layout.setColorSchemeResources(getColorPrimary())
-        refresh_layout.setOnRefreshListener { loadData() }
         fab.setOnClickListener {
             val intent = Intent(mContext, RecordAddActivity::class.java)
             CircularAnimUtil.startActivity(this@MyWorldActivity, intent, fab, R.drawable.zy_c8)
@@ -63,12 +56,6 @@ class MyWorldActivity : RxActivity() {
     override fun onResume() {
         super.onResume()
         loadData()
-    }
-
-    private fun getColorPrimary(): Int {
-        val typedValue = TypedValue()
-        theme.resolveAttribute(R.attr.colorAccent, typedValue, true)
-        return typedValue.resourceId
     }
 
     private fun loadData() {
@@ -93,35 +80,33 @@ class MyWorldActivity : RxActivity() {
     }
 
     private fun showList(data: List<MyRecord>) {
-        refresh_layout.isRefreshing = false
         list.clear()
         list.addAll(data)
         adapter.setNewData(list)
     }
 
     private fun showSureDialog(position: Int) {
-        val dialog = Dialog(mContext, R.style.CustomDialog)
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
-        val tvMsg = view.findViewById<EditText>(R.id.tv_msg)
-        val tvTitle = view.findViewById<TextView>(R.id.textView6)
-        val tvSure = view.findViewById<TextView>(R.id.tv_download)
-        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
-        tvMsg.setText("确定删除存档吗")
-        tvTitle.text = "提示"
-        tvSure.setOnClickListener {
-            val data = list[position]
-            data.delete()
-            list.removeAt(position)
-            adapter.notifyItemRemoved(position)
-            dialog.dismiss()
-        }
-        tvSure.text = "确定"
-        tvCancel.text = "取消"
-        tvCancel.setOnClickListener { dialog.dismiss() }
-        dialog.setContentView(view)
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.setCancelable(false)
+        val builder = AlertDialog.Builder(mContext).setMessage("确定删除存档吗")
+                .setNegativeButton("确定") { _, _ ->
+                    deleteRecord(position)
+                }.setPositiveButton("取消", null)
+        val dialog = builder.create()
+        val lp = dialog?.window?.attributes
+        val dm = resources.displayMetrics
+        lp?.width = dm.widthPixels * 0.6.toInt()
+        dialog?.window?.attributes = lp //设置宽度
         dialog.show()
+    }
+
+    private fun deleteRecord(position: Int){
+        val data = list[position]
+        //删除默认存档
+        if (data.isDefault){
+            mContext.sharedPref.chooseId = -1L
+        }
+        data.delete()
+        list.removeAt(position)
+        adapter.notifyItemRemoved(position)
     }
 
     private fun changeDefaultChoose(position: Int) {
@@ -137,5 +122,6 @@ class MyWorldActivity : RxActivity() {
 
         sharedPref.chooseId = data.id
         mChoosePos = position
+        RxBus.post(MsgEvent("", 12580))
     }
 }

@@ -17,6 +17,8 @@ import me.yokeyword.fragmentation.SupportFragment
  */
 class EquipFragment : SupportFragment() {
 
+    var adapter: EquipFragAdapter? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_equip, container, false)
         initView(view)
@@ -26,10 +28,20 @@ class EquipFragment : SupportFragment() {
     private fun initView(v: View) {
         val viewPager = v.findViewById<ViewPager>(R.id.vp_equip)
         val tab = v.findViewById<TabLayout>(R.id.tab_equip)
-        val adapter = EquipFragAdapter(activity!!.supportFragmentManager)
+        adapter = EquipFragAdapter(activity!!.supportFragmentManager)
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit = 3
         tab.setupWithViewPager(viewPager)
     }
+
+    override fun onDestroyView() {
+        adapter?.destroyFragment()
+        super.onDestroyView()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+
+    }
+
 }
 

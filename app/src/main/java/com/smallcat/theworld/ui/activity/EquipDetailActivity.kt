@@ -18,11 +18,9 @@ import com.smallcat.theworld.model.bean.ImgData
 import com.smallcat.theworld.model.bean.MsgEvent
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Hero
+import com.smallcat.theworld.model.db.RecordThing
 import com.smallcat.theworld.ui.adapter.AccessAdapter
-import com.smallcat.theworld.utils.AppUtils
-import com.smallcat.theworld.utils.LogUtil
-import com.smallcat.theworld.utils.RxBus
-import com.smallcat.theworld.utils.ToastUtil
+import com.smallcat.theworld.utils.*
 import org.litepal.crud.DataSupport
 import java.util.*
 
@@ -50,10 +48,14 @@ class EquipDetailActivity : BaseActivity() {
     lateinit var fabEdit: FloatingActionButton
 
     private lateinit var equip: Equip
+    private lateinit var targetEquips: MutableList<RecordThing>
     private var dataList = ArrayList<String>()//装备数据
     private var advanceList = ArrayList<String>()//进阶
     private var exclusiveList: List<String> = ArrayList()//专属
     private var dialog: Dialog? = null
+
+    private var isAdd = false
+    private var recordThingId = -1L
 
     override val layoutId: Int
         get() = R.layout.activity_equip_detail
@@ -61,25 +63,44 @@ class EquipDetailActivity : BaseActivity() {
     @SuppressLint("SetTextI18n")
     override fun initData() {
         val equipId = intent.getStringExtra("id")
+        val recordId = sharedPref.chooseId
         equip = DataSupport.where("id = ?", equipId).find(Equip::class.java)[0]
         ivBack.setOnClickListener { onBackPressed() }
         fab.setOnClickListener { startActivityFinish(MainActivity::class.java) }
+
+        targetEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "1").find(RecordThing::class.java)
+
         fabEdit.setOnClickListener {
-            if (equip.isAdd == 1){
-                equip.isAdd = 0
-                equip.save()
+            if (recordId == -1L){
+                "请添加默认存档".toast()
+                return@setOnClickListener
+            }
+            if (isAdd){
                 ToastUtil.shortShow("移除成功")
                 fabEdit.setImageResource(R.drawable.ic_add_black_24dp)
+                DataSupport.delete(RecordThing::class.java, recordThingId)
             }else{
-                equip.isAdd = 1
-                equip.save()
                 ToastUtil.shortShow("添加成功")
                 fabEdit.setImageResource(R.drawable.ic_remove_24dp)
+                val recordThing = RecordThing()
+                recordThing.equipName = equip.equipName
+                recordThing.number = 1
+                recordThing.equipImg = equip.imgId
+                recordThing.type = 1
+                recordThing.recordId = recordId
+                recordThing.save()
+                recordThingId = recordThing.id
             }
+            isAdd = !isAdd
             RxBus.post(MsgEvent("msg", 1))
         }
-        if (equip.isAdd == 1){
-            fabEdit.setImageResource(R.drawable.ic_remove_24dp)
+        for (i in targetEquips){
+            if (i.equipName == equip.equipName){
+                fabEdit.setImageResource(R.drawable.ic_remove_24dp)
+                recordThingId = i.id
+                isAdd = true
+                break
+            }
         }
         /**
          * 基础属性

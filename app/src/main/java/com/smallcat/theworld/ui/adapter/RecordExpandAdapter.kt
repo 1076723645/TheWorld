@@ -27,11 +27,15 @@ class RecordExpandAdapter(data: List<MultiItemEntity>) : BaseMultiItemQuickAdapt
 
     @SuppressLint("SetTextI18n")
     override fun convert(helper: BaseViewHolder, item: MultiItemEntity?) {
+        if (item == null){
+            return
+        }
         if (helper.itemViewType == TYPE_HEAD) {
             val headData = item as RecordExpandData
             helper.setText(R.id.tv_name, headData.equipName)
                     .addOnClickListener(R.id.tv_name)
                     .addOnClickListener(R.id.iv_img)
+                    .addOnClickListener(R.id.tv_number)
             if (headData.equipIcon != 0) {
                 helper.setImageResource(R.id.iv_img, headData.equipIcon)
             } else {

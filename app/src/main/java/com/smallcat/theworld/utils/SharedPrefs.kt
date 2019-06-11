@@ -19,8 +19,9 @@ class SharedPref {
         private const val KEY_PHONE= "usePhone"
         private const val KEY_VERSION = "versionName"
         private const val KEY_BACK = "history"
-        private const val KEY_RECORD = "record"
+        private const val KEY_TIMES = "TIMES"
         private const val PREFS_KEY = "park"
+        private const val PREFS_PATH = "IMG_PATH"
 
         fun newInstance() = SharedPref()
     }
@@ -30,7 +31,7 @@ class SharedPref {
         set(token) = prefs.edit().putBoolean(KEY_BLACK, token).apply()
 
     var versionName: String?
-        get() = prefs.getString(KEY_VERSION, "2.10.5")
+        get() = prefs.getString(KEY_VERSION, AppUtils.getVerName(App.getInstance()))
         set(value) = prefs.edit().putString(KEY_VERSION, value).apply()
 
     var isShow: Boolean
@@ -51,9 +52,19 @@ class SharedPref {
         get() = prefs.getBoolean(KEY_FIRST, false)
         set(value) = prefs.edit().putBoolean(KEY_FIRST, value).apply()
 
+    //记录名称
     var chooseId: Long
         get() = prefs.getLong(KEY_CHOOSE_RECORD, -1L)
         set(value) = prefs.edit().putLong(KEY_CHOOSE_RECORD, value).apply()
+
+    //没ding的次数
+    var times: Int
+        get() = prefs.getInt(KEY_TIMES, 0)
+        set(value) = prefs.edit().putInt(KEY_TIMES, value).apply()
+
+    var splashPath: String?
+        get() = prefs.getString(PREFS_PATH, "")
+        set(value) = prefs.edit().putString(PREFS_PATH, value).apply()
 }
 
 val Context.sharedPref: SharedPref get() = SharedPref.newInstance()

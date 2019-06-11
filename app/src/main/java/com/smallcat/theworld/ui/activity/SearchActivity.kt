@@ -1,7 +1,5 @@
 package com.smallcat.theworld.ui.activity
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.text.Editable
@@ -14,13 +12,11 @@ import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.ui.adapter.EquipAdapter
-import com.smallcat.theworld.viewmodel.SearchViewModel
 import org.litepal.crud.DataSupport
 
 class SearchActivity : BaseActivity() {
 
-    //private var dataList: MutableList<Equip> = ArrayList()
-    private lateinit var mSearchViewModel: SearchViewModel
+    private var list: MutableList<Equip> = ArrayList()
 
     override val layoutId: Int
         get() = R.layout.activity_search
@@ -31,8 +27,6 @@ class SearchActivity : BaseActivity() {
         val back = findViewById<ImageView>(R.id.iv_back)
         val recyclerView = findViewById<RecyclerView>(R.id.rv_search)
 
-        mSearchViewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
-        val list = mSearchViewModel.getEquipList()
         val adapter = EquipAdapter(list)
         adapter.setOnItemClickListener { _, _, position ->
             val intent = Intent(this@SearchActivity, EquipDetailActivity::class.java)
@@ -41,11 +35,8 @@ class SearchActivity : BaseActivity() {
         }
         recyclerView.adapter = adapter
 
-        mSearchViewModel.getValue()?.observe(this, Observer<MutableList<Equip>> {
-            adapter.setNewData(it)
-        })
-
         etSearch.addTextChangedListener(object : TextWatcher {
+
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
 
             }
@@ -60,13 +51,12 @@ class SearchActivity : BaseActivity() {
                     if (result == 0) {
                         textView.visibility = View.VISIBLE
                         list.clear()
-                        mSearchViewModel.setValue(list)
                     } else {
                         textView.visibility = View.GONE
                         list.clear()
                         list.addAll(equips)
-                        mSearchViewModel.setValue(list)
                     }
+                    adapter.setNewData(list)
                 }
             }
 

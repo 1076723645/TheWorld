@@ -1,6 +1,8 @@
 package com.smallcat.theworld.ui.activity
 
 import android.app.Dialog
+import android.content.DialogInterface
+import android.os.Build
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -68,38 +70,33 @@ class RecordAddActivity : RxActivity() {
     }
 
     private fun showSureDialog(position: Int) {
-        val dialog = Dialog(mContext, R.style.CustomDialog)
-        val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
-        val tvMsg = view.findViewById<EditText>(R.id.tv_msg)
-        val tvTitle = view.findViewById<TextView>(R.id.textView6)
-        val tvSure = view.findViewById<TextView>(R.id.tv_download)
-        val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
-        tvMsg.setText("确定创建存档吗")
-        tvTitle.text = "提示"
-        tvSure.setOnClickListener {
-            dialog.dismiss()
-            //创建一个基础的记录
-            val data = MyRecord()
-            data.heroName = mData[position].name
-            data.heroImg = mData[position].imgUrl
-            data.createTime = System.currentTimeMillis()
-            data.updateTime = System.currentTimeMillis()
-            data.recordLevel = 400
-            data.save()
-            //如果是第一个记录，就设为默认存档
-            if (sharedPref.chooseId == -1L) {
-                data.isDefault = true
-                sharedPref.chooseId = data.id
-            }
-            startActivity(RecordEditActivity.getIntent(mContext, data.id))
-            finish()
-        }
-        tvSure.text = "确定"
-        tvCancel.text = "取消"
-        tvCancel.setOnClickListener { dialog.dismiss() }
-        dialog.setContentView(view)
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.setCancelable(false)
+        val builder = AlertDialog.Builder(mContext).setMessage("确定创建存档吗")
+                .setNegativeButton("确定") { _, _ -> createRecord(position) }.setPositiveButton("取消", null)
+        val dialog = builder.create()
+        val lp = dialog?.window?.attributes
+        val dm = resources.displayMetrics
+        lp?.width = dm.widthPixels * 0.6.toInt()
+        dialog?.window?.attributes = lp //设置宽度
         dialog.show()
     }
+
+    private fun createRecord(position: Int) {
+        //创建一个基础的记录
+        val data = MyRecord()
+        data.heroName = mData[position].name
+        data.heroImg = mData[position].imgUrl
+        data.createTime = System.currentTimeMillis()
+        data.updateTime = System.currentTimeMillis()
+        data.recordLevel = 400
+        data.save()
+        //如果没有默认存档，就设为默认存档
+        if (sharedPref.chooseId == -1L) {
+            data.isDefault = true
+            sharedPref.chooseId = data.id
+            data.save()
+        }
+        startActivity(RecordEditActivity.getIntent(mContext, data.id))
+        finish()
+    }
+
 }

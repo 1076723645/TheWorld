@@ -27,6 +27,9 @@ import org.litepal.crud.DataSupport
 import com.smallcat.theworld.R
 import android.content.ClipData
 import android.support.v7.widget.GridLayoutManager
+import com.smallcat.theworld.model.bean.MsgEvent
+import com.smallcat.theworld.utils.RxBus
+import com.smallcat.theworld.utils.logE
 
 
 class RecordEditActivity : RxActivity() {
@@ -73,6 +76,7 @@ class RecordEditActivity : RxActivity() {
             record.updateTime = System.currentTimeMillis()
             record.save()
             ToastUtil.shortShow("保存成功")
+            RxBus.post(MsgEvent("", 12580))
         }
         tv_build.setOnClickListener {
             buildThing()
@@ -91,8 +95,9 @@ class RecordEditActivity : RxActivity() {
         targetAdapter = RecordEquipAdapter(targetEquips)
         targetAdapter.addFooterView(getFooterView(mContext, 0))
         targetAdapter.setOnItemClickListener { _, _, position ->
+            targetEquips[position].equipName?.logE()
             val list = DataSupport.where("equipName = ?", targetEquips[position].equipName).find(Equip::class.java)
-            if (list.isNotEmpty()) {
+            if (list.size > 0) {
                 Intent(mContext, EquipDetailActivity::class.java).apply {
                     putExtra("id", list[0].id.toString())
                     startActivity(this)
@@ -173,7 +178,7 @@ class RecordEditActivity : RxActivity() {
         val dialog = builder.create()
         val lp = dialog?.window?.attributes
         val dm = resources.displayMetrics
-        lp?.width = dm.widthPixels * 0.8.toInt()
+        lp?.width = dm.widthPixels * 0.6.toInt()
         dialog?.window?.attributes = lp //设置宽度
         dialog.show()
     }

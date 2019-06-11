@@ -6,12 +6,6 @@ import com.smallcat.theworld.R
  * @author smallCut
  * @date 2018/9/19
  */
-val HERO_IMG_LIST = intArrayOf(R.drawable.zy_my, R.drawable.zy_dc, R.drawable.zy_mq, R.drawable.zy_kz, R.drawable.zy_c8
-        , R.drawable.zy_bbx, R.drawable.zy_hq, R.drawable.zy_jx, R.drawable.zy_33, R.drawable.zy_qs, R.drawable.zy_jh, R.drawable.zy_js
-        , R.drawable.zy_ss, R.drawable.zy_jj, R.drawable.zy_ck, R.drawable.zy_fm, R.drawable.zy_skz, R.drawable.zy_sj, R.drawable.zy_hf
-        , R.drawable.zy_bf, R.drawable.zy_ff, R.drawable.zy_yf, R.drawable.zz_df, R.drawable.zy_ms, R.drawable.zy_zh, R.drawable.zy_cn
-        , R.drawable.zy_ws, R.drawable.zy_lj, R.drawable.zy_xf)
-
 
 fun getHeroImg(name: String):Int {
     when(name){
@@ -44,6 +38,8 @@ fun getHeroImg(name: String):Int {
         "巫术师" -> return R.drawable.ic_wss
         "炼金术士" -> return R.drawable.ic_lj
         "血法" -> return R.drawable.ic_xf
+        "幽人" -> return R.drawable.ic_youren
+        "女巫" -> return R.drawable.ic_nvwu
     }
     return R.drawable.ic_ss
 }
