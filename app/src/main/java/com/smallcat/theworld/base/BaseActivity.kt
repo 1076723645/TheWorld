@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import butterknife.ButterKnife
 import butterknife.Unbinder
-import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.ui.activity.SplashActivity
 import com.smallcat.theworld.utils.AppStatusManager

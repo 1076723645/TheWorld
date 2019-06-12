@@ -1,28 +1,21 @@
 package com.smallcat.theworld.ui.activity
 
-import android.app.Dialog
-import android.content.DialogInterface
-import android.os.Build
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
-import android.view.LayoutInflater
-import android.widget.EditText
-import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.ImgData
 import com.smallcat.theworld.model.db.Hero
 import com.smallcat.theworld.model.db.MyRecord
 import com.smallcat.theworld.ui.adapter.ExclusiveAdapter
-import com.smallcat.theworld.utils.LogUtil
 import com.smallcat.theworld.utils.sharedPref
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import org.litepal.crud.DataSupport
-import java.util.ArrayList
+import java.util.*
 
 
 class RecordAddActivity : RxActivity() {

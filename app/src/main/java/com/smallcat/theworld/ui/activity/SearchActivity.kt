@@ -1,7 +1,7 @@
 package com.smallcat.theworld.ui.activity
 
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -10,11 +10,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.ui.adapter.EquipAdapter
 import org.litepal.crud.DataSupport
 
-class SearchActivity : BaseActivity() {
+class SearchActivity : RxActivity() {
 
     private var list: MutableList<Equip> = ArrayList()
 
@@ -64,7 +65,6 @@ class SearchActivity : BaseActivity() {
 
             }
         })
-        back.setOnClickListener { finish() }
     }
 
 }

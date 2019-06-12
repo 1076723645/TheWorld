@@ -7,6 +7,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 
+import androidx.multidex.MultiDexApplication;
+
 import com.smallcat.theworld.ui.activity.SplashActivity;
 import com.smallcat.theworld.utils.LogUtil;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -22,7 +24,7 @@ import java.util.List;
  * @author hui
  * @date 2018/8/9
  */
-public class App extends Application {
+public class App extends MultiDexApplication {
 
     private static App mApplication;
 

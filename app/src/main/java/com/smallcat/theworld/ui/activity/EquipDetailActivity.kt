@@ -3,8 +3,7 @@ package com.smallcat.theworld.ui.activity
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewStub
@@ -12,8 +11,10 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import butterknife.BindView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.ImgData
 import com.smallcat.theworld.model.bean.MsgEvent
 import com.smallcat.theworld.model.db.Equip
@@ -24,12 +25,10 @@ import com.smallcat.theworld.utils.*
 import org.litepal.crud.DataSupport
 import java.util.*
 
-class EquipDetailActivity : BaseActivity() {
+class EquipDetailActivity : RxActivity() {
 
     @BindView(R.id.iv_equip)
     lateinit var ivEquip: ImageView
-    @BindView(R.id.iv_back)
-    lateinit var ivBack: ImageView
     @BindView(R.id.tv_title)
     lateinit var tvName: TextView
     @BindView(R.id.tv_type)
@@ -65,7 +64,6 @@ class EquipDetailActivity : BaseActivity() {
         val equipId = intent.getStringExtra("id")
         val recordId = sharedPref.chooseId
         equip = DataSupport.where("id = ?", equipId).find(Equip::class.java)[0]
-        ivBack.setOnClickListener { onBackPressed() }
         fab.setOnClickListener { startActivityFinish(MainActivity::class.java) }
 
         targetEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "1").find(RecordThing::class.java)

@@ -5,11 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import butterknife.ButterKnife
 import butterknife.Unbinder
-import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.ui.activity.SplashActivity
 import com.smallcat.theworld.utils.AppStatusManager
@@ -20,26 +18,29 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import me.yokeyword.fragmentation.SupportActivity
+import me.yokeyword.fragmentation_swipeback.SwipeBackActivity
 
 /**
  * Created by smallCut on 2018/4/27.
  */
-abstract class RxActivity : SupportActivity() {
+abstract class RxActivity : SwipeBackActivity() {
 
     protected lateinit var mContext: Context
     private var loadingDialog: Dialog? = null
+    private var mUnbind: Unbinder? = null
     private var mCompositeDisposable: CompositeDisposable? = null
 
     protected abstract val layoutId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         checkAppStatus()
-        super.onCreate(savedInstanceState)
         initTheme()
+        super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         fitSystem()
         adaptScreen4VerticalSlide(this, 360)
         setContentView(layoutId)
+        mUnbind = ButterKnife.bind(this)
         mContext = this
         iv_back?.setOnClickListener { finish() }
         initData()
@@ -60,6 +61,7 @@ abstract class RxActivity : SupportActivity() {
     override fun onDestroy() {
         dismissLoading()
         unSubscribe()
+        mUnbind!!.unbind()
         super.onDestroy()
     }
 

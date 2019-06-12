@@ -2,12 +2,9 @@ package com.smallcat.theworld.utils
 
 import android.app.Activity
 import android.content.Context
-import android.os.Environment
-import android.support.design.widget.TabLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.luck.picture.lib.PictureSelector
-import com.luck.picture.lib.config.PictureMimeType
+import com.google.android.material.tabs.TabLayout
 import java.util.*
 
 /**
@@ -95,7 +92,7 @@ object DataUtil{
      * 选择图片
      */
     fun addPicture(mActivity: Activity, max: Int, code: Int){
-        PictureSelector.create(mActivity)
+       /* PictureSelector.create(mActivity)
                 .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                 .maxSelectNum(max)// 最大图片选择数量 int
                 .imageSpanCount(3)// 每行显示个数 int
@@ -106,6 +103,6 @@ object DataUtil{
                 .compress(true)// 是否压缩 true or false
                 .compressSavePath(mActivity.getExternalFilesDir(null)?.toString())//压缩图片保存地址
                 .minimumCompressSize(100)// 小于100kb的图片不压缩
-                .forResult(code)//结果回调onActivityResult code
+                .forResult(code)//结果回调onActivityResult code*/
     }
 }

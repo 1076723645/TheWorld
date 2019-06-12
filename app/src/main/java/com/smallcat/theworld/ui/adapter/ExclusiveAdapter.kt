@@ -2,7 +2,7 @@ package com.smallcat.theworld.ui.adapter
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import android.widget.ImageView
@@ -15,8 +15,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.smallcat.theworld.R
 import com.smallcat.theworld.model.bean.ImgData
-import com.smallcat.theworld.model.db.Hero
-import com.smallcat.theworld.utils.DataUtil
 
 /**
  * @author smallCut

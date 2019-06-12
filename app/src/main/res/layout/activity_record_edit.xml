@@ -8,11 +8,11 @@
 
     <include layout="@layout/normal_toolbar" />
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -41,7 +41,7 @@
                 app:layout_constraintStart_toEndOf="@+id/view2"
                 app:layout_constraintTop_toTopOf="@+id/view2" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_target"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                 app:layout_constraintTop_toTopOf="@id/textView1"/>
 
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_have"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -200,9 +200,9 @@
                 app:layout_constraintTop_toBottomOf="@id/et_record"
                 app:layout_constraintStart_toStartOf="@id/et_record"
                 app:layout_constraintBottom_toBottomOf="parent"/>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
 

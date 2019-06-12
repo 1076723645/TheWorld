@@ -3,9 +3,9 @@ package com.smallcat.theworld.ui.fragment
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxFragment
 import com.smallcat.theworld.model.bean.PicData
@@ -13,7 +13,6 @@ import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Exclusive
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import com.smallcat.theworld.ui.adapter.ChoosePicAdapter
-import com.smallcat.theworld.utils.ToastUtil
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

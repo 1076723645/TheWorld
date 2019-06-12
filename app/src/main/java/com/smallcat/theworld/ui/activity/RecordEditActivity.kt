@@ -1,35 +1,34 @@
 package com.smallcat.theworld.ui.activity
 
 import android.app.Dialog
+import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.gson.Gson
+import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
+import com.smallcat.theworld.model.bean.MsgEvent
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.MyRecord
 import com.smallcat.theworld.model.db.RecordThing
 import com.smallcat.theworld.ui.adapter.RecordEquipAdapter
 import com.smallcat.theworld.utils.AppUtils
+import com.smallcat.theworld.utils.RxBus
 import com.smallcat.theworld.utils.ToastUtil
+import com.smallcat.theworld.utils.logE
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_record_edit.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import org.litepal.crud.DataSupport
-import com.smallcat.theworld.R
-import android.content.ClipData
-import android.support.v7.widget.GridLayoutManager
-import com.smallcat.theworld.model.bean.MsgEvent
-import com.smallcat.theworld.utils.RxBus
-import com.smallcat.theworld.utils.logE
 
 
 class RecordEditActivity : RxActivity() {

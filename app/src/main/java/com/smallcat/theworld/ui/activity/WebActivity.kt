@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.ui.widget.ProgressView
 import com.smallcat.theworld.utils.LogUtil
 import com.tencent.smtt.export.external.interfaces.SslError
@@ -22,7 +23,7 @@ import com.tencent.smtt.sdk.WebViewClient
 import kotlinx.android.synthetic.main.activity_web.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
 
-class WebActivity : BaseActivity() {
+class WebActivity : RxActivity() {
 
     private var url: String? = ""
     private lateinit var mProgressBar: ProgressView
@@ -41,7 +42,6 @@ class WebActivity : BaseActivity() {
         get() = R.layout.activity_web
 
     override fun initData() {
-        iv_back.setOnClickListener { finish() }
         mProgressBar = ProgressView(mContext)
         val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         mProgressBar.layoutParams = layoutParams

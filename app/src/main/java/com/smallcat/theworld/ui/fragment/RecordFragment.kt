@@ -3,14 +3,12 @@ package com.smallcat.theworld.ui.fragment
 
 import android.app.Dialog
 import android.content.Intent
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.GridLayoutManager
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxFragment
@@ -26,7 +24,6 @@ import com.smallcat.theworld.ui.adapter.RecordEquipShowAdapter
 import com.smallcat.theworld.ui.adapter.RecordExpandAdapter
 import com.smallcat.theworld.utils.RxBus
 import com.smallcat.theworld.utils.sharedPref
-import com.smallcat.theworld.utils.start
 import com.smallcat.theworld.utils.toast
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -59,7 +56,6 @@ class RecordFragment : RxFragment() {
 
     override fun initView() {
         fab_edit.setOnClickListener {
-            "1111".toast()
             val intent = Intent(mContext, MyWorldActivity::class.java)
             startActivity(intent)
         }

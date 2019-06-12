@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -21,7 +20,6 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_eqipe_add.*
-import kotlinx.android.synthetic.main.normal_toolbar.*
 import org.litepal.crud.DataSupport
 
 class EquipAddActivity : RxActivity() {

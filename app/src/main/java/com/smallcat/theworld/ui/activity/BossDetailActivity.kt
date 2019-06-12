@@ -3,18 +3,19 @@ package com.smallcat.theworld.ui.activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Build
-import android.support.v4.view.ViewPager
 import android.view.View
+import androidx.viewpager.widget.ViewPager
 import butterknife.OnClick
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.db.Boss
 import com.smallcat.theworld.ui.adapter.BossPageAdapter
 import kotlinx.android.synthetic.main.activity_boss_detail.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import org.litepal.crud.DataSupport
 
-class BossDetailActivity : BaseActivity() {
+class BossDetailActivity : RxActivity() {
 
     private var imgId: Int = 0
 

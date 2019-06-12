@@ -1,20 +1,21 @@
 package com.smallcat.theworld.ui.activity
 
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.OnClick
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Exclusive
 import com.smallcat.theworld.ui.adapter.ExclusiveItemAdapter
 import com.smallcat.theworld.utils.AppUtils
 import org.litepal.crud.DataSupport
 
-class CareerIntroduceActivity : BaseActivity() {
+class CareerIntroduceActivity : RxActivity() {
 
     @BindView(R.id.tv_title)
     lateinit var tvTitle: TextView

@@ -1,7 +1,6 @@
 package com.smallcat.theworld.base
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import butterknife.ButterKnife
 import butterknife.Unbinder
-import com.smallcat.theworld.R
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -24,12 +22,11 @@ abstract class BaseFragment : SupportFragment() {
 
     protected abstract val layoutId: Int
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         mActivity = (context as Activity?)!!
-        mContext = context!!
+        mContext = context
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mView = inflater.inflate(layoutId, null)

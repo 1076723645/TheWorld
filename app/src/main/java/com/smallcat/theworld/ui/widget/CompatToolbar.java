@@ -2,9 +2,10 @@ package com.smallcat.theworld.ui.widget;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.Log;
+
+import androidx.appcompat.widget.Toolbar;
 
 /**
  * 自动适配系统栏的toolbar

@@ -2,14 +2,13 @@ package com.smallcat.theworld.ui.fragment
 
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import com.smallcat.theworld.R
 import com.smallcat.theworld.ui.adapter.MaterialFragAdapter
-import com.smallcat.theworld.utils.DataUtil
 import me.yokeyword.fragmentation.SupportFragment
 
 /**

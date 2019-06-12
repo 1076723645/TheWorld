@@ -6,13 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import me.yokeyword.fragmentation.SupportFragment
-import org.reactivestreams.Subscriber
 
 /**
  * Created by smallCut on 2018/4/27.
@@ -26,12 +22,11 @@ abstract class RxFragment : SupportFragment() {
 
     protected abstract val layoutId: Int
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         mActivity = (context as Activity?)!!
-        mContext = context!!
+        mContext = context
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mView = inflater.inflate(layoutId, null)

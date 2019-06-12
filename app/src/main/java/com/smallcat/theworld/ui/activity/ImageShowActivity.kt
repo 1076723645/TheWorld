@@ -3,9 +3,10 @@ package com.smallcat.theworld.ui.activity
 import android.widget.ImageView
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.utils.fitSystemAllScroll
 
-class ImageShowActivity : BaseActivity() {
+class ImageShowActivity : RxActivity() {
 
     override val layoutId: Int
         get() = R.layout.activity_image_show

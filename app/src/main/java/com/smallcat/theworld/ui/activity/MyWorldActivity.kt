@@ -1,8 +1,7 @@
 package com.smallcat.theworld.ui.activity
 
 import android.content.Intent
-import android.support.v7.app.AlertDialog
-import android.util.TypedValue
+import androidx.appcompat.app.AlertDialog
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.MsgEvent
