@@ -9,7 +9,8 @@ import com.smallcat.theworld.R;
  */
 public class PictureRes {
 
-    private static final int[] imgList0 = new int[]{R.drawable.ruanbu, R.drawable.jingliang, R.drawable.zhen_ruanbu, R.drawable.zhen_jingliang
+    private static final int[] imgList0 = new int[]{R.drawable.wuqi_xiangshupaod, R.drawable.wuqi_jinliaoya
+            , R.drawable.ruanbu, R.drawable.jingliang, R.drawable.zhen_ruanbu, R.drawable.zhen_jingliang
             , R.drawable.wuqi_6, R.drawable.wuqi_7, R.drawable.wuqi_8, R.drawable.wuqi_9, R.drawable.wuqi_10, R.drawable.wuqi_11, R.drawable.wuqi_12
             , R.drawable.wuqi_13, R.drawable.liliang, R.drawable.shuiguo, R.drawable.wuqi_15
             , R.drawable.wuqi_14, R.drawable.wuqi_18, R.drawable.wuqi_16, R.drawable.wuqi_17, R.drawable.wuqi_19, R.drawable.wuqi_14, R.drawable.wuqi_15
@@ -140,7 +141,7 @@ public class PictureRes {
             R.drawable.wuqi_59, R.drawable.wuqi_103, R.drawable.wuqi_105, R.drawable.wuqi_huihuang, R.drawable.wuqi_153, R.drawable.wuqi_152,
             R.drawable.wuqi_95, R.drawable.wuqi_164,
             //牧师
-            R.drawable.wuqi_120, R.drawable.nail_27, R.drawable.nail_38, R.drawable.ship_36, R.drawable.ship_56, R.drawable.ship_57,
+            R.drawable.wuqi_120, R.drawable.ship_36, R.drawable.ship_56, R.drawable.ship_57,
             R.drawable.ship_61, R.drawable.ship_62,
             //织女
             R.drawable.wuqi_109, R.drawable.wuqi_wenyi,
@@ -253,7 +254,7 @@ public class PictureRes {
             R.drawable.ck_d, R.drawable.ck_q, R.drawable.ck_w, R.drawable.ck_e, R.drawable.ck_r,
             R.drawable.ck_t, R.drawable.ck_f,
             //无极剑魂
-            R.drawable.jh_d, R.drawable.jh_a,  R.drawable.jh_q, R.drawable.jh_w, R.drawable.jh_e, R.drawable.jh_r,
+            R.drawable.jh_d, R.drawable.jh_a, R.drawable.jh_q, R.drawable.jh_w, R.drawable.jh_e, R.drawable.jh_r,
             R.drawable.jh_t, R.drawable.jh_f,
             //幽人
             R.drawable.youren_d, R.drawable.youren_q, R.drawable.youren_w, R.drawable.youren_e, R.drawable.youren_r,

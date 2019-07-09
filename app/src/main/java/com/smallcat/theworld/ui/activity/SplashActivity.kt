@@ -35,6 +35,7 @@ class SplashActivity : AppCompatActivity() {
     private val heroList = ArrayList<Hero>()
     private val skillList = ArrayList<Skill>()
     private val heroStrategyList = ArrayList<HeroStrategy>()
+    private val recommendList = ArrayList<EquipRecommend>()
 
     private var mMediaPlayer: MediaPlayer? = null
 
@@ -67,7 +68,6 @@ class SplashActivity : AppCompatActivity() {
             }
             sharedPref.versionName = newVersion
         }
-
         if (isFirst) {
             //第一次打开
             getData()
@@ -139,21 +139,17 @@ class SplashActivity : AppCompatActivity() {
                 })
     }
 
+    //逻辑有问题，增加了复杂度
     private fun getXlsData(xlsName: String) {
         val assetManager = assets
         try {
             val workbook = Workbook.getWorkbook(assetManager.open(xlsName))//jxl只能创建一个wookbook对象
             val sheetNum = workbook.numberOfSheets
-            for (k in 0 until sheetNum) {
-                val sheet = workbook.getSheet(k)
-                val sheetRows = sheet.rows
-                /* int sheetColumns = sheet.getColumns();
-                Log.d("AAA", "the num of sheets is " + sheetNum);
-                Log.d("AAA", "the name of sheet is  " + sheet.getName());
-                Log.d("AAA", "total rows is 行=" + sheetRows);
-                Log.d("AAA", "total cols is 列=" + sheetColumns);*/
-                when (xlsName) {
-                    fileName -> {
+            when (xlsName) {
+                fileName -> {
+                    for (k in 0 until sheetNum) {
+                        val sheet = workbook.getSheet(k)
+                        val sheetRows = sheet.rows
                         if (k == 5) {
                             val imgArray: IntArray = PictureRes.getImgList("专属")
                             for (i in 1 until sheetRows) {//从第二行开始读
@@ -178,44 +174,47 @@ class SplashActivity : AppCompatActivity() {
                                 equip.dataList = AppUtils.needEquip(access)
                                 equip.exclusive = sheet.getCell(5, i).contents
                                 equip.type = tabTitles[k]
+                                equip.typeId = k
                                 equip.imgId = imgArray[i - 1]
                                 equipList.add(equip)
                             }
                         }
                     }
-                    fileName1 -> {
-                        if (k == 1) {
-                            val imgArray: IntArray = PictureRes.getImgList("技能")
-                            for (i in 1 until sheetRows) {//从第二行开始读
-                                val skill = Skill()
-                                skill.heroName = sheet.getCell(0, i).contents
-                                skill.skillKey = sheet.getCell(1, i).contents
-                                skill.skillName = sheet.getCell(2, i).contents
-                                skill.skillEffect = sheet.getCell(3, i).contents
-                                skill.imgId = imgArray[i - 1]
-                                skillList.add(skill)
+                }
+                fileName1 -> {
+                    for (k in 0 until sheetNum) {
+                        val sheet = workbook.getSheet(k)
+                        val sheetRows = sheet.rows
+                        when (k) {
+                            1 -> {
+                                val imgArray: IntArray = PictureRes.getImgList("技能")
+                                for (i in 1 until sheetRows) {//从第二行开始读
+                                    val skill = Skill()
+                                    skill.heroName = sheet.getCell(0, i).contents
+                                    skill.skillKey = sheet.getCell(1, i).contents
+                                    skill.skillName = sheet.getCell(2, i).contents
+                                    skill.skillEffect = sheet.getCell(3, i).contents
+                                    skill.imgId = imgArray[i - 1]
+                                    skillList.add(skill)
+                                }
                             }
-                        }
-
-                        if (k == 0) {
-                            val imgArray: IntArray = PictureRes.getImgList("英雄")
-                            for (i in 1 until sheetRows) {//从第二行开始读
-                                val hero = Hero()
-                                val name = sheet.getCell(0, i).contents
-                                hero.heroName = name
-                                hero.back = sheet.getCell(1, i).contents
-                                hero.type = sheet.getCell(2, i).contents
-                                hero.main = sheet.getCell(3, i).contents
-                                hero.distance = sheet.getCell(4, i).contents
-                                hero.position = sheet.getCell(5, i).contents
-                                hero.speed = sheet.getCell(6, i).contents
-                                hero.imgId = imgArray[i - 1]
-                                heroList.add(hero)
+                            0 -> {
+                                val imgArray: IntArray = PictureRes.getImgList("英雄")
+                                for (i in 1 until sheetRows) {//从第二行开始读
+                                    val hero = Hero()
+                                    val name = sheet.getCell(0, i).contents
+                                    hero.heroName = name
+                                    hero.back = sheet.getCell(1, i).contents
+                                    hero.type = sheet.getCell(2, i).contents
+                                    hero.main = sheet.getCell(3, i).contents
+                                    hero.distance = sheet.getCell(4, i).contents
+                                    hero.position = sheet.getCell(5, i).contents
+                                    hero.speed = sheet.getCell(6, i).contents
+                                    hero.imgId = imgArray[i - 1]
+                                    heroList.add(hero)
+                                }
                             }
-                        }
-
-                        if (k == 2) {
-                            for (i in 1 until sheetRows) {//从第二行开始读
+                            2 -> for (i in 1 until sheetRows) {//从第二行开始读
                                 val heroStrategy = HeroStrategy()
                                 heroStrategy.heroName = sheet.getCell(0, i).contents
                                 heroStrategy.address = sheet.getCell(1, i).contents
@@ -224,9 +223,25 @@ class SplashActivity : AppCompatActivity() {
                                 heroStrategy.version = sheet.getCell(4, i).contents
                                 heroStrategyList.add(heroStrategy)
                             }
+                            3 -> for (i in 1 until sheetRows) {
+                                val equipRecommend = EquipRecommend()
+                                equipRecommend.heroName = sheet.getCell(0, i).contents
+                                equipRecommend.title = sheet.getCell(1, i).contents
+                                equipRecommend.equipEarly = AppUtils.needEquip(sheet.getCell(2, i).contents)
+                                equipRecommend.resonEarly = sheet.getCell(3, i).contents
+                                equipRecommend.equipFinal = AppUtils.needEquip(sheet.getCell(4, i).contents)
+                                equipRecommend.resonFinal = sheet.getCell(5, i).contents
+                                equipRecommend.auther = sheet.getCell(6, i).contents
+                                equipRecommend.action = sheet.getCell(7, i).contents
+                                recommendList.add(equipRecommend)
+                            }
                         }
                     }
-                    fileName2 -> {
+                }
+                fileName2 -> {
+                    for (k in 0 until sheetNum) {
+                        val sheet = workbook.getSheet(k)
+                        val sheetRows = sheet.rows
                         if (k == 0) {
                             val imgArray: IntArray = PictureRes.getImgList(types[k])
                             for (i in 1 until sheetRows) {//从第二行开始读
@@ -255,6 +270,7 @@ class SplashActivity : AppCompatActivity() {
                                 equip.equipmentProperty = (sheet.getCell(2, i).contents)
                                 equip.dataList = AppUtils.needEquip(access)
                                 equip.type = types[k]
+                                equip.typeId = k + 5
                                 if (i <= imgArray.size) {
                                     equip.imgId = imgArray[i - 1]
                                 }
@@ -278,6 +294,7 @@ class SplashActivity : AppCompatActivity() {
         DataSupport.saveAll(skillList)
         DataSupport.saveAll(heroList)
         DataSupport.saveAll(heroStrategyList)
+        DataSupport.saveAll(recommendList)
     }
 
     private fun cleanList() {
@@ -287,13 +304,17 @@ class SplashActivity : AppCompatActivity() {
         heroList.clear()
         skillList.clear()
         heroStrategyList.clear()
+        recommendList.clear()
     }
 
     private fun recoveryRecord() {
         val bagList = DataSupport.findAll(RecordThing::class.java)
         for (i in bagList) {
             val data = DataSupport.where("equipName = ?", i.equipName).find(Equip::class.java)
-            i.equipImg = data[0].imgId
+            if (data.isNotEmpty()) {
+                i.equipImg = data[0].imgId
+                i.partId = data[0].typeId
+            }
         }
         DataSupport.saveAll(bagList)
     }

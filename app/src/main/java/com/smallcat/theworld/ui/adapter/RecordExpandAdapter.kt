@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.View
 import android.widget.CheckBox
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.entity.MultiItemEntity

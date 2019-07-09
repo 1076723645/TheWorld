@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.MsgEvent
+import com.smallcat.theworld.model.callback.SureCallBack
 import com.smallcat.theworld.model.db.MyRecord
 import com.smallcat.theworld.ui.adapter.MyRecordAdapter
 import com.smallcat.theworld.utils.*
@@ -34,6 +35,9 @@ class MyWorldActivity : RxActivity() {
         adapter = MyRecordAdapter(list)
         adapter.emptyView = AppUtils.getEmptyView(mContext, "快去添加存档吧")
         adapter.setOnItemChildClickListener { _, view, position ->
+            if (position < 0 || position >= list.size){
+                return@setOnItemChildClickListener
+            }
             when (view.id) {
                 R.id.tv_delete -> showSureDialog(position)
                 R.id.cb_default -> changeDefaultChoose(position)
@@ -85,16 +89,11 @@ class MyWorldActivity : RxActivity() {
     }
 
     private fun showSureDialog(position: Int) {
-        val builder = AlertDialog.Builder(mContext).setMessage("确定删除存档吗")
-                .setNegativeButton("确定") { _, _ ->
-                    deleteRecord(position)
-                }.setPositiveButton("取消", null)
-        val dialog = builder.create()
-        val lp = dialog?.window?.attributes
-        val dm = resources.displayMetrics
-        lp?.width = dm.widthPixels * 0.6.toInt()
-        dialog?.window?.attributes = lp //设置宽度
-        dialog.show()
+        showCheckDialog(supportFragmentManager, "确定删除存档吗", object : SureCallBack {
+            override fun onSure() {
+                deleteRecord(position)
+            }
+        })
     }
 
     private fun deleteRecord(position: Int){

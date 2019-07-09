@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.smallcat.theworld.R
 import com.smallcat.theworld.ui.adapter.EquipFragAdapter
@@ -26,11 +26,11 @@ class EquipFragment : SupportFragment() {
     }
 
     private fun initView(v: View) {
-        val viewPager = v.findViewById<ViewPager2>(R.id.vp_equip)
+        val viewPager = v.findViewById<ViewPager>(R.id.vp_equip)
         val mTabLayout = v.findViewById<TabLayout>(R.id.tab_equip)
-        val adapter = EquipFragAdapter(childFragmentManager, lifecycle)
+        val adapter = EquipFragAdapter(childFragmentManager)
         viewPager.adapter = adapter
-        viewPager.offscreenPageLimit = 2
+        viewPager.offscreenPageLimit = 3
 
         mTabLayout.removeAllTabs()
         for (i in tabTitles){
@@ -49,21 +49,20 @@ class EquipFragment : SupportFragment() {
             }
 
         })
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+
+            }
+
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 mTabLayout.setScrollPosition(position, positionOffset,false)
             }
 
             override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
                 mTabLayout.setScrollPosition(position, 0F,true)
             }
+
         })
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-
     }
 
 }

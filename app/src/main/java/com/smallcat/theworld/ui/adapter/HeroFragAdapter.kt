@@ -11,14 +11,14 @@ import com.smallcat.theworld.ui.fragment.*
  */
 class HeroFragAdapter(fm: FragmentManager, val name:String) : FragmentPagerAdapter(fm) {
 
-    private val tabTitles = arrayOf("技能", "介绍", "专属", "玩法", "攻略")
+    private val tabTitles = arrayOf("技能", "介绍", "专属", "推荐", "攻略")
 
     override fun getItem(position: Int): Fragment {
         when (position) {
             0 -> return HeroSkillFragment.newInstance(name)
             1 -> return HeroIntroduceFragment.newInstance(name)
             2 -> return HeroFragment.newInstance(name)
-            3 -> return RecommendFragment()
+            3 -> return RecommendFragment.newInstance(name)
             4 -> return HeroStrategyFragment.newInstance(name)
         }
         return HeroSkillFragment.newInstance(name)

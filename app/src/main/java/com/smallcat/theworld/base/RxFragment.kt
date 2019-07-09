@@ -1,11 +1,11 @@
 package com.smallcat.theworld.base
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import me.yokeyword.fragmentation.SupportFragment
@@ -16,7 +16,7 @@ import me.yokeyword.fragmentation.SupportFragment
 abstract class RxFragment : SupportFragment() {
 
     protected lateinit var mView: View
-    protected lateinit var mActivity: Activity
+    protected lateinit var mActivity: AppCompatActivity
     protected lateinit var mContext: Context
     private var mCompositeDisposable: CompositeDisposable? = null
 
@@ -24,7 +24,7 @@ abstract class RxFragment : SupportFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mActivity = (context as Activity?)!!
+        mActivity = (context as AppCompatActivity?)!!
         mContext = context
     }
 

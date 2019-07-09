@@ -1,15 +1,18 @@
 package com.smallcat.theworld.ui.activity
 
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.ImgData
+import com.smallcat.theworld.model.bean.MsgEvent
+import com.smallcat.theworld.model.callback.SureCallBack
 import com.smallcat.theworld.model.db.Hero
 import com.smallcat.theworld.model.db.MyRecord
 import com.smallcat.theworld.ui.adapter.ExclusiveAdapter
+import com.smallcat.theworld.utils.RxBus
 import com.smallcat.theworld.utils.sharedPref
+import com.smallcat.theworld.utils.showCheckDialog
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -63,14 +66,11 @@ class RecordAddActivity : RxActivity() {
     }
 
     private fun showSureDialog(position: Int) {
-        val builder = AlertDialog.Builder(mContext).setMessage("确定创建存档吗")
-                .setNegativeButton("确定") { _, _ -> createRecord(position) }.setPositiveButton("取消", null)
-        val dialog = builder.create()
-        val lp = dialog?.window?.attributes
-        val dm = resources.displayMetrics
-        lp?.width = dm.widthPixels * 0.6.toInt()
-        dialog?.window?.attributes = lp //设置宽度
-        dialog.show()
+        showCheckDialog(supportFragmentManager, "确定创建存档吗", object : SureCallBack {
+            override fun onSure() {
+                createRecord(position)
+            }
+        })
     }
 
     private fun createRecord(position: Int) {
@@ -88,6 +88,7 @@ class RecordAddActivity : RxActivity() {
             sharedPref.chooseId = data.id
             data.save()
         }
+        RxBus.post(MsgEvent("", 12580))
         startActivity(RecordEditActivity.getIntent(mContext, data.id))
         finish()
     }

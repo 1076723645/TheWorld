@@ -1,6 +1,6 @@
 <litepal>
     <dbname value="the_world"/>
-    <version value="7"/>
+    <version value="10"/>
 
     <list>
         <mapping class="com.smallcat.theworld.model.db.Equip"/>
@@ -11,5 +11,6 @@
         <mapping class="com.smallcat.theworld.model.db.MyRecord"/>
         <mapping class="com.smallcat.theworld.model.db.RecordThing"/>
         <mapping class="com.smallcat.theworld.model.db.HeroStrategy"/>
+        <mapping class="com.smallcat.theworld.model.db.EquipRecommend"/>
     </list>
 </litepal>

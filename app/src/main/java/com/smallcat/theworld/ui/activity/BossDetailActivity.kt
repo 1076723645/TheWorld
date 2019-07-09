@@ -64,10 +64,14 @@ class BossDetailActivity : RxActivity() {
     fun onClick(v: View) {
         when (v.id) {
             R.id.iv_back -> onBackPressed()
-            R.id.iv_boss -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            R.id.iv_boss -> {
                 val intent = Intent(this, ImageShowActivity::class.java)
                 intent.putExtra("img", imgId)
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this, iv_boss, "watch").toBundle())
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this, iv_boss, "watch").toBundle())
+                }else{
+                    startActivity(intent)
+                }
             }
         }
     }

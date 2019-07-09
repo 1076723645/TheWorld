@@ -336,7 +336,7 @@
                     android:layout_marginEnd="24dp"
                     android:textSize="13sp"
                     android:textColor="@color/route_view_text_color_gray"
-                    android:text="涼涼，点点"/>
+                    android:text="涼涼，白衣"/>
             </LinearLayout>
             <View
                 android:layout_width="wrap_content"
@@ -362,7 +362,7 @@
                     android:layout_marginEnd="24dp"
                     android:textSize="13sp"
                     android:textColor="@color/route_view_text_color_gray"
-                    android:text="广阔的沙漠，拉面，AliceG"/>
+                    android:text="Noble.faithful，广阔的沙漠，拉面，AliceG"/>
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -372,7 +372,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:text="不是我说的话"
+                android:text="世界RPG"
                 android:textSize="11sp"
                 android:textColor="@color/reg_choose_color"
                 android:layout_marginStart="24dp"

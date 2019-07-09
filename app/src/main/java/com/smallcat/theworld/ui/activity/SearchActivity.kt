@@ -25,7 +25,6 @@ class SearchActivity : RxActivity() {
     override fun initData() {
         val textView = findViewById<TextView>(R.id.tv_no_search)
         val etSearch = findViewById<EditText>(R.id.et_search)
-        val back = findViewById<ImageView>(R.id.iv_back)
         val recyclerView = findViewById<RecyclerView>(R.id.rv_search)
 
         val adapter = EquipAdapter(list)
@@ -46,7 +45,7 @@ class SearchActivity : RxActivity() {
                 if (charSequence.isNotEmpty()) {
                     val equips = DataSupport
                             .where("equipName like ?", "%$charSequence%")
-                            .order("quality desc")
+                            .order("level desc")
                             .find(Equip::class.java)
                     val result = equips.size
                     if (result == 0) {

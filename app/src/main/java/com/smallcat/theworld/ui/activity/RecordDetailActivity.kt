@@ -14,6 +14,7 @@ import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.MsgEvent
 import com.smallcat.theworld.model.bean.RecordExpandChild
 import com.smallcat.theworld.model.bean.RecordExpandData
+import com.smallcat.theworld.model.callback.SureCallBack
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.MyRecord
 import com.smallcat.theworld.model.db.RecordThing
@@ -21,6 +22,7 @@ import com.smallcat.theworld.ui.adapter.RecordEquipShowAdapter
 import com.smallcat.theworld.ui.adapter.RecordExpandAdapter
 import com.smallcat.theworld.utils.RxBus
 import com.smallcat.theworld.utils.ToastUtil
+import com.smallcat.theworld.utils.showCheckDialog
 import com.smallcat.theworld.utils.toast
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -129,8 +131,12 @@ class RecordDetailActivity : RxActivity() {
     private fun loadData() {
         showLoading()
         addSubscribe(Observable.create<String> {
-            targetEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "1").find(RecordThing::class.java)
-            wearEquips.addAll(DataSupport.where("recordId = ? and type = ?", recordId.toString(), "2").find(RecordThing::class.java))
+            targetEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "1")
+                    .order("partId")
+                    .find(RecordThing::class.java)
+            wearEquips.addAll(DataSupport.where("recordId = ? and type = ?", recordId.toString(), "2")
+                    .order("partId")
+                    .find(RecordThing::class.java))
             val data = DataSupport.where("id = ?", recordId.toString()).find(MyRecord::class.java)
             record = data[0]
             createData()
@@ -165,6 +171,7 @@ class RecordDetailActivity : RxActivity() {
             }
             for (j in newData.dataList.indices) {
                 val name = newData.dataList[j]
+                val nameHave = DataSupport.where("equipName = ?", name).find(Equip::class.java)
                 when {
                     name.contains("/") -> {
                         /**
@@ -196,7 +203,7 @@ class RecordDetailActivity : RxActivity() {
                         newData.addSubItem(child1)
                         newData.addSubItem(child2)
                     }
-                    name.contains("粉末") || name.contains("矿石") || name.contains("魔法石") -> {
+                    nameHave.isEmpty() -> {
                         /**
                          * 合成中包含粉末,魔法石,矿物的可能搜索不到，需要单独处理
                          */
@@ -241,37 +248,35 @@ class RecordDetailActivity : RxActivity() {
     }
 
     private fun showSureDialog(position: Int) {
-        val builder = AlertDialog.Builder(mContext).setMessage("确定添加物品吗")
-                .setNegativeButton("确定") { _, _ ->
-                    val data = list[position] as RecordExpandChild
-                    data.number++
-                    adapter.setNewData(list)
-                    val name = data.equipName
-                    if (name.contains("粉末") || name.contains("矿石") || name.contains("魔法石")) {
-                        return@setNegativeButton
+        showCheckDialog(supportFragmentManager, "确定添加物品吗", object : SureCallBack {
+            override fun onSure() {
+                val data = list[position] as RecordExpandChild
+                data.number++
+                adapter.notifyItemChanged(position)
+                val name = data.equipName
+                val nameHave = DataSupport.where("equipName = ?", name).find(Equip::class.java)
+                if (nameHave.isEmpty()) {
+                    return
+                }
+                val recordThing = RecordThing()
+                recordThing.recordId = recordId
+                recordThing.number = 1
+                recordThing.equipName = data.equipName
+                recordThing.equipImg = data.equipIcon
+                recordThing.part = nameHave[0].type
+                recordThing.partId = nameHave[0].typeId
+                for (i in wearEquips.indices) {
+                    if (wearEquips[i].equipName == data.equipName) {
+                        wearEquips[i].number++
+                        wearAdapter.notifyItemChanged(i)
+                        return
                     }
-                    val recordThing = RecordThing()
-                    recordThing.recordId = recordId
-                    recordThing.number = 1
-                    recordThing.equipName = data.equipName
-                    recordThing.equipImg = data.equipIcon
-                    for (i in wearEquips.indices) {
-                        if (wearEquips[i].equipName == data.equipName) {
-                            wearEquips[i].number++
-                            wearAdapter.notifyItemChanged(i)
-                            return@setNegativeButton
-                        }
-                    }
-                    recordThing.type = 2
-                    wearEquips.add(recordThing)
-                    wearAdapter.setNewData(wearEquips)
-                }.setPositiveButton("取消", null)
-        val dialog = builder.create()
-        val lp = dialog?.window?.attributes
-        val dm = resources.displayMetrics
-        lp?.width = dm.widthPixels * 0.6.toInt()
-        dialog?.window?.attributes = lp //设置宽度
-        dialog.show()
+                }
+                recordThing.type = 2
+                wearEquips.add(recordThing)
+                wearAdapter.setNewData(wearEquips)
+            }
+        })
     }
 
     /**
@@ -307,17 +312,12 @@ class RecordDetailActivity : RxActivity() {
     }
 
     private fun showBuildDialog(pos: Int, chooseNumber: Int) {
-        val builder = AlertDialog.Builder(mContext).setMessage("确定合成物品吗")
-                .setNegativeButton("确定") { _, _ ->
-                    val data = list[pos] as RecordExpandData
-                    buildSuccess(data, chooseNumber)
-                }.setPositiveButton("取消", null)
-        val dialog = builder.create()
-        val lp = dialog?.window?.attributes
-        val dm = resources.displayMetrics
-        lp?.width = dm.widthPixels * 0.6.toInt()
-        dialog?.window?.attributes = lp //设置宽度
-        dialog.show()
+        showCheckDialog(supportFragmentManager, "确定合成物品吗", object : SureCallBack {
+            override fun onSure() {
+                val data = list[pos] as RecordExpandData
+                buildSuccess(data, chooseNumber)
+            }
+        })
     }
 
     /**

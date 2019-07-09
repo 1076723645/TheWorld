@@ -84,6 +84,7 @@ class SettingActivity : BaseActivity() {
             setTheme(R.style.BlackTheme)
             sharedPref.isBlack = true
         }
+        isBlack = !isBlack
     }
 
     private fun refreshUI() {

@@ -13,7 +13,6 @@ import android.widget.TextView
 import butterknife.BindView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.smallcat.theworld.R
-import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.ImgData
 import com.smallcat.theworld.model.bean.MsgEvent
@@ -74,11 +73,11 @@ class EquipDetailActivity : RxActivity() {
                 return@setOnClickListener
             }
             if (isAdd){
-                ToastUtil.shortShow("移除成功")
+                "移除成功".toast()
                 fabEdit.setImageResource(R.drawable.ic_add_black_24dp)
                 DataSupport.delete(RecordThing::class.java, recordThingId)
             }else{
-                ToastUtil.shortShow("添加成功")
+                "添加成功".toast()
                 fabEdit.setImageResource(R.drawable.ic_remove_24dp)
                 val recordThing = RecordThing()
                 recordThing.equipName = equip.equipName
@@ -86,6 +85,8 @@ class EquipDetailActivity : RxActivity() {
                 recordThing.equipImg = equip.imgId
                 recordThing.type = 1
                 recordThing.recordId = recordId
+                recordThing.part = equip.type
+                recordThing.partId = equip.typeId
                 recordThing.save()
                 recordThingId = recordThing.id
             }

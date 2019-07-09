@@ -9,7 +9,6 @@ import com.smallcat.theworld.base.RxFragment
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import com.smallcat.theworld.ui.adapter.EquipAdapter
-import com.smallcat.theworld.ui.widget.BetterRecyclerView
 import com.smallcat.theworld.utils.AppUtils
 import com.smallcat.theworld.utils.sharedPref
 import io.reactivex.Observable
@@ -41,7 +40,7 @@ class EquipListFragment : RxFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView = mView.findViewById<BetterRecyclerView>(R.id.rv_equip)
+        val recyclerView = mView.findViewById<RecyclerView>(R.id.rv_equip)
         adapter = EquipAdapter(null)
         adapter.setOnItemClickListener { _, _, position ->
             Intent(context, EquipDetailActivity::class.java).apply {
@@ -52,10 +51,10 @@ class EquipListFragment : RxFragment() {
         adapter.openLoadAnimation()
         adapter.emptyView = AppUtils.getEmptyView(mContext, "数据加载中")
         recyclerView.adapter = adapter
+        isBack = mContext.sharedPref.isBack
     }
 
     override fun initView() {
-        isBack = mContext.sharedPref.isBack
         loadData()
     }
 

@@ -31,7 +31,7 @@ class SharedPref {
         set(token) = prefs.edit().putBoolean(KEY_BLACK, token).apply()
 
     var versionName: String?
-        get() = prefs.getString(KEY_VERSION, AppUtils.getVerName(App.getInstance()))
+        get() = prefs.getString(KEY_VERSION, "")
         set(value) = prefs.edit().putString(KEY_VERSION, value).apply()
 
     var isShow: Boolean

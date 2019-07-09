@@ -6,17 +6,18 @@ import com.smallcat.theworld.R
 import com.smallcat.theworld.model.db.Equip
 
 /**
- * @author smallCut
- * @date 2018/9/14
+ * Created by smallCut on 2018/7/19.
  */
-class OtherAdapter(data: List<Equip>?) : BaseQuickAdapter<Equip, BaseViewHolder>(R.layout.item_material, data) {
+class EquipShowAdapter(data: MutableList<Equip>?) : BaseQuickAdapter<Equip, BaseViewHolder>(R.layout.item_record_equip_show, data) {
 
     override fun convert(viewHolder: BaseViewHolder, item: Equip) {
         viewHolder.setText(R.id.tv_name, item.equipName)
+
         if (item.imgId != 0) {
-            viewHolder.setImageResource(R.id.iv_material, item.imgId)
+            viewHolder.setImageResource(R.id.iv_img, item.imgId)
         } else {
-            viewHolder.setImageResource(R.id.iv_material, R.color.color_cc)
+            viewHolder.setImageResource(R.id.iv_img, R.color.color_cc)
         }
     }
+
 }

@@ -12,5 +12,12 @@ class RecordThing : DataSupport() {
     var type: Int = 0//类别 1期望 2拥有
     var number: Int = 1//拥有数量
     var part: String = ""//部位
+    var partId: Int = 0//部位id
+
+
+    override fun toString(): String {
+        return "RecordThing(id=$id, equipName=$equipName, recordId=$recordId, equipImg=$equipImg, type=$type, number=$number, part='$part')"
+    }
+
 
 }

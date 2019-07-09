@@ -16,9 +16,8 @@
         app:tabTextColor="@color/text_color_black"
         app:tabMode="scrollable"/>
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_equip"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

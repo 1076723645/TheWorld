@@ -94,16 +94,15 @@ class RecordEditActivity : RxActivity() {
         targetAdapter = RecordEquipAdapter(targetEquips)
         targetAdapter.addFooterView(getFooterView(mContext, 0))
         targetAdapter.setOnItemClickListener { _, _, position ->
-            targetEquips[position].equipName?.logE()
-            val list = DataSupport.where("equipName = ?", targetEquips[position].equipName).find(Equip::class.java)
-            if (list.size > 0) {
-                Intent(mContext, EquipDetailActivity::class.java).apply {
-                    putExtra("id", list[0].id.toString())
-                    startActivity(this)
-                }
+            if (position < 0 || position >= targetEquips.size){
+                return@setOnItemClickListener
             }
+            AppUtils.goEquipDetailActivity(mContext, targetEquips[position].equipName!!)
         }
         targetAdapter.setOnItemChildClickListener { _, _, position ->
+            if (position < 0 || position >= targetEquips.size){
+                return@setOnItemChildClickListener
+            }
             if (targetEquips[position].number == 1) {
                 deleteList.add(targetEquips[position])
                 targetEquips.removeAt(position)
@@ -121,15 +120,15 @@ class RecordEditActivity : RxActivity() {
         wearAdapter = RecordEquipAdapter(wearEquips)
         wearAdapter.addFooterView(getFooterView(mContext, 1))
         wearAdapter.setOnItemClickListener { _, _, position ->
-            val list = DataSupport.where("equipName = ?", wearEquips[position].equipName).find(Equip::class.java)
-            if (list.isNotEmpty()) {
-                Intent(mContext, EquipDetailActivity::class.java).apply {
-                    putExtra("id", list[0].id.toString())
-                    startActivity(this)
-                }
+            if (position < 0 || position >= wearEquips.size){
+                return@setOnItemClickListener
             }
+            AppUtils.goEquipDetailActivity(mContext, wearEquips[position].equipName!!)
         }
         wearAdapter.setOnItemChildClickListener { _, _, position ->
+            if (position < 0 || position >= wearEquips.size){
+                return@setOnItemChildClickListener
+            }
             if (wearEquips[position].number == 1) {
                 deleteList.add(wearEquips[position])
                 wearEquips.removeAt(position)
@@ -206,8 +205,12 @@ class RecordEditActivity : RxActivity() {
         tv_update_time.text = AppUtils.getTimeDetail(record.updateTime)
         et_level.setText("${record.recordLevel}")
         et_record.setText(record.recordCode)
-        targetEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "1").find(RecordThing::class.java)
-        wearEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "2").find(RecordThing::class.java)
+        targetEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "1")
+                .order("partId")
+                .find(RecordThing::class.java)
+        wearEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "2")
+                .order("partId")
+                .find(RecordThing::class.java)
         showList()
     }
 
@@ -416,6 +419,7 @@ class RecordEditActivity : RxActivity() {
         recordThing.equipName = equipData.equipName
         recordThing.equipImg = equipData.imgId
         recordThing.part = equipData.type
+        recordThing.partId = equipData.typeId
         when (requestCode) {
             1001 -> {
                 for (i in targetEquips.indices) {

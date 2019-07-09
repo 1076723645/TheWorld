@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import butterknife.ButterKnife
@@ -32,7 +33,9 @@ abstract class BaseActivity : SupportActivity() {
         checkAppStatus()
         super.onCreate(savedInstanceState)
         initTheme()
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
         fitSystem()
         adaptScreen4VerticalSlide(this, 360)
         setContentView(layoutId)
