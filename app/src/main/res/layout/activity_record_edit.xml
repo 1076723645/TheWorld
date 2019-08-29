@@ -167,6 +167,7 @@
                 android:inputType="number"
                 android:textColor="@color/black"
                 android:textStyle="bold"
+                android:maxLength="3"
                 app:layout_constraintBottom_toBottomOf="@+id/text2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/text2"

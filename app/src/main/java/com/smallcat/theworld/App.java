@@ -2,12 +2,13 @@ package com.smallcat.theworld;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 
-import androidx.multidex.MultiDexApplication;
+import androidx.multidex.MultiDex;
 
 import com.smallcat.theworld.ui.activity.SplashActivity;
 import com.smallcat.theworld.utils.LogUtil;
@@ -24,7 +25,7 @@ import java.util.List;
  * @author hui
  * @date 2018/8/9
  */
-public class App extends MultiDexApplication {
+public class App extends Application implements Thread.UncaughtExceptionHandler{
 
     private static App mApplication;
 
@@ -32,6 +33,12 @@ public class App extends MultiDexApplication {
 
     public static App getInstance() {
         return mApplication;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     @Override
@@ -46,6 +53,7 @@ public class App extends MultiDexApplication {
         config.setToDefaults();
         res.updateConfiguration(config, res.getDisplayMetrics());
 
+        Thread.setDefaultUncaughtExceptionHandler(this);
         CrashReport.initCrashReport(getApplicationContext(), "99e89589c4", false);
         initX5WebView();
         LitePal.initialize(this);
@@ -132,7 +140,6 @@ public class App extends MultiDexApplication {
         }
     }
 
-
     /**
      * 重新初始化应用界面，清空当前Activity棧，并启动欢迎页面
      */
@@ -159,4 +166,12 @@ public class App extends MultiDexApplication {
         System.exit(0);
     }
 
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        CrashReport.postCatchedException(e);
+        Intent intent = new Intent(this, SplashActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 }

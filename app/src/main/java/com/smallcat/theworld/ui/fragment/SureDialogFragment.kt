@@ -6,14 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import com.smallcat.theworld.R
 import com.smallcat.theworld.model.callback.SureCallBack
+
 
 /**
  * @author hui
  * @date 2019-07-08
  */
-class SureDialogFragment(var mText: String = "", var callback: SureCallBack) : DialogFragment() {
+class SureDialogFragment(private var mText: String = "", var callback: SureCallBack) : DialogFragment() {
+
+    var mDismissed: Boolean = false
+    var mShownByMe: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,5 +37,13 @@ class SureDialogFragment(var mText: String = "", var callback: SureCallBack) : D
             dismiss()
         }
         return v
+    }
+
+    override fun show(manager: FragmentManager?, tag: String?) {
+        mDismissed = false
+        mShownByMe = true
+        val ft = manager?.beginTransaction()
+        ft?.add(this, tag)
+        ft?.commitAllowingStateLoss()
     }
 }

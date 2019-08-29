@@ -68,31 +68,35 @@ class EquipDetailActivity : RxActivity() {
         targetEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "1").find(RecordThing::class.java)
 
         fabEdit.setOnClickListener {
-            if (recordId == -1L){
-                "请添加默认存档".toast()
-                return@setOnClickListener
-            }
-            if (isAdd){
-                "移除成功".toast()
-                fabEdit.setImageResource(R.drawable.ic_add_black_24dp)
-                DataSupport.delete(RecordThing::class.java, recordThingId)
-            }else{
-                "添加成功".toast()
-                fabEdit.setImageResource(R.drawable.ic_remove_24dp)
-                val recordThing = RecordThing()
-                recordThing.equipName = equip.equipName
-                recordThing.number = 1
-                recordThing.equipImg = equip.imgId
-                recordThing.type = 1
-                recordThing.recordId = recordId
-                recordThing.part = equip.type
-                recordThing.partId = equip.typeId
-                recordThing.save()
-                recordThingId = recordThing.id
+            when {
+                recordId == -1L -> {
+                    "请添加默认存档".toast()
+                    return@setOnClickListener
+                }
+                isAdd -> {
+                    "移除成功".toast()
+                    fabEdit.setImageResource(R.drawable.ic_add_black_24dp)
+                    DataSupport.delete(RecordThing::class.java, recordThingId)
+                }
+                else -> {
+                    "添加成功".toast()
+                    fabEdit.setImageResource(R.drawable.ic_remove_24dp)
+                    val recordThing = RecordThing()
+                    recordThing.equipName = equip.equipName
+                    recordThing.number = 1
+                    recordThing.equipImg = equip.imgId
+                    recordThing.type = 1
+                    recordThing.recordId = recordId
+                    recordThing.part = equip.type
+                    recordThing.partId = equip.typeId
+                    recordThing.save()
+                    recordThingId = recordThing.id
+                }
             }
             isAdd = !isAdd
             RxBus.post(MsgEvent("msg", 1))
         }
+
         for (i in targetEquips){
             if (i.equipName == equip.equipName){
                 fabEdit.setImageResource(R.drawable.ic_remove_24dp)

@@ -3,9 +3,7 @@ package com.smallcat.theworld.ui.adapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.smallcat.theworld.R
-import com.smallcat.theworld.model.db.Boss
 import com.smallcat.theworld.model.db.EquipRecommend
-import com.smallcat.theworld.model.db.HeroStrategy
 
 /**
  * @author smallCut

@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.MsgEvent
+import com.smallcat.theworld.model.callback.SureCallBack
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.EquipRecommend
+import com.smallcat.theworld.model.db.MyRecord
 import com.smallcat.theworld.model.db.RecordThing
 import com.smallcat.theworld.ui.adapter.EquipShowAdapter
 import com.smallcat.theworld.utils.RxBus
 import com.smallcat.theworld.utils.sharedPref
+import com.smallcat.theworld.utils.showCheckDialog
 import com.smallcat.theworld.utils.toast
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -30,6 +33,7 @@ class RecommendActivity : RxActivity() {
 
     private lateinit var targetEquips: MutableList<RecordThing>
     private var recordId = -1L
+    private var recordBean = MyRecord()
 
     companion object {
         private const val TAG = "RecommendActivity"
@@ -47,20 +51,34 @@ class RecommendActivity : RxActivity() {
         val list = DataSupport.where("id = ?", recommendId.toString()).find(EquipRecommend::class.java)
         recommendData = list[0]
         recordId = sharedPref.chooseId
+        val recordList = DataSupport.where("id = ?", recordId.toString()).find(MyRecord::class.java)
+        if (recordList.isNotEmpty()) {
+            recordBean = recordList[0]
+        }
         targetEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "1").find(RecordThing::class.java)
         tv_use1.setOnClickListener {
             if (recordId == -1L) {
                 "请先选择默认存档".toast()
                 return@setOnClickListener
             }
-            addToTargetEquip(listEarly)
+            val s = if (recommendData.heroName == recordBean.heroName) "确认添加到我的目标吗？" else "职业不相同，确认添加吗？"
+            showCheckDialog(supportFragmentManager, s, object : SureCallBack {
+                override fun onSure() {
+                    addToTargetEquip(listEarly)
+                }
+            })
         }
         tv_use2.setOnClickListener {
             if (recordId == -1L) {
                 "请先选择默认存档".toast()
                 return@setOnClickListener
             }
-            addToTargetEquip(listFinal)
+            val s = if (recommendData.heroName == recordBean.heroName) "确认添加到我的目标吗？" else "职业不相同，确认添加吗？"
+            showCheckDialog(supportFragmentManager, s, object : SureCallBack {
+                override fun onSure() {
+                    addToTargetEquip(listFinal)
+                }
+            })
         }
         tv_title.text = recommendData.title
         tv_early.text = recommendData.resonEarly
@@ -127,13 +145,13 @@ class RecommendActivity : RxActivity() {
         for (equip in list) {
             var isAdd = false
             //先判断物品是否已经被加到目标物品中
-            for (i in targetEquips){
-                if (i.equipName == equip.equipName){
+            for (i in targetEquips) {
+                if (i.equipName == equip.equipName) {
                     isAdd = true
                     break
                 }
             }
-            if (isAdd){
+            if (isAdd) {
                 continue
             }
             val recordThing = RecordThing()

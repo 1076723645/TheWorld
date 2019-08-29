@@ -93,7 +93,7 @@ class SplashActivity : AppCompatActivity() {
             mAudioManager.isSpeakerphoneOn = true
             mMediaPlayer?.setOnCompletionListener { goMain() }
             mMediaPlayer?.start()
-            "第${times + 1}次掉落了极寒碎片, 你今天很欧哦QAQ".toast()
+            "第${times + 1}次掉落了混沌碎片, 你今天很欧哦QAQ".toast()
             sharedPref.times = 0
         } else {
             times++

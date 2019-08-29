@@ -35,7 +35,7 @@ class MyWorldActivity : RxActivity() {
         adapter = MyRecordAdapter(list)
         adapter.emptyView = AppUtils.getEmptyView(mContext, "快去添加存档吧")
         adapter.setOnItemChildClickListener { _, view, position ->
-            if (position < 0 || position >= list.size){
+            if (position < 0 || position >= list.size) {
                 return@setOnItemChildClickListener
             }
             when (view.id) {
@@ -96,11 +96,15 @@ class MyWorldActivity : RxActivity() {
         })
     }
 
-    private fun deleteRecord(position: Int){
+    /**
+     * 删除默认存档需要重置mChoosePos
+     */
+    private fun deleteRecord(position: Int) {
         val data = list[position]
         //删除默认存档
-        if (data.isDefault){
+        if (data.isDefault) {
             mContext.sharedPref.chooseId = -1L
+            mChoosePos = 0
         }
         data.delete()
         list.removeAt(position)

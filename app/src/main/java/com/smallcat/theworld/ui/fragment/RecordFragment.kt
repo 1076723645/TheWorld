@@ -7,9 +7,11 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxFragment
@@ -24,6 +26,8 @@ import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import com.smallcat.theworld.ui.activity.MyWorldActivity
 import com.smallcat.theworld.ui.adapter.RecordEquipShowAdapter
 import com.smallcat.theworld.ui.adapter.RecordExpandAdapter
+import com.smallcat.theworld.ui.widget.FixedGridLayoutManager
+import com.smallcat.theworld.ui.widget.FixedLinearLayoutManager
 import com.smallcat.theworld.utils.*
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -65,6 +69,9 @@ class RecordFragment : RxFragment() {
         recordId = mContext.sharedPref.chooseId
         adapter = RecordExpandAdapter(list)
         adapter.setOnItemClickListener { _, _, position ->
+            if (position >= list.size) {
+                return@setOnItemClickListener
+            }
             if (list[position].itemType == RecordExpandAdapter.TYPE_CONTENT) {
                 showSureDialog(position)
             }
@@ -99,6 +106,8 @@ class RecordFragment : RxFragment() {
                 }
             }
         }
+        val layoutManager = FixedLinearLayoutManager(mContext)
+        rv_target.layoutManager = layoutManager
         rv_target.isNestedScrollingEnabled = false
         rv_target.adapter = adapter
 
@@ -116,7 +125,7 @@ class RecordFragment : RxFragment() {
                 }
             }
         }
-        val layout1 = GridLayoutManager(mContext, 6)
+        val layout1 = FixedGridLayoutManager(mContext, 6)
         rv_have.layoutManager = layout1
         rv_have.isNestedScrollingEnabled = false
         rv_have.adapter = wearAdapter
@@ -153,9 +162,9 @@ class RecordFragment : RxFragment() {
         }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doAfterTerminate { swipe_refresh.isRefreshing = false }
                 .subscribe {
                     if (it == "wear") {
+                        swipe_refresh.isRefreshing = false
                         wearAdapter.notifyDataSetChanged()
                     } else {
                         adapter.notifyDataSetChanged()
@@ -253,10 +262,16 @@ class RecordFragment : RxFragment() {
         mContext.showCheckDialog(mActivity.supportFragmentManager, "确定添加物品吗", object : SureCallBack {
             override fun onSure() {
                 val data = list[position] as RecordExpandChild
-                data.number++
-                adapter.setNewData(list)
-                val name = data.equipName
-                val nameHave = DataSupport.where("equipName = ?", name).find(Equip::class.java)
+                updateList(data.equipName)
+                for (i in wearEquips.indices) {
+                    if (wearEquips[i].equipName == data.equipName) {
+                        wearEquips[i].number++
+                        wearAdapter.notifyItemChanged(i)
+                        saveData()
+                        return
+                    }
+                }
+                val nameHave = DataSupport.where("equipName = ?", data.equipName).find(Equip::class.java)
                 if (nameHave.isEmpty()) {
                     return
                 }
@@ -267,14 +282,6 @@ class RecordFragment : RxFragment() {
                 recordThing.equipImg = data.equipIcon
                 recordThing.part = nameHave[0].type
                 recordThing.partId = nameHave[0].typeId
-                for (i in wearEquips.indices) {
-                    if (wearEquips[i].equipName == data.equipName) {
-                        wearEquips[i].number++
-                        wearAdapter.notifyItemChanged(i)
-                        saveData()
-                        return
-                    }
-                }
                 recordThing.type = 2
                 wearEquips.add(recordThing)
                 wearAdapter.notifyItemInserted(wearEquips.size)
@@ -285,7 +292,7 @@ class RecordFragment : RxFragment() {
 
     /**
      * 检查合成物品是否全部都有
-     * 或的情况需要单独判断(将或的物品直接相加总和大于0就是可以合成)
+     * 或的情况需要单独判断(将或的物品数量直接相加总和大于0就是可以合成)
      */
     private fun canBuild(position: Int) {
         val data = list[position] as RecordExpandData
@@ -378,6 +385,9 @@ class RecordFragment : RxFragment() {
         } else {
             mList.add(name)
         }
+        /**
+         * 消耗合成物品
+         */
         for (i in wearEquips.size - 1 downTo 0) {
             for (j in mList) {
                 if (wearEquips[i].equipName == j) {
@@ -398,6 +408,10 @@ class RecordFragment : RxFragment() {
                 data.number--
             }
         }
+        updateList(equip.equipName)
+        /**
+         * 合成物品已经存在，数量+1
+         */
         for (i in wearEquips.indices) {
             if (wearEquips[i].equipName == equip.equipName) {
                 wearEquips[i].number++
@@ -411,20 +425,55 @@ class RecordFragment : RxFragment() {
                 return
             }
         }
+        /**
+         * 合成物品不存在，添加一个新物品
+         */
+        val nameHave = DataSupport.where("equipName = ?", equip.equipName).find(Equip::class.java)
+        if (nameHave.isEmpty()) {
+            return
+        }
+        val data = nameHave[0]
         val recordThing = RecordThing()
-        recordThing.equipName = equip.equipName
+        recordThing.equipName = data.equipName
         recordThing.number = 1
-        recordThing.equipImg = equip.equipIcon
+        recordThing.equipImg = data.imgId
         recordThing.type = 2
         recordThing.recordId = recordId
+        recordThing.partId = data.typeId
+        recordThing.part = data.type
         wearEquips.add(recordThing)
         wearAdapter.notifyItemInserted(wearEquips.size)
         if (equip.hasSubItem()) {
-            adapter.notifyItemRangeChanged(pos,  equip.subItems.size + 1)
+            adapter.notifyItemRangeChanged(pos, equip.subItems.size + 1)
         } else {
             adapter.notifyItemChanged(pos)
         }
         saveData()
+    }
+
+    /**
+     * 更新其他目标中该合成物品的数量
+     */
+    private fun updateList(name: String) {
+        for (i in list.indices) {
+            if (list[i] is RecordExpandChild) {
+                val data = list[i] as RecordExpandChild
+                if (data.equipName == name) {
+                    data.number++
+                    adapter.notifyItemChanged(i)
+                }
+            } else {
+                val data = list[i] as RecordExpandData
+                if (!data.isExpanded && data.hasSubItem()) {
+                    for (j in data.subItems) {
+                        if (name == j.equipName) {
+                            j.number++
+                            break
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun saveData() {

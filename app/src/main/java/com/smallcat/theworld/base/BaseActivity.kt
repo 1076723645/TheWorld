@@ -61,6 +61,9 @@ abstract class BaseActivity : SupportActivity() {
         super.onDestroy()
     }
 
+    /**
+     * 状态栏适配内容
+     */
     protected open fun fitSystem() {}
 
     protected open fun initTheme() {

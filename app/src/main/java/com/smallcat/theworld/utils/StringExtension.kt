@@ -48,7 +48,8 @@ fun String.hide4(): String {
 
 fun Context.getResourceColor(color: Int) = ContextCompat.getColor(this, color)
 
-fun Context.showCheckDialog(fragmentManager: FragmentManager, text: String, callback: SureCallBack) {
+fun Context.showCheckDialog(fragmentManager: FragmentManager, text: String,  callback: SureCallBack) {
     val dialog = SureDialogFragment(text, callback)
     dialog.show(fragmentManager, "sureDialog")
+
 }

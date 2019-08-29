@@ -65,7 +65,7 @@ class RecordEditActivity : RxActivity() {
         tv_right.setOnClickListener {
             DataSupport.saveAll(targetEquips)
             DataSupport.saveAll(wearEquips)
-            for (i in deleteList) {
+            deleteList.forEach { i ->
                 DataSupport.delete(RecordThing::class.java, i.id)
             }
             record.recordCode = et_record.text.toString()
@@ -86,7 +86,7 @@ class RecordEditActivity : RxActivity() {
             // 创建一个剪贴数据集，包含一个普通文本数据条目（需要复制的数据）
             val clipData = ClipData.newPlainText(null, et_record.text.toString())
             // 把数据集设置（复制）到剪贴板
-            clipboard.primaryClip = clipData
+            clipboard.setPrimaryClip(clipData)
             ToastUtil.shortShow("复制成功")
         }
         recordId = intent.getLongExtra(TAG, 0)

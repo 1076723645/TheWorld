@@ -48,6 +48,7 @@
                 android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
         </androidx.appcompat.widget.Toolbar>
 
         <FrameLayout
@@ -56,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -68,4 +70,5 @@
         app:insetForeground="#00000000"
         app:menu="@menu/nav_menu"
         app:headerLayout="@layout/nav_header"/>
+
 </androidx.drawerlayout.widget.DrawerLayout>

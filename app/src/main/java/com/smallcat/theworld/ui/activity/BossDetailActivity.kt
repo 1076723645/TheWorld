@@ -51,7 +51,8 @@ class BossDetailActivity : RxActivity() {
                 vp_boss.resetHeight(position)
             }
 
-            override fun onPageScrollStateChanged(state: Int) {
+            override fun onPageScrollStateChanged(state: Int){
+
             }
         })
         vp_boss.offscreenPageLimit = 2

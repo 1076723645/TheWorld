@@ -30,7 +30,9 @@ class CareerDetailActivity : RxActivity() {
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        bean = intent.getSerializableExtra("data") as ImgData
+        intent.getSerializableExtra("data")?.let {
+            bean = it as ImgData
+        }
         val mPosition = intent.getIntExtra("position", 0)
         collapsing.title = bean.name
         iv_bg.setImageResource(bean.imgUrl)
@@ -49,36 +51,5 @@ class CareerDetailActivity : RxActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun loadImg() {
-        //存在记录的高度时先Layout再异步加载图片
-        if (bean.height > 0) {
-            val layoutParams = iv_bg.layoutParams
-            layoutParams.height = bean.height
-        }
-        //获取屏幕宽度
-        val windowManager = mContext.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val dm = DisplayMetrics()
-        val display = windowManager.defaultDisplay
-        display.getMetrics(dm)
-        val screenWidth = dm.widthPixels
-
-        val simpleTarget = object : SimpleTarget<Bitmap>() {
-            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                if (bean.height <= 0) {
-                    val width = resource.width
-                    val height = resource.height
-                    val realHeight = screenWidth * height / width / 2
-                    bean.height = realHeight
-                    val lp = iv_bg.layoutParams
-                    lp.height = realHeight
-                    if (width < screenWidth / 2)
-                        lp.width = screenWidth / 2
-                }
-                iv_bg.setImageBitmap(resource)
-            }
-        }
-        Glide.with(mContext).asBitmap().load(bean.imgUrl).into(simpleTarget)
     }
 }

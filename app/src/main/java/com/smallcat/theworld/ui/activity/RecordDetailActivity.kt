@@ -63,9 +63,7 @@ class RecordDetailActivity : RxActivity() {
         tv_hide.setOnClickListener { showHideWearList() }
         tv_right.setOnClickListener {
             DataSupport.saveAll(wearEquips)
-            for (i in deleteList) {
-                DataSupport.delete(RecordThing::class.java, i.id)
-            }
+            for (i in deleteList) DataSupport.delete(RecordThing::class.java, i.id)
             record.updateTime = System.currentTimeMillis()
             record.save()
             ToastUtil.shortShow("保存成功")
@@ -251,8 +249,7 @@ class RecordDetailActivity : RxActivity() {
         showCheckDialog(supportFragmentManager, "确定添加物品吗", object : SureCallBack {
             override fun onSure() {
                 val data = list[position] as RecordExpandChild
-                data.number++
-                adapter.notifyItemChanged(position)
+                updateList(data.equipName)
                 val name = data.equipName
                 val nameHave = DataSupport.where("equipName = ?", name).find(Equip::class.java)
                 if (nameHave.isEmpty()) {
@@ -406,6 +403,20 @@ class RecordDetailActivity : RxActivity() {
                 }
             }
         }
+        updateList(equip.equipName)
+        /**
+         * 更新其他目标中该合成物品的数量
+         */
+        for (i in list.indices) {
+            if (list[i] is RecordExpandChild){
+                val data = list[i] as RecordExpandChild
+                if (data.equipName == equip.equipName){
+                    data.number++
+                    adapter.notifyItemChanged(i)
+                    break
+                }
+            }
+        }
         /**
          * 遍历我的物品列表
          * 有我的物品就加1没有则新加一个物品
@@ -418,12 +429,19 @@ class RecordDetailActivity : RxActivity() {
                 return
             }
         }
+        val nameHave = DataSupport.where("equipName = ?", equip.equipName).find(Equip::class.java)
+        if (nameHave.isEmpty()) {
+            return
+        }
+        val data = nameHave[0]
         val recordThing = RecordThing()
-        recordThing.equipName = equip.equipName
+        recordThing.equipName = data.equipName
         recordThing.number = 1
-        recordThing.equipImg = equip.equipIcon
+        recordThing.equipImg = data.imgId
         recordThing.type = 2
         recordThing.recordId = recordId
+        recordThing.partId = data.typeId
+        recordThing.part = data.type
         wearEquips.add(recordThing)
         wearAdapter.setNewData(wearEquips)
         adapter.setNewData(list)
@@ -437,6 +455,31 @@ class RecordDetailActivity : RxActivity() {
         } else {
             tv_hide.text = "显示"
             rv_have.visibility = View.GONE
+        }
+    }
+
+    /**
+     * 更新其他目标中该合成物品的数量
+     */
+    private fun updateList(name: String) {
+        for (i in list.indices) {
+            if (list[i] is RecordExpandChild) {
+                val data = list[i] as RecordExpandChild
+                if (data.equipName == name) {
+                    data.number++
+                    adapter.notifyItemChanged(i)
+                }
+            } else {
+                val data = list[i] as RecordExpandData
+                if (!data.isExpanded && data.hasSubItem()) {
+                    for (j in data.subItems) {
+                        if (name == j.equipName) {
+                            j.number++
+                            break
+                        }
+                    }
+                }
+            }
         }
     }
 }
