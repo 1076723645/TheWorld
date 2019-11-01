@@ -25,7 +25,7 @@ import java.util.List;
  * @author hui
  * @date 2018/8/9
  */
-public class App extends Application implements Thread.UncaughtExceptionHandler{
+public class App extends Application{
 
     private static App mApplication;
 
@@ -53,7 +53,6 @@ public class App extends Application implements Thread.UncaughtExceptionHandler{
         config.setToDefaults();
         res.updateConfiguration(config, res.getDisplayMetrics());
 
-        Thread.setDefaultUncaughtExceptionHandler(this);
         CrashReport.initCrashReport(getApplicationContext(), "99e89589c4", false);
         initX5WebView();
         LitePal.initialize(this);
@@ -164,14 +163,5 @@ public class App extends Application implements Thread.UncaughtExceptionHandler{
         finishAllActivity();
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
-    }
-
-    @Override
-    public void uncaughtException(Thread t, Throwable e) {
-        CrashReport.postCatchedException(e);
-        Intent intent = new Intent(this, SplashActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
     }
 }

@@ -24,7 +24,7 @@ abstract class BaseFragment : SupportFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mActivity = (context as Activity?)!!
+        mActivity = (context as Activity)
         mContext = context
     }
 

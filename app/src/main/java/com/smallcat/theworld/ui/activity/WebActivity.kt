@@ -67,7 +67,7 @@ class WebActivity : RxActivity() {
         val webSetting = mWebView!!.settings
         webSetting.javaScriptEnabled = true
         webSetting.javaScriptCanOpenWindowsAutomatically = true
-        webSetting.allowFileAccess = true
+        webSetting.allowFileAccess = false
         webSetting.layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
         webSetting.setSupportZoom(true)
         webSetting.builtInZoomControls = true
@@ -75,13 +75,6 @@ class WebActivity : RxActivity() {
         webSetting.loadWithOverviewMode = true // 缩放至屏幕的大小
         webSetting.setSupportMultipleWindows(true)
         webSetting.domStorageEnabled = true
-        //启用数据库
-        webSetting.databaseEnabled = true
-        //设置定位的数据库路径
-        val dir = this.applicationContext.getDir("database", Context.MODE_PRIVATE).path
-        webSetting.setGeolocationDatabasePath(dir)
-        //启用地理定位
-        webSetting.setGeolocationEnabled(true)
         webSetting.setAppCacheEnabled(true)
         webSetting.setAppCacheMaxSize(java.lang.Long.MAX_VALUE)
         webSetting.pluginState = WebSettings.PluginState.ON_DEMAND

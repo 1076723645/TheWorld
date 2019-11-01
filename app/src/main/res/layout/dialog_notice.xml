@@ -1,99 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_white_15"
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textColor="@color/text_color_black"
         android:text="提示"
-        android:textSize="18sp"/>
+        android:textColor="@color/text_color_black"
+        android:textSize="18sp" />
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
         android:orientation="vertical"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="350dp">
-        <TextView
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1.侧滑或点击左上角头像可打开侧滑栏"
-            android:textColor="@color/text_color_black"/>
-        <TextView
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
-            android:text="2.最新版APP下载/更新日志/QQ群"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textColor="?attr/colorAccent"
-            android:text="724273000"/>
+        android:paddingRight="16dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="3.QQ(bug反馈/内容投稿/修改建议)"
+            android:text="1.侧滑或点击左上角头像可打开侧滑栏"
             android:textColor="@color/text_color_black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="2.APP助手群"
+            android:textColor="@color/text_color_black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="724273000"
+            android:background="@null"
+            android:textSize="14sp"
+            android:textColor="?attr/colorAccent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="3.作者QQ(bug反馈/内容投稿/修改建议)"
+            android:textColor="@color/text_color_black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="1076723645"
+            android:background="@null"
+            android:textSize="14sp"
+            android:textColor="?attr/colorAccent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="4.游戏相关信息请查看世界PRG百度贴吧"
+            android:textColor="@color/text_color_black" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textColor="?attr/colorAccent"
-            android:text="1076723645"/>
-        <TextView
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
-            android:text="4.游戏相关信息请查看世界PRG百度贴吧"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:autoLink="web"
-            android:layout_marginStart="8dp"
-            android:text="https://tieba.baidu.com/f?kw=%CA%C0%BD%E7rpg&amp;fr=ala0&amp;tpl=5"/>
+            android:text="https://tieba.baidu.com/f?kw=%CA%C0%BD%E7rpg&amp;fr=ala0&amp;tpl=5" />
+
         <TextView
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_black"
-            android:text="5.手动下载以及历史版本下载网址"/>
+            android:layout_marginTop="16dp"
+            android:text="5.app助手网页下载地址"
+            android:textColor="@color/text_color_black" />
+
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorAccent"
             android:layout_marginStart="8dp"
             android:autoLink="web"
-            android:text="https://www.pgyer.com/QX6L"/>
+            android:text="https://www.pgyer.com/QX6L"
+            android:textColor="?attr/colorAccent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="6.角色物品记得保存录像"
+            android:textColor="@color/red" />
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/btn_go"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/white"
             android:background="@drawable/shape_left_bottom_color_66"
-            android:text="不再提示"/>
+            android:text="不再提示"
+            android:textColor="@color/white" />
+
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/shape_right_bottom_color_red"
             android:text="我知道了"
-            android:textColor="@color/text_color_black"
-            android:background="@drawable/shape_right_bottom_color_red"/>
+            android:textColor="@color/text_color_black" />
     </LinearLayout>
 </LinearLayout>

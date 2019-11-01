@@ -1,13 +1,6 @@
 package com.smallcat.theworld.ui.activity
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.util.DisplayMetrics
 import android.view.MenuItem
-import android.view.WindowManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.ImgData

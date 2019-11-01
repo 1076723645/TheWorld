@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/zhi_bg"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/common_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="16dp">
+
+    <LinearLayout
+        android:id="@+id/qa_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingTop="42dp"
+        android:paddingBottom="14dp">
+
+        <TextView
+            android:id="@+id/tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:text="@string/act_switch"
+            android:textColor="#F5F5F5"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/zhi_title"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/wei_zhi_title"
+            android:textColor="#ffffff"
+            android:textSize="32sp" />
+
+
+        <ImageView
+            android:id="@+id/qa_image_view"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/support_wx"
+            android:clickable="false"
+            android:focusable="false" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="12dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可以的话备注下自己的游戏id噢😁"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/zhi_summery"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/wei_zhi_tip"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/zhi_btn"
+            style="@style/BottomBtnStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="296dp"
+            android:onClick="onClick"
+            android:text="去捐赠"
+            android:textSize="13dp" />
+    </LinearLayout>
+</LinearLayout>

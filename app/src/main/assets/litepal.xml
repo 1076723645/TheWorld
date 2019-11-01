@@ -1,6 +1,6 @@
 <litepal>
     <dbname value="the_world"/>
-    <version value="10"/>
+    <version value="12"/>
 
     <list>
         <mapping class="com.smallcat.theworld.model.db.Equip"/>

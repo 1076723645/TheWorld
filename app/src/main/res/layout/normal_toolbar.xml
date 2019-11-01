@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:contentInsetStart="0dp"
-    android:id="@+id/toolbar"
-    android:background="?attr/colorPrimary">
+    android:background="?attr/colorPrimary"
+    app:contentInsetStart="0dp">
 
     <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:cropToPadding="true"
         android:padding="8dp"
-        android:id="@+id/iv_back"
-        android:src="@drawable/introduce_return"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:src="@drawable/introduce_return" />
 
 
     <TextView
         android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textSize="16sp"
         android:singleLine="true"
         android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textSize="16sp" />
 
     <TextView
-        android:layout_marginEnd="8dp"
         android:id="@+id/tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:textSize="16sp"
+        android:layout_marginEnd="8dp"
         android:padding="8dp"
         android:textColor="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textSize="16sp" />
 </androidx.appcompat.widget.Toolbar>

@@ -19,8 +19,6 @@ import org.litepal.crud.DataSupport
  */
 class EquipFragment : SupportFragment() {
 
-    private val tabTitles = arrayOf("我的", "武器", "头盔", "衣服", "饰品", "翅膀")
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_equip, container, false)
         initView(view)
@@ -33,37 +31,7 @@ class EquipFragment : SupportFragment() {
         val adapter = EquipFragAdapter(childFragmentManager)
         viewPager.adapter = adapter
         viewPager.offscreenPageLimit = 3
-        mTabLayout.removeAllTabs()
-        for (i in tabTitles) {
-            mTabLayout.addTab(mTabLayout.newTab().setText(i))
-        }
-        mTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(p0: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabUnselected(p0: TabLayout.Tab?) {
-            }
-
-            override fun onTabSelected(p0: TabLayout.Tab?) {
-                viewPager.setCurrentItem(p0!!.position, false)
-            }
-
-        })
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                mTabLayout.setScrollPosition(position, positionOffset, false)
-            }
-
-            override fun onPageSelected(position: Int) {
-                mTabLayout.setScrollPosition(position, 0F, true)
-            }
-
-        })
+        mTabLayout.setupWithViewPager(viewPager, false)
         val data = DataSupport.findAll(MyRecord::class.java)
         if (data.isEmpty()) {
             viewPager.setCurrentItem(1, false)

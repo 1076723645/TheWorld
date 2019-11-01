@@ -1,7 +1,6 @@
 package com.smallcat.theworld.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AlertDialog
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.bean.MsgEvent
@@ -52,7 +51,6 @@ class MyWorldActivity : RxActivity() {
             val intent = Intent(mContext, RecordAddActivity::class.java)
             CircularAnimUtil.startActivity(this@MyWorldActivity, intent, fab, R.drawable.zy_c8)
         }
-
         loadData()
     }
 
@@ -89,7 +87,7 @@ class MyWorldActivity : RxActivity() {
     }
 
     private fun showSureDialog(position: Int) {
-        showCheckDialog(supportFragmentManager, "确定删除存档吗", object : SureCallBack {
+        showCheckDialog("确定删除存档吗", object : SureCallBack {
             override fun onSure() {
                 deleteRecord(position)
             }

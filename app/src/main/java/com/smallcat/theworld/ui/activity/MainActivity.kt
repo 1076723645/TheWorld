@@ -21,6 +21,8 @@ import com.pgyersdk.update.javabean.AppBean
 import com.smallcat.theworld.App
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.BaseActivity
+import com.smallcat.theworld.minipay.Config
+import com.smallcat.theworld.minipay.MiniPayUtils
 import com.smallcat.theworld.ui.fragment.BossFragment
 import com.smallcat.theworld.ui.fragment.EquipFragment
 import com.smallcat.theworld.ui.fragment.ExclusiveFragment
@@ -158,6 +160,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 .register()
     }
 
+    @SuppressLint("CheckResult")
     private fun showUpdateDialog(appBean: AppBean) {
         if (Build.VERSION.SDK_INT >= 21) {
             if (dialog == null) {
@@ -171,7 +174,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             tvSure.setOnClickListener {
                 dialog?.dismiss()
                 LogUtil.e(appBean.downloadURL)
-                PgyUpdateManager.downLoadApk(appBean.downloadURL)
+                if (Build.VERSION.SDK_INT >= 29) {
+                    ToastUtil.shortShow("android 10自动更新暂不支持，请点击提示中的下载链接手动下载")
+                } else {
+                    PgyUpdateManager.downLoadApk(appBean.downloadURL)
+                }
             }
             tvCancel.setOnClickListener { dialog!!.dismiss() }
             dialog?.setContentView(view)
@@ -181,7 +188,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         } else {
             val dialog = AlertDialog.Builder(mContext)
                     .setMessage(appBean.releaseNote)
-                    .setPositiveButton("确定更新") { _, _ -> PgyUpdateManager.downLoadApk(appBean.downloadURL) }
+                    .setPositiveButton("确定更新") { _, _ ->
+                        PgyUpdateManager.downLoadApk(appBean.downloadURL)
+                    }
                     .setNegativeButton("取消更新", null)
                     .create()
             dialog.show()
@@ -205,12 +214,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_tips -> {
                 Handler().postDelayed({ showDialog() }, 250)
             }
-
+            R.id.nav_support -> {
+                val config = Config.Builder(AppUtils.ZFB_URL, R.drawable.support_zfb, R.drawable.support_wx).build()
+                MiniPayUtils.setupPay(mContext, config)
+            }
         }
         mDrawerLayout.closeDrawers()
         showHideFragment(getFragment(show), getFragment(hide))
         hide = show
-
         return true
     }
 

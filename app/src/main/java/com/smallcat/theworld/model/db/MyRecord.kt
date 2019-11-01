@@ -1,7 +1,7 @@
 package com.smallcat.theworld.model.db
 
 import org.litepal.crud.DataSupport
-
+//所有存档
 class MyRecord : DataSupport() {
 
     var id: Long = 0

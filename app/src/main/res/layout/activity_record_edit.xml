@@ -75,10 +75,10 @@
 
 
             <TextView
-                android:id="@+id/tv_build"
+                android:id="@+id/tv_import"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="合成"
+                android:text="导入存档"
                 android:textSize="16sp"
                 android:layout_marginEnd="16dp"
                 android:textColor="@color/rate_text_color"

@@ -8,6 +8,7 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.smallcat.theworld.R
 import com.smallcat.theworld.model.db.*
@@ -45,7 +46,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         fitSystemAllScroll(this)
         val rxPermissions = RxPermissions(this)
-        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe { granted ->
                     if (!granted) { // Always true pre-M
                         "需要读写权限".toast()
@@ -93,7 +94,7 @@ class SplashActivity : AppCompatActivity() {
             mAudioManager.isSpeakerphoneOn = true
             mMediaPlayer?.setOnCompletionListener { goMain() }
             mMediaPlayer?.start()
-            "第${times + 1}次掉落了混沌碎片, 你今天很欧哦QAQ".toast()
+            "第${times + 1}次掉落了恩德拉的苏醒, 你今天很欧哦QAQ".toast()
             sharedPref.times = 0
         } else {
             times++
@@ -139,7 +140,6 @@ class SplashActivity : AppCompatActivity() {
                 })
     }
 
-    //逻辑有问题，增加了复杂度
     private fun getXlsData(xlsName: String) {
         val assetManager = assets
         try {
@@ -307,15 +307,23 @@ class SplashActivity : AppCompatActivity() {
         recommendList.clear()
     }
 
+    //修复存档图片索引错乱的问题, 修改名称
     private fun recoveryRecord() {
+        DataUtil.initMap()
         val bagList = DataSupport.findAll(RecordThing::class.java)
         for (i in bagList) {
+            //"物品名称${i.equipName}".logE()
+            DataUtil.changeRecordEquipName(i.equipName!!)?.let {
+                i.equipName = it
+                //"修改为${i.equipName}".logE()
+            }
             val data = DataSupport.where("equipName = ?", i.equipName).find(Equip::class.java)
             if (data.isNotEmpty()) {
                 i.equipImg = data[0].imgId
                 i.partId = data[0].typeId
             }
         }
+        DataUtil.clearMap()
         DataSupport.saveAll(bagList)
     }
 

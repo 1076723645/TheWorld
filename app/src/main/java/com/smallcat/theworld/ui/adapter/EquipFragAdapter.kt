@@ -12,6 +12,8 @@ import com.smallcat.theworld.ui.fragment.RecordFragment
  */
 class EquipFragAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
+    private val tabTitles = arrayOf("我的", "武器", "头盔", "衣服", "饰品", "翅膀")
+
     override fun getItem(position: Int): Fragment {
         if (position == 0){
             return RecordFragment()
@@ -21,6 +23,10 @@ class EquipFragAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getCount(): Int {
         return 6
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return tabTitles[position]
     }
 
 }

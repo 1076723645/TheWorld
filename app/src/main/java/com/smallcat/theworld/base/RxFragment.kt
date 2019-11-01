@@ -24,7 +24,7 @@ abstract class RxFragment : SupportFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mActivity = (context as AppCompatActivity?)!!
+        mActivity = (context as AppCompatActivity)
         mContext = context
     }
 

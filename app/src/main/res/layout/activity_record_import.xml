@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.RecordImportActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/normal_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_record"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:background="@null"
+        android:gravity="center_horizontal|start"
+        android:textSize="12sp"
+        android:hint="复制存档文本到文本框中或者选择存档txt文件"
+        android:textColorHint="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@id/tv_import"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <TextView
+        android:id="@+id/tv_choose"
+        android:layout_width="114dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_blue_14"
+        android:gravity="center"
+        android:text="选择文件"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tv_import"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_import"
+        android:layout_width="114dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_blue_14"
+        android:gravity="center"
+        android:text="确定导入"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_choose" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

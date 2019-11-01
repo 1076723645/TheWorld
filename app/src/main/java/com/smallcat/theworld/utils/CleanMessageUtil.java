@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.Environment;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 清除缓存

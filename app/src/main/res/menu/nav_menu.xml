@@ -36,5 +36,8 @@
         <item
             android:id="@+id/nav_tips"
             android:title="提示"/>
+
+        <item android:id="@+id/nav_support"
+            android:title="赞助作者"/>
     </group>
 </menu>

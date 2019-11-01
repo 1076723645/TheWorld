@@ -6,7 +6,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.smallcat.theworld.R
@@ -246,7 +245,7 @@ class RecordDetailActivity : RxActivity() {
     }
 
     private fun showSureDialog(position: Int) {
-        showCheckDialog(supportFragmentManager, "确定添加物品吗", object : SureCallBack {
+        showCheckDialog("确定添加物品吗", object : SureCallBack {
             override fun onSure() {
                 val data = list[position] as RecordExpandChild
                 updateList(data.equipName)
@@ -309,7 +308,7 @@ class RecordDetailActivity : RxActivity() {
     }
 
     private fun showBuildDialog(pos: Int, chooseNumber: Int) {
-        showCheckDialog(supportFragmentManager, "确定合成物品吗", object : SureCallBack {
+        showCheckDialog("确定合成物品吗", object : SureCallBack {
             override fun onSure() {
                 val data = list[pos] as RecordExpandData
                 buildSuccess(data, chooseNumber)

@@ -62,7 +62,7 @@ class RecommendActivity : RxActivity() {
                 return@setOnClickListener
             }
             val s = if (recommendData.heroName == recordBean.heroName) "确认添加到我的目标吗？" else "职业不相同，确认添加吗？"
-            showCheckDialog(supportFragmentManager, s, object : SureCallBack {
+            showCheckDialog(s, object : SureCallBack {
                 override fun onSure() {
                     addToTargetEquip(listEarly)
                 }
@@ -74,7 +74,7 @@ class RecommendActivity : RxActivity() {
                 return@setOnClickListener
             }
             val s = if (recommendData.heroName == recordBean.heroName) "确认添加到我的目标吗？" else "职业不相同，确认添加吗？"
-            showCheckDialog(supportFragmentManager, s, object : SureCallBack {
+            showCheckDialog(s, object : SureCallBack {
                 override fun onSure() {
                     addToTargetEquip(listFinal)
                 }

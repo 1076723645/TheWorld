@@ -52,10 +52,10 @@ class EquipListFragment : RxFragment() {
         adapter.emptyView = AppUtils.getEmptyView(mContext, "数据加载中")
         recyclerView.adapter = adapter
         isBack = mContext.sharedPref.isBack
+        loadData()
     }
 
     override fun initView() {
-        loadData()
     }
 
     private fun loadData() {

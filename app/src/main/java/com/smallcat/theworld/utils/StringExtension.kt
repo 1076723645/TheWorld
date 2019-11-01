@@ -1,13 +1,9 @@
 package com.smallcat.theworld.utils
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import com.smallcat.theworld.App
 import com.smallcat.theworld.model.callback.SureCallBack
 import com.smallcat.theworld.ui.fragment.SureDialogFragment
 
@@ -23,16 +19,8 @@ fun String.logE() {
     LogUtil.e(this)
 }
 
-private var toast: Toast? = null
-
-@SuppressLint("ShowToast")
 fun String.toast() {
-    if (toast == null) {
-        toast = Toast.makeText(App.getInstance().applicationContext, this, Toast.LENGTH_SHORT)
-    } else {
-        toast!!.setText(this)
-    }
-    toast!!.show()
+    ToastUtil.shortShow(this)
 }
 
 fun Context.start(activity: Class<*>) {
@@ -48,8 +36,7 @@ fun String.hide4(): String {
 
 fun Context.getResourceColor(color: Int) = ContextCompat.getColor(this, color)
 
-fun Context.showCheckDialog(fragmentManager: FragmentManager, text: String,  callback: SureCallBack) {
+fun AppCompatActivity.showCheckDialog(text: String, callback: SureCallBack) {
     val dialog = SureDialogFragment(text, callback)
-    dialog.show(fragmentManager, "sureDialog")
-
+    dialog.show(supportFragmentManager, "sureDialog")
 }

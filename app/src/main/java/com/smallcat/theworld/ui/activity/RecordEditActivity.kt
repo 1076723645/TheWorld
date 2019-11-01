@@ -1,6 +1,5 @@
 package com.smallcat.theworld.ui.activity
 
-import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -8,7 +7,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.gson.Gson
@@ -46,9 +44,6 @@ class RecordEditActivity : RxActivity() {
 
     private var deleteList: MutableList<RecordThing> = ArrayList()
 
-    //当前物品的集合
-    private val dataList: MutableList<String> = ArrayList()
-
     companion object {
         private const val TAG = "RecordDetailActivity"
         fun getIntent(mContext: Context, id: Long) =
@@ -69,7 +64,7 @@ class RecordEditActivity : RxActivity() {
                 DataSupport.delete(RecordThing::class.java, i.id)
             }
             record.recordCode = et_record.text.toString()
-            if (et_level.text.isNotEmpty()){
+            if (et_level.text.isNotEmpty()) {
                 record.recordLevel = et_level.text.toString().toInt()
             }
             record.updateTime = System.currentTimeMillis()
@@ -77,8 +72,8 @@ class RecordEditActivity : RxActivity() {
             ToastUtil.shortShow("保存成功")
             RxBus.post(MsgEvent("", 12580))
         }
-        tv_build.setOnClickListener {
-            buildThing()
+        tv_import.setOnClickListener {
+            startActivityForResult(RecordImportActivity.getIntent(mContext, recordId), 1003)
         }
         tv_copy.setOnClickListener {
             // 得到剪贴板管理器
@@ -94,13 +89,13 @@ class RecordEditActivity : RxActivity() {
         targetAdapter = RecordEquipAdapter(targetEquips)
         targetAdapter.addFooterView(getFooterView(mContext, 0))
         targetAdapter.setOnItemClickListener { _, _, position ->
-            if (position < 0 || position >= targetEquips.size){
+            if (position < 0 || position >= targetEquips.size) {
                 return@setOnItemClickListener
             }
             AppUtils.goEquipDetailActivity(mContext, targetEquips[position].equipName!!)
         }
         targetAdapter.setOnItemChildClickListener { _, _, position ->
-            if (position < 0 || position >= targetEquips.size){
+            if (position < 0 || position >= targetEquips.size) {
                 return@setOnItemChildClickListener
             }
             if (targetEquips[position].number == 1) {
@@ -120,13 +115,13 @@ class RecordEditActivity : RxActivity() {
         wearAdapter = RecordEquipAdapter(wearEquips)
         wearAdapter.addFooterView(getFooterView(mContext, 1))
         wearAdapter.setOnItemClickListener { _, _, position ->
-            if (position < 0 || position >= wearEquips.size){
+            if (position < 0 || position >= wearEquips.size) {
                 return@setOnItemClickListener
             }
             AppUtils.goEquipDetailActivity(mContext, wearEquips[position].equipName!!)
         }
         wearAdapter.setOnItemChildClickListener { _, _, position ->
-            if (position < 0 || position >= wearEquips.size){
+            if (position < 0 || position >= wearEquips.size) {
                 return@setOnItemChildClickListener
             }
             if (wearEquips[position].number == 1) {
@@ -174,10 +169,10 @@ class RecordEditActivity : RxActivity() {
             startActivityForResult(EquipAddActivity.getIntent(mContext, which), requestCode)
         }
         val dialog = builder.create()
-        val lp = dialog?.window?.attributes
+        val lp = dialog.window?.attributes
         val dm = resources.displayMetrics
         lp?.width = dm.widthPixels * 0.6.toInt()
-        dialog?.window?.attributes = lp //设置宽度
+        dialog.window?.attributes = lp //设置宽度
         dialog.show()
     }
 
@@ -219,194 +214,34 @@ class RecordEditActivity : RxActivity() {
         wearAdapter.setNewData(wearEquips)
     }
 
-    private fun buildThing() {
-        if (wearEquips.isEmpty()) {
-            ToastUtil.shortShow("没有物品")
-            return
-        }
-        //进阶列表
-        val advanceList = ArrayList<Equip>()
-        //可以合成的列表
-        val finalList: MutableList<Equip> = ArrayList()
-
-        showLoading()
-        dataList.clear()
-        addSubscribe(Observable.create<List<Equip>> {
-            //获取当前物品的所有进阶物品
-            for (k in wearEquips.indices) {
-
-                val equipName = wearEquips[k].equipName!!
-                dataList.add(equipName)
-                //所有可进阶列表
-                val equipList = DataSupport.where("access like ?", "%$equipName%").find(Equip::class.java)
-                for (i in 0 until equipList.size) {
-                    val mEquip = equipList[i]
-                    val mList = mEquip.dataList
-                    for (j in 0 until mList.size) {
-                        if (mList[j] == equipName) {
-                            if (!AppUtils.checkContain(advanceList, mEquip)) {
-                                advanceList.add(mEquip)
-                                break
-                            }
-                        } else if (mList[j].contains("/")) {
-                            val choose1 = mList[j].substring(0, mList[j].indexOf('/'))
-                            val choose2 = mList[j].substring(mList[j].indexOf('/') + 1)
-                            if (equipName == choose1 || equipName == choose2) {
-                                if (!AppUtils.checkContain(advanceList, mEquip)) {
-                                    advanceList.add(mEquip)
-                                    break
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            for (i in advanceList) {
-                //当前物品列表是否包含合成列表
-                val mList = i.dataList.toMutableList()
-                if (dataList.containsAll(mList)) {
-                    finalList.add(i)
-                    continue
-                }
-                //判断2选1合成的情况
-                for (j in mList.indices) {
-                    if (mList[j].contains("/")) {
-                        val choose1 = mList[j].substring(0, mList[j].indexOf('/'))
-                        val choose2 = mList[j].substring(mList[j].indexOf('/') + 1)
-                        val newList1: MutableList<String> = ArrayList()
-                        val newList2: MutableList<String> = ArrayList()
-                        newList1.addAll(mList)
-                        newList1.removeAt(j)
-                        newList1.add(j, choose1)
-                        newList2.addAll(mList)
-                        newList2.removeAt(j)
-                        newList2.add(j, choose2)
-                        if (dataList.containsAll(newList1)) {
-                            finalList.add(i)
-                            break
-                        }
-                        if (dataList.containsAll(newList2)) {
-                            finalList.add(i)
-                            break
-                        }
-                    }
-                }
-            }
-            it.onNext(finalList)
-            it.onComplete()
-        }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doAfterTerminate { dismissLoading() }
-                .subscribe {
-                    showBuildList(it)
-                })
-    }
-
-    private fun showBuildList(data: List<Equip>) {
-        if (data.isEmpty()) {
-            ToastUtil.shortShow("没有可以合成的装备")
-            return
-        }
-        val array = Array(data.size) { "" }
-        for (i in data.indices) {
-            array[i] = data[i].equipName
-        }
-        val builder = AlertDialog.Builder(mContext)
-        builder.setItems(array) { dialog, which ->
-            dialog.dismiss()
-            buildSuccess(data[which])
-        }
-        val dialog = builder.create()
-        val lp = dialog?.window?.attributes
-        val dm = resources.displayMetrics
-        lp?.width = dm.widthPixels * 0.8.toInt()
-        dialog?.window?.attributes = lp //设置宽度
-        dialog.show()
-    }
-
-    /**
-     * 合成之后添加合成物品，删除合成材料
-     */
-    private fun buildSuccess(equip: Equip) {
-        val mList = equip.dataList
-        for (i in mList.indices) {
-            if (mList[i].contains("/")) {
-                val choose1 = mList[i].substring(0, mList[i].indexOf('/'))
-                val choose2 = mList[i].substring(mList[i].indexOf('/') + 1)
-                if (dataList.contains(choose1) && dataList.contains(choose2)) {
-                    val dialog = Dialog(mContext, R.style.CustomDialog)
-                    val v1 = LayoutInflater.from(mContext).inflate(R.layout.dialog_choose, null)
-                    dialog.setContentView(v1)
-                    dialog.setCanceledOnTouchOutside(true)
-                    dialog.setCancelable(true)
-                    val tvName1 = v1.findViewById<TextView>(R.id.tv_name)
-                    val tvName2 = v1.findViewById<TextView>(R.id.tv_name2)
-                    tvName1.text = choose1
-                    tvName2.text = choose2
-                    tvName1.setOnClickListener {
-                        addDeleteThing(equip, choose1)
-                        dialog.dismiss()
-                    }
-                    tvName2.setOnClickListener {
-                        addDeleteThing(equip, choose2)
-                        dialog.dismiss()
-                    }
-                    dialog.show()
-                    return
-                }
-                break
-            }
-        }
-        addDeleteThing(equip, "")
-    }
-
-    private fun addDeleteThing(equip: Equip, name: String) {
-        val recordThing = RecordThing()
-        recordThing.equipName = equip.equipName
-        recordThing.number = 1
-        recordThing.equipImg = equip.imgId
-        recordThing.type = 2
-        recordThing.recordId = recordId
-        val mList = equip.dataList.toMutableList()
-        if (name == "") {
-            for (j in mList.indices) {
-                if (mList[j].contains("/")) {
-                    val choose1 = mList[j].substring(0, mList[j].indexOf('/'))
-                    val choose2 = mList[j].substring(mList[j].indexOf('/') + 1)
-                    mList.removeAt(j)
-                    mList.add(choose1)
-                    mList.add(choose2)
-                    break
-                }
-            }
-        } else {
-            mList.add(name)
-        }
-        for (i in wearEquips.size - 1 downTo 0) {
-            for (j in mList) {
-                if (wearEquips[i].equipName == j) {
-                    deleteList.add(wearEquips[i])
-                    wearEquips.removeAt(i)
-                    break
-                }
-            }
-        }
-        for (i in wearEquips.indices) {
-            if (wearEquips[i].equipName == equip.equipName) {
-                wearEquips[i].number++
-                wearAdapter.setNewData(wearEquips)
-                return
-            }
-        }
-        wearEquips.add(0, recordThing)
-        wearAdapter.setNewData(wearEquips)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data == null) {
+            return
+        }
+        if (requestCode == 1003) {
+            val recordThings = data.getParcelableArrayListExtra<RecordThing>("data")
+            if (recordThings.isNotEmpty()) {
+                recordThings[0].toString().logE()
+            }
+            for (record in recordThings){
+                var isHave = false
+                for (j in wearEquips){
+                    if (record.equipName == j.equipName){
+                        j.number++
+                        isHave = true
+                        break
+                    }
+                }
+                if (!isHave) {
+                    wearEquips.add(record)
+                }
+            }
+            wearAdapter.setNewData(wearEquips)
+            val level = data.getStringExtra("level")
+            val code = data.getStringExtra("code")
+            et_level.setText(level)
+            et_record.setText(code)
             return
         }
         val equipData = Gson().fromJson(data.getStringExtra("data"), Equip::class.java)

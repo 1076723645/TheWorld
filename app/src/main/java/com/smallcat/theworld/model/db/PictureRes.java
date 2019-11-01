@@ -136,7 +136,7 @@ public class PictureRes {
             //神射
             R.drawable.wuqi_66, R.drawable.wuqi_124, R.drawable.wuqi_122, R.drawable.wuqi_123,
             //狙击
-            R.drawable.wuqi_121, R.drawable.wuqi_160, R.drawable.wuqi_115, R.drawable.wuqi_158, R.drawable.wuqi_107,
+            R.drawable.wuqi_115, R.drawable.wuqi_158, R.drawable.wuqi_107,
             //闪闪
             R.drawable.chib_13,
             //机械
@@ -162,7 +162,7 @@ public class PictureRes {
             //炼金
             R.drawable.ship_29, R.drawable.wuqi_48, R.drawable.wuqi_62, R.drawable.wuqi_108,
             //血法
-            R.drawable.ship_6, R.drawable.ship_37, R.drawable.wuqi_72,
+            R.drawable.ship_6, R.drawable.ship_37,
             //电法
             R.drawable.wuqi_88, R.drawable.wuqi_106, R.drawable.nail_26, R.drawable.nail_27, R.drawable.nail_38,
             //赏金
@@ -236,7 +236,7 @@ public class PictureRes {
             R.drawable.ff_t, R.drawable.ff_f,
             //巫术
             R.drawable.ws_d, R.drawable.ws_q, R.drawable.ws_w, R.drawable.ws_e,
-            R.drawable.ws_r, R.drawable.ws_t, R.drawable.ws_f,
+            R.drawable.ws_r, R.drawable.ws_t, R.drawable.ws_f, R.color.reg_choose_color,
             //召唤
             R.drawable.zh_d, R.drawable.zh_q, R.drawable.zh_w, R.drawable.zh_e, R.drawable.zh_r,
             R.drawable.zh_t, R.drawable.zh_f,

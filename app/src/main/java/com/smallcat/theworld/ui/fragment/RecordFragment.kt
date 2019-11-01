@@ -3,15 +3,10 @@ package com.smallcat.theworld.ui.fragment
 
 import android.app.Dialog
 import android.content.Intent
-import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxFragment
@@ -176,7 +171,7 @@ class RecordFragment : RxFragment() {
         for (data in targetEquips) {
             data.toString().logD()
             val newData = RecordExpandData()
-            newData.equipName = data.equipName!!
+            newData.equipName = data.equipName
             newData.equipIcon = data.equipImg
             val equip = DataSupport.where("equipName = ?", newData.equipName).find(Equip::class.java)[0]
             newData.dataList = equip.dataList as ArrayList<String>
@@ -259,7 +254,7 @@ class RecordFragment : RxFragment() {
     }
 
     private fun showSureDialog(position: Int) {
-        mContext.showCheckDialog(mActivity.supportFragmentManager, "确定添加物品吗", object : SureCallBack {
+        mActivity.showCheckDialog("确定添加物品吗", object : SureCallBack {
             override fun onSure() {
                 val data = list[position] as RecordExpandChild
                 updateList(data.equipName)
@@ -323,7 +318,7 @@ class RecordFragment : RxFragment() {
     }
 
     private fun showBuildDialog(pos: Int, chooseNumber: Int) {
-        mContext.showCheckDialog(mActivity.supportFragmentManager, "确定合成物品吗", object : SureCallBack {
+        mActivity.showCheckDialog("确定合成物品吗", object : SureCallBack {
             override fun onSure() {
                 buildSuccess(pos, chooseNumber)
             }

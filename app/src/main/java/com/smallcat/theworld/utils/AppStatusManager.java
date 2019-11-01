@@ -15,9 +15,9 @@ public class AppStatusManager {
     }
 
     public static AppStatusManager getInstance() {
-        if(mInstance==null) {
+        if (mInstance == null) {
             synchronized (AppStatusManager.class) {
-                if(mInstance==null) {
+                if (mInstance == null) {
                     mInstance = new AppStatusManager();
                 }
             }

@@ -66,7 +66,7 @@ class RecordAddActivity : RxActivity() {
     }
 
     private fun showSureDialog(position: Int) {
-        showCheckDialog(supportFragmentManager, "确定创建存档吗", object : SureCallBack {
+        showCheckDialog("确定创建存档吗", object : SureCallBack {
             override fun onSure() {
                 createRecord(position)
             }
