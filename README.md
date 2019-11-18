@@ -3,4 +3,5 @@
 kotlin-java
 
 
-app下载地址：https://www.pgyer.com/QX6L
+app下载地址：https://www.pgyer.com/xwLb
+安装密码 world
