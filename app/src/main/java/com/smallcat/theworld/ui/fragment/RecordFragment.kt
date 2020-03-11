@@ -3,10 +3,12 @@ package com.smallcat.theworld.ui.fragment
 
 import android.app.Dialog
 import android.content.Intent
+import android.os.Handler
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import com.billy.android.swipe.SmartSwipeRefresh
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.smallcat.theworld.R
 import com.smallcat.theworld.base.RxFragment
@@ -24,6 +26,7 @@ import com.smallcat.theworld.ui.adapter.RecordExpandAdapter
 import com.smallcat.theworld.ui.widget.FixedGridLayoutManager
 import com.smallcat.theworld.ui.widget.FixedLinearLayoutManager
 import com.smallcat.theworld.utils.*
+import com.tencent.bugly.crashreport.CrashReport
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -173,7 +176,12 @@ class RecordFragment : RxFragment() {
             val newData = RecordExpandData()
             newData.equipName = data.equipName
             newData.equipIcon = data.equipImg
-            val equip = DataSupport.where("equipName = ?", newData.equipName).find(Equip::class.java)[0]
+            val equips = DataSupport.where("equipName = ?", newData.equipName).find(Equip::class.java)
+            if (equips.isEmpty()){
+                CrashReport.postCatchedException(Throwable(data.equipName))
+                continue
+            }
+            val equip = equips[0]
             newData.dataList = equip.dataList as ArrayList<String>
             if (newData.dataList.size <= 1) {
                 for (k in wearEquips.indices) {

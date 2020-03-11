@@ -1,7 +1,6 @@
 package com.smallcat.theworld.ui.adapter
 
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.smallcat.theworld.R
@@ -19,7 +18,7 @@ class EquipAdapter(data: List<Equip>?) : BaseQuickAdapter<Equip, BaseViewHolder>
 
         val tvQul = viewHolder.getView<TextView>(R.id.tv_qul)
         tvQul.text = item.quality
-        tvQul.setTextColor(AppUtils.getColor(mContext, item.quality))
+        tvQul.setTextColor(AppUtils.getEquipQualityColor(mContext, item.quality))
         if (item.imgId != 0) {
             viewHolder.setImageResource(R.id.iv_equip, item.imgId)
         } else {

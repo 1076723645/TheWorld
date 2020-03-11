@@ -27,8 +27,6 @@ class RecordThing() : DataSupport(), Parcelable {
         equipName = parcel.readString()!!
     }
 
-
-
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(id)
         parcel.writeLong(recordId)

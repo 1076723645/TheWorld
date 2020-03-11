@@ -3,13 +3,14 @@ package com.smallcat.theworld.ui.activity
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewStub
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.smallcat.theworld.R
@@ -44,6 +45,8 @@ class EquipDetailActivity : RxActivity() {
     lateinit var fab: FloatingActionButton
     @BindView(R.id.fab_edit)
     lateinit var fabEdit: FloatingActionButton
+    @BindView(R.id.scroll_view)
+    lateinit var scrollView: NestedScrollView
 
     private lateinit var equip: Equip
     private lateinit var targetEquips: MutableList<RecordThing>
@@ -64,9 +67,8 @@ class EquipDetailActivity : RxActivity() {
         val recordId = sharedPref.chooseId
         equip = DataSupport.where("id = ?", equipId).find(Equip::class.java)[0]
         fab.setOnClickListener { startActivityFinish(MainActivity::class.java) }
-
+        //scrollView.stretchScreen()
         targetEquips = DataSupport.where("recordId = ? and type = ?", recordId.toString(), "1").find(RecordThing::class.java)
-
         fabEdit.setOnClickListener {
             when {
                 recordId == -1L -> {
@@ -109,7 +111,7 @@ class EquipDetailActivity : RxActivity() {
          * 基础属性
          */
         val quality = equip.quality
-        val color = AppUtils.getColor(mContext, quality)
+        val color = AppUtils.getEquipQualityColor(mContext, quality)
         val equipName = equip.equipName
         tvName.text = equipName
         tvLevel.text = "Lv ${equip.level}"

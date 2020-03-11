@@ -11,6 +11,8 @@ import android.os.Build;
 import android.service.quicksettings.TileService;
 import android.widget.Toast;
 
+import com.smallcat.theworld.utils.ToastUtil;
+
 import java.net.URISyntaxException;
 
 /**
@@ -55,7 +57,7 @@ public class AliZhi {
             activity.startActivity(intent);
             return true;
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            ToastUtil.INSTANCE.shortShow(e.getReason());
             return false;
         } catch (ActivityNotFoundException e) {
             Toast.makeText(activity, "未安装支付宝", Toast.LENGTH_SHORT).show();

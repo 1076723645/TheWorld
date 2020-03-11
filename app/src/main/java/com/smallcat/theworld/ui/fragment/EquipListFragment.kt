@@ -10,6 +10,7 @@ import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.ui.activity.EquipDetailActivity
 import com.smallcat.theworld.ui.adapter.EquipAdapter
 import com.smallcat.theworld.utils.AppUtils
+import com.smallcat.theworld.utils.resiliencyScreen
 import com.smallcat.theworld.utils.sharedPref
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -52,6 +53,7 @@ class EquipListFragment : RxFragment() {
         adapter.emptyView = AppUtils.getEmptyView(mContext, "数据加载中")
         recyclerView.adapter = adapter
         isBack = mContext.sharedPref.isBack
+        recyclerView.resiliencyScreen()
         loadData()
     }
 

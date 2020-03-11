@@ -108,7 +108,6 @@ public class ZhiActivity extends AppCompatActivity implements View.OnClickListen
                 mQaImage.setImageResource(wechatQaImage);
             }
             mZhiWay = ++mZhiWay % 2;
-
         }
 
     }

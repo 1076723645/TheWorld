@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.smallcat.theworld.R
-import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.ui.widget.ProgressView
 import com.smallcat.theworld.utils.LogUtil

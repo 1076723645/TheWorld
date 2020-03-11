@@ -7,10 +7,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="lineColor">@color/btn_blue</item>
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="tabColor">@color/color_33</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColor">@color/color_6c</item>
         <item name="android:exported">false</item>
+
     </style>
 
     <style name="CustomDialog" parent="android:style/Theme.Dialog">
@@ -58,7 +59,7 @@
         <item name="colorPrimaryDark">@color/bg_black</item>
         <item name="colorAccent">@color/btn_b</item>
         <item name="lineColor">@color/btn_b</item>
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="tabColor">@color/btn_b</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColor">@color/color_6c</item>
         <item name="android:exported">false</item>

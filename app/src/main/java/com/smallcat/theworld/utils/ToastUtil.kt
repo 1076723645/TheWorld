@@ -33,4 +33,20 @@ object ToastUtil {
         }
     }
 
+    @SuppressLint("ShowToast")
+    fun longShow(s: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            //9.0以上toast直接用原生的方法即可，并不用setText防止重复的显示的问题
+            Toast.makeText(App.getInstance(), s, Toast.LENGTH_LONG).show()
+        } else {
+            if (mToast == null) {
+                mToast = Toast.makeText(App.getInstance(), s, Toast.LENGTH_LONG)
+            } else {
+                mToast!!.duration = Toast.LENGTH_LONG
+                mToast!!.setText(s)
+            }
+            mToast!!.show()
+        }
+    }
+
 }

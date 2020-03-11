@@ -2,6 +2,10 @@ package com.smallcat.theworld.utils
 
 import android.app.Activity
 import android.content.res.Resources
+import android.view.View
+import com.billy.android.swipe.SmartSwipe
+import com.billy.android.swipe.consumer.SpaceConsumer
+import com.billy.android.swipe.consumer.StretchConsumer
 import com.smallcat.theworld.App
 
 /**
@@ -89,4 +93,16 @@ fun isAdaptScreen(): Boolean {
     val systemDm = Resources.getSystem().displayMetrics
     val appDm = App.getInstance().resources.displayMetrics
     return systemDm.density != appDm.density
+}
+
+fun View.resiliencyScreen() {
+    SmartSwipe.wrap(this)
+            .addConsumer(SpaceConsumer())
+            .enableVertical()
+}
+
+fun View.stretchScreen() {
+    SmartSwipe.wrap(this)
+            .addConsumer(StretchConsumer())
+            .enableVertical()
 }

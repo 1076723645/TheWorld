@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,12 +21,11 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import me.yokeyword.fragmentation.SupportActivity
-import me.yokeyword.fragmentation_swipeback.SwipeBackActivity
 
 /**
  * Created by smallCut on 2018/4/27.
  */
-abstract class RxActivity : SwipeBackActivity() {
+abstract class RxActivity : SupportActivity() {
 
     protected lateinit var mContext: Context
     private var loadingDialog: Dialog? = null
@@ -48,6 +49,14 @@ abstract class RxActivity : SwipeBackActivity() {
         iv_back?.setOnClickListener { finish() }
         initData()
     }
+
+    /*override fun getResources(): Resources {
+        val res = super.getResources()
+        val config = Configuration()
+        config.setToDefaults()
+        res.updateConfiguration(config, res.displayMetrics)
+        return res
+    }*/
 
     private fun checkAppStatus() {
         if (AppStatusManager.getInstance().appStatus == AppStatusManager.AppStatusConstant.APP_FORCE_KILLED) {

@@ -16,38 +16,60 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="56dp"
             android:background="?attr/colorPrimary"
             app:contentInsetStart="0dp">
 
             <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:cropToPadding="true"
                 android:padding="8dp"
-                android:id="@+id/iv_logo"
-                android:src="@drawable/toolbar_head"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:src="@drawable/toolbar_head" />
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_gravity="center_horizontal"
-                android:textSize="18sp"
-                android:singleLine="true"
-                android:text="世界RPG"
-                android:textColor="@color/white"
-                android:maxLength="10"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:tabIndicatorHeight="0dp"
+                app:tabSelectedTextColor="?attr/tabColor"
+                app:tabTextColor="@color/white"
+                app:tabUnboundedRipple="true"
+                app:tabMinWidth="60dp">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="装备"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="材料"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:text="boss"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="职业"/>
+
+            </com.google.android.material.tabs.TabLayout>
 
             <ImageView
-                android:layout_marginEnd="8dp"
                 android:id="@+id/iv_search"
-                android:layout_gravity="end"
-                android:src="@drawable/ic_search"
-                android:scaleType="centerCrop"
-                android:padding="8dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_search" />
 
         </androidx.appcompat.widget.Toolbar>
 

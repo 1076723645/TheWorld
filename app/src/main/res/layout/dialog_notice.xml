@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="724273000"
+            android:text="724273000(已满)\n978603861"
             android:background="@null"
             android:textSize="14sp"
             android:textColor="?attr/colorAccent" />
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="5.app助手网页下载地址"
+            android:text="5.app助手网页下载地址(安装密码:world)"
             android:textColor="@color/text_color_black" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:autoLink="web"
-            android:text="https://www.pgyer.com/QX6L"
+            android:text="https://www.pgyer.com/xwLb"
             android:textColor="?attr/colorAccent" />
 
         <TextView

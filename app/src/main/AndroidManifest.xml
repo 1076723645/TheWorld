@@ -30,18 +30,12 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:replace="android:networkSecurityConfig,android:allowBackup">
 
-        <provider
-            android:name="com.pgyersdk.PgyerProvider"
-            android:authorities="com.smallcat.theworld.com.pgyer.provider"
-            android:exported="false"
-            android:grantUriPermissions="true" />
-
         <meta-data
             android:name="android.max_aspect"
             android:value="2.3" />
         <meta-data
             android:name="PGYER_APPID"
-            android:value="91217be11b504026be810322258d504c" />
+            android:value="cb338f8f067e953207974bedd64cd8da" />
 
         <activity
             android:name=".ui.activity.MainActivity"

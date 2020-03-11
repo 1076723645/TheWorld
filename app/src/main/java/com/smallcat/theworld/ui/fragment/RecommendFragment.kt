@@ -32,7 +32,7 @@ class RecommendFragment : RxFragment() {
 
     override fun initView() {
         adapter = HeroEquipAdapter(list)
-        adapter.emptyView = AppUtils.getEmptyView(mContext, "别问，问就是异端爆破大自残")
+        adapter.emptyView = AppUtils.getEmptyView(mContext, "别问，快点投稿")
         adapter.setOnItemClickListener { _, _, position ->
             startActivity(RecommendActivity.getIntent(mContext, list[position].id))
         }

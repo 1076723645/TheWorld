@@ -7,7 +7,6 @@ import android.view.View
 import androidx.viewpager.widget.ViewPager
 import butterknife.OnClick
 import com.smallcat.theworld.R
-import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.db.Boss
 import com.smallcat.theworld.ui.adapter.BossPageAdapter

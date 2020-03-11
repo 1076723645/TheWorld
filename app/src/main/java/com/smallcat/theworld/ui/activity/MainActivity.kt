@@ -14,7 +14,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.billy.android.swipe.SmartSwipeBack
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
+import com.pgyersdk.update.DownloadFileListener
 import com.pgyersdk.update.PgyUpdateManager
 import com.pgyersdk.update.UpdateManagerListener
 import com.pgyersdk.update.javabean.AppBean
@@ -30,6 +33,7 @@ import com.smallcat.theworld.ui.fragment.MaterialFragment
 import com.smallcat.theworld.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 import me.yokeyword.fragmentation.ISupportFragment
+import java.io.File
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,7 +68,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val navView = findViewById<NavigationView>(R.id.nav_view)
         navView.setNavigationItemSelectedListener(this)
         mDrawerLayout = findViewById(R.id.drawer_layout)
-        navView.setCheckedItem(R.id.nav_equip)
 
         /*val path = sharedPref.splashPath
         if (path != "") {
@@ -79,12 +82,30 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val ivSearch = findViewById<ImageView>(R.id.iv_search)
         ivSearch.setOnClickListener { startActivity(SearchActivity::class.java) }
 
+        val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+            }
+
+            override fun onTabSelected(p0: TabLayout.Tab?) {
+                showChooseFragment(p0?.position!!)
+            }
+
+        })
+
         fg1 = EquipFragment()
         fg2 = ExclusiveFragment()
         fg3 = BossFragment()
         fg4 = MaterialFragment()
         loadMultipleRootFragment(R.id.fragment_container, 0, fg1, fg2, fg3, fg4)
         checkPermission(0)
+
+        //主Activity不需要侧滑返回功能，其它Activity都采用仿微信侧滑返回效果
+        SmartSwipeBack.activitySlidingBack(application) { it !is SettingActivity }
     }
 
     private fun showDialog() {
@@ -169,16 +190,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             val view = LayoutInflater.from(mContext).inflate(R.layout.dialog_update, null)
             val tvMsg = view.findViewById<EditText>(R.id.tv_msg)
             val tvSure = view.findViewById<TextView>(R.id.tv_download)
+            val tvDownload = view.findViewById<TextView>(R.id.tv_download_pgy)
             val tvCancel = view.findViewById<TextView>(R.id.tv_cancel)
             tvMsg.setText(appBean.releaseNote)
             tvSure.setOnClickListener {
                 dialog?.dismiss()
                 LogUtil.e(appBean.downloadURL)
-                if (Build.VERSION.SDK_INT >= 29) {
-                    ToastUtil.shortShow("android 10自动更新暂不支持，请点击提示中的下载链接手动下载")
-                } else {
-                    PgyUpdateManager.downLoadApk(appBean.downloadURL)
-                }
+                PgyUpdateManager.downLoadApk(AppUtils.DOWNLOAD_APK_URL)
+            }
+            tvDownload.setOnClickListener {
+                dialog?.dismiss()
+                PgyUpdateManager.downLoadApk(appBean.downloadURL)
             }
             tvCancel.setOnClickListener { dialog!!.dismiss() }
             dialog?.setContentView(view)
@@ -197,12 +219,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
+    private fun showChooseFragment(position: Int) {
+        when (position) {
+            0 -> show = EQUIP
+            1 -> show = MATERIAL
+            2 -> show = BOSS
+            3 -> show = EXCLUSIVE
+        }
+        showHideFragment(getFragment(show), getFragment(hide))
+        hide = show
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_equip -> show = EQUIP
-            R.id.nav_career -> show = EXCLUSIVE
-            R.id.nav_boss -> show = BOSS
-            R.id.nav_task -> show = MATERIAL
             R.id.nav_setting -> {
                 startActivity(SettingActivity::class.java)
                 return true
@@ -217,11 +246,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_support -> {
                 val config = Config.Builder(AppUtils.ZFB_URL, R.drawable.support_zfb, R.drawable.support_wx).build()
                 MiniPayUtils.setupPay(mContext, config)
+                return true
             }
         }
         mDrawerLayout.closeDrawers()
-        showHideFragment(getFragment(show), getFragment(hide))
-        hide = show
         return true
     }
 

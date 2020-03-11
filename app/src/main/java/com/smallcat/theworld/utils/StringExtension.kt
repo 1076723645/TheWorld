@@ -23,6 +23,10 @@ fun String.toast() {
     ToastUtil.shortShow(this)
 }
 
+fun String.toastLong() {
+    ToastUtil.longShow(this)
+}
+
 fun Context.start(activity: Class<*>) {
     Intent(applicationContext, activity).apply {
         startActivity(this)

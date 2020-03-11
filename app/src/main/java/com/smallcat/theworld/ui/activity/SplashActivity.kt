@@ -8,7 +8,6 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.smallcat.theworld.R
 import com.smallcat.theworld.model.db.*
@@ -94,7 +93,17 @@ class SplashActivity : AppCompatActivity() {
             mAudioManager.isSpeakerphoneOn = true
             mMediaPlayer?.setOnCompletionListener { goMain() }
             mMediaPlayer?.start()
-            "第${times + 1}次掉落了恩德拉的苏醒, 你今天很欧哦QAQ".toast()
+
+            when {
+                times < 3 -> "第${times + 1}次掉落了橡树果实, 欧皇在世,无可匹敌！！！".toastLong()
+                times < 10 -> "第${times + 1}次掉落了火灵之纹, 火灵精华, 你还是人吗？？？".toastLong()
+                times < 50 ->  "第${times + 1}次掉落了恩德拉的苏醒, 欧皇必死QAQ".toastLong()
+                times < 100 ->  "第${times + 1}次掉落了混沌碎片, 你今天很欧噢QAQ".toastLong()
+                times < 150 ->  "第${times + 1}次掉落了极寒碎片, 你今天不错喔QAQ".toastLong()
+                times < 200 ->  "第${times + 1}次掉落了覆灭之戒, 你需要洗洗手了QAQ".toastLong()
+                times < 300 ->  "第${times + 1}次掉落了生命源泉, 非酋啊".toastLong()
+                else -> "第${times + 1}次掉落了自然之翼, 你已经没救了，建议弃坑！！！".toastLong()
+            }
             sharedPref.times = 0
         } else {
             times++
@@ -313,7 +322,7 @@ class SplashActivity : AppCompatActivity() {
         val bagList = DataSupport.findAll(RecordThing::class.java)
         for (i in bagList) {
             //"物品名称${i.equipName}".logE()
-            DataUtil.changeRecordEquipName(i.equipName!!)?.let {
+            DataUtil.changeRecordEquipName(i.equipName)?.let {
                 i.equipName = it
                 //"修改为${i.equipName}".logE()
             }

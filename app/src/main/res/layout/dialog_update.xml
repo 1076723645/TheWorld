@@ -45,34 +45,48 @@
 
         <TextView
             android:id="@+id/tv_cancel"
-            android:layout_width="114dp"
+            android:layout_width="80dp"
             android:layout_height="34dp"
             android:layout_marginBottom="24dp"
-            android:layout_marginEnd="24dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/shape_line_14_3f"
             android:gravity="center"
             android:text="暂不下载"
             android:textColor="?attr/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_download"
-            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toStartOf="@+id/tv_download_pgy"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_msg" />
 
         <TextView
-            android:id="@+id/tv_download"
-            android:layout_width="114dp"
+            android:id="@+id/tv_download_pgy"
+            android:layout_width="80dp"
             android:layout_height="34dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/shape_blue_14"
             android:gravity="center"
-            android:text="立即下载"
+            android:text="下载"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_download"
+            app:layout_constraintStart_toEndOf="@+id/tv_cancel"
+            app:layout_constraintTop_toBottomOf="@+id/tv_msg" />
+
+        <TextView
+            android:id="@+id/tv_download"
+            android:layout_width="80dp"
+            android:layout_height="34dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_blue_14"
+            android:gravity="center"
+            android:text="备用下载"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_cancel"
+            app:layout_constraintStart_toEndOf="@+id/tv_download_pgy"
             app:layout_constraintTop_toBottomOf="@+id/tv_msg" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

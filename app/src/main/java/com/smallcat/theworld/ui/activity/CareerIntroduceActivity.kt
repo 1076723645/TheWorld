@@ -1,13 +1,12 @@
 package com.smallcat.theworld.ui.activity
 
 import android.content.Intent
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.OnClick
 import com.smallcat.theworld.R
-import com.smallcat.theworld.base.BaseActivity
 import com.smallcat.theworld.base.RxActivity
 import com.smallcat.theworld.model.db.Equip
 import com.smallcat.theworld.model.db.Exclusive
