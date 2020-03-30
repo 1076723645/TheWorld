@@ -110,10 +110,12 @@ class MyWorldActivity : RxActivity() {
     }
 
     private fun changeDefaultChoose(position: Int) {
-        val oldData = list[mChoosePos]
-        oldData.isDefault = false
-        adapter.notifyItemChanged(mChoosePos)
-        oldData.save()
+        if (mChoosePos < list.size) {
+            val oldData = list[mChoosePos]
+            oldData.isDefault = false
+            adapter.notifyItemChanged(mChoosePos)
+            oldData.save()
+        }
 
         val data = list[position]
         data.isDefault = true

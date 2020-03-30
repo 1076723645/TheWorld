@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.BaseDialogFragment
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import com.smallcat.theworld.R
 import com.smallcat.theworld.model.callback.SureCallBack
 
@@ -14,7 +16,7 @@ import com.smallcat.theworld.model.callback.SureCallBack
  * @author hui
  * @date 2019-07-08
  */
-class SureDialogFragment(private var mText: String = "", var callback: SureCallBack) : DialogFragment() {
+class SureDialogFragment(private var mText: String = "", var callback: SureCallBack) : BaseDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,5 +36,4 @@ class SureDialogFragment(private var mText: String = "", var callback: SureCallB
         }
         return v
     }
-
 }

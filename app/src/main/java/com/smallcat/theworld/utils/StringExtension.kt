@@ -42,5 +42,5 @@ fun Context.getResourceColor(color: Int) = ContextCompat.getColor(this, color)
 
 fun AppCompatActivity.showCheckDialog(text: String, callback: SureCallBack) {
     val dialog = SureDialogFragment(text, callback)
-    dialog.show(supportFragmentManager, "sureDialog")
+    dialog.show(supportFragmentManager, dialog.tag)
 }

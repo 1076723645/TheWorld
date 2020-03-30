@@ -152,9 +152,14 @@ class RecordDetailActivity : RxActivity() {
         for (i in targetEquips.indices) {
             val data = targetEquips[i]
             val newData = RecordExpandData()
-            newData.equipName = data.equipName!!
+            newData.equipName = data.equipName
             newData.equipIcon = data.equipImg
-            val equip = DataSupport.where("equipName = ?", newData.equipName).find(Equip::class.java)[0]
+            val equips = DataSupport.where("equipName = ?", newData.equipName).find(Equip::class.java)
+            if (equips.isEmpty()){
+                data.delete()
+                continue
+            }
+            val equip = equips[0]
             newData.dataList = equip.dataList as ArrayList<String>
             if (newData.dataList.size <= 1) {
                 for (k in wearEquips.indices) {

@@ -179,6 +179,7 @@ class RecordFragment : RxFragment() {
             val equips = DataSupport.where("equipName = ?", newData.equipName).find(Equip::class.java)
             if (equips.isEmpty()){
                 CrashReport.postCatchedException(Throwable(data.equipName))
+                data.delete()
                 continue
             }
             val equip = equips[0]

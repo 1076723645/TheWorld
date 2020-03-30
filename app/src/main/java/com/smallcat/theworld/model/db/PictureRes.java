@@ -92,7 +92,7 @@ public class PictureRes {
             , R.drawable.huiz_13, R.drawable.huiz_14, R.drawable.huiz_15, R.drawable.huiz_16, R.drawable.huiz_17, R.drawable.huiz_18, R.drawable.huiz_19
             , R.drawable.huiz_20, R.drawable.huiz_21
             , R.drawable.huiz_gulong, R.drawable.huiz_kulou, R.drawable.huiz_shiwang, R.drawable.huiz_faye, R.drawable.huiz_zhutian, R.drawable.huiz_icedragon
-            , R.color.reg_choose_color, R.drawable.huiz_yinmiao, R.drawable.huiz_youling, R.drawable.huiz_haiyang, R.drawable.huiz_xinnian
+            , R.drawable.hz_yonghshijie, R.drawable.huiz_yinmiao, R.drawable.huiz_youling, R.drawable.huiz_haiyang, R.drawable.huiz_xinnian
             , R.drawable.huiz_xinnian, R.drawable.cangp_sdfuz, R.drawable.head_9, R.drawable.head_9};
 
     private static final int[] cailList = new int[]{R.drawable.cail_0, R.drawable.cail_1, R.drawable.cail_2, R.drawable.cail_3, R.drawable.cail_4, R.drawable.cail_5
