@@ -92,7 +92,7 @@ class RecordEditActivity : RxActivity() {
             if (position < 0 || position >= targetEquips.size) {
                 return@setOnItemClickListener
             }
-            AppUtils.goEquipDetailActivity(mContext, targetEquips[position].equipName!!)
+            AppUtils.goEquipDetailActivity(mContext, targetEquips[position].equipName)
         }
         targetAdapter.setOnItemChildClickListener { _, _, position ->
             if (position < 0 || position >= targetEquips.size) {
@@ -118,7 +118,7 @@ class RecordEditActivity : RxActivity() {
             if (position < 0 || position >= wearEquips.size) {
                 return@setOnItemClickListener
             }
-            AppUtils.goEquipDetailActivity(mContext, wearEquips[position].equipName!!)
+            AppUtils.goEquipDetailActivity(mContext, wearEquips[position].equipName)
         }
         wearAdapter.setOnItemChildClickListener { _, _, position ->
             if (position < 0 || position >= wearEquips.size) {

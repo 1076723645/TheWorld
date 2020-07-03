@@ -17,7 +17,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.billy.android.swipe.SmartSwipeBack
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
-import com.pgyersdk.update.DownloadFileListener
 import com.pgyersdk.update.PgyUpdateManager
 import com.pgyersdk.update.UpdateManagerListener
 import com.pgyersdk.update.javabean.AppBean
@@ -33,7 +32,6 @@ import com.smallcat.theworld.ui.fragment.MaterialFragment
 import com.smallcat.theworld.utils.*
 import com.tbruyelle.rxpermissions2.RxPermissions
 import me.yokeyword.fragmentation.ISupportFragment
-import java.io.File
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 

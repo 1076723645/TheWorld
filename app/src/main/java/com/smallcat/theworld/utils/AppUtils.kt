@@ -22,6 +22,10 @@ import java.util.*
  */
 object AppUtils {
 
+    const val ZFB_URL = "fkx03417xfw86t3stsv3205"
+
+    const val DOWNLOAD_APK_URL = "https://twrpg.fun/RecordFile/download/theWorld.apk"
+
     fun getVerName(context: Context): String {
         var verName = ""
         try {
@@ -29,17 +33,16 @@ object AppUtils {
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         }
-
         return verName
     }
 
-    fun getColor(mContext: Context, qul: String): Int {
+    fun getEquipQualityColor(mContext: Context, qul: String): Int {
         val color = when {
             qul.contains("罕见") -> R.color.lightskyblue
             qul.contains("天绝史诗") -> R.color.mediumslateblue
             qul.contains("传奇至宝") -> R.color.royalblue
             qul.contains("神话传说") -> R.color.darkmagenta
-            qul.contains("冥灵传世") -> R.color.btn_b
+            qul.contains("冥灵传世") -> R.color.green
             else -> R.color.firebrick
         }
         return getResourcesColor(mContext, color)
@@ -109,7 +112,7 @@ object AppUtils {
             }
         }
         a = sb.toString().split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        return Arrays.asList(*a)
+        return listOf(*a)
     }
 
     fun stringToList(str: String?): List<String> {
@@ -117,7 +120,7 @@ object AppUtils {
             return ArrayList()
         }
         val array = str.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        return ArrayList(Arrays.asList(*array))
+        return ArrayList(listOf(*array))
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -126,9 +129,9 @@ object AppUtils {
         return df.format(Date(time))
     }
 
-    fun checkContain(list:MutableList<Equip>, equip: Equip):Boolean{
-        for (i in list.indices){
-            if (list[i].id == equip.id){
+    fun checkContain(list: MutableList<Equip>, equip: Equip): Boolean {
+        for (i in list.indices) {
+            if (list[i].id == equip.id) {
                 return true
             }
         }

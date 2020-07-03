@@ -13,6 +13,7 @@ import com.smallcat.theworld.ui.adapter.BossPageAdapter
 import kotlinx.android.synthetic.main.activity_boss_detail.*
 import kotlinx.android.synthetic.main.normal_toolbar.*
 import org.litepal.crud.DataSupport
+import java.util.*
 
 class BossDetailActivity : RxActivity() {
 
