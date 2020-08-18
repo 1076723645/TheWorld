@@ -40,7 +40,7 @@ class SharedPref {
 
     //装备是否倒序显示
     var isBack: Boolean
-        get() = prefs.getBoolean(KEY_BACK, false)
+        get() = prefs.getBoolean(KEY_BACK, true)
         set(value) = prefs.edit().putBoolean(KEY_BACK, value).apply()
 
     var isFirst: Boolean

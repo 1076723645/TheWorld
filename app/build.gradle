@@ -10,8 +10,8 @@ android {
         applicationId "com.smallcat.theworld"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 22501
-        versionName "2.25.1"
+        versionCode 22605
+        versionName "2.26.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         ndk {

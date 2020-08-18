@@ -32,14 +32,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="2.APP助手群"
+            android:text="2.APP助手群(别同时加)"
             android:textColor="@color/text_color_black" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="724273000(已满)\n978603861"
+            android:text="724273000(一群)\n978603861(二群)"
             android:background="@null"
             android:textSize="14sp"
             android:textColor="?attr/colorAccent" />
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="5.app助手网页下载地址(安装密码:world)"
+            android:text="5.app助手网页下载地址"
             android:textColor="@color/text_color_black" />
 
         <TextView

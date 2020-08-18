@@ -94,7 +94,7 @@ class SplashActivity : AppCompatActivity() {
             mMediaPlayer?.setOnCompletionListener { goMain() }
             mMediaPlayer?.start()
 
-            when {
+            /*when {
                 times < 3 -> "第${times + 1}次掉落了橡树果实, 欧皇在世,无可匹敌！！！".toastLong()
                 times < 10 -> "第${times + 1}次掉落了火灵之纹, 火灵精华, 你还是人吗？？？".toastLong()
                 times < 50 -> "第${times + 1}次掉落了恩德拉的苏醒, 欧皇必死QAQ".toastLong()
@@ -103,7 +103,7 @@ class SplashActivity : AppCompatActivity() {
                 times < 200 -> "第${times + 1}次掉落了覆灭之戒, 你需要洗洗手了QAQ".toastLong()
                 times < 300 -> "第${times + 1}次掉落了生命源泉, 非酋啊".toastLong()
                 else -> "第${times + 1}次掉落了自然之翼, 你已经没救了，建议弃坑！！！".toastLong()
-            }
+            }*/
             sharedPref.times = 0
         } else {
             times++

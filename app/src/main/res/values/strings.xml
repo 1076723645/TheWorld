@@ -2,7 +2,7 @@
     <string name="app_name">世界RPG</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="world_version">0.54e</string>
+    <string name="world_version">0.56a</string>
 
     <string name="wei_zhi_title">捐赠·微信</string>
     <string name="wei_zhi_tip">微信扫一扫，或者点击\"去捐赠\"，在微信页面右上角菜单中 \"从相册中选取二维码\"。\n点击捐赠会自动保存二维码</string>

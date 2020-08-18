@@ -41,7 +41,12 @@ public class PictureRes {
             , R.drawable.wuqi_152, R.drawable.wuqi_molu_shengcai, R.drawable.wuqi_153, R.drawable.wuqi_xiuzheng_chumo, R.drawable.wuqi_154, R.drawable.wuqi_155, R.drawable.wuqi_156, R.drawable.wuqi_longshou
             , R.drawable.wuqi_158, R.drawable.wuqi_159, R.drawable.wuqi_161, R.drawable.wuqi_juexi_baopo, R.drawable.wuqi_162, R.drawable.wuqi_163, R.drawable.wuqi_164, R.drawable.wuqi_165
             , R.drawable.wuqi_yiwang, R.drawable.wuqi_160, R.drawable.wuqi_wenyi, R.drawable.wuqi_menghuanzhijian, R.drawable.wuqi_daxuese, R.drawable.wuqi_huihuang
-            , R.drawable.wuqi_wangqian, R.drawable.wuqi_junaibao, R.drawable.wuqi_juehao, R.drawable.wuqi_juexing_chengjie, R.drawable.wuqi_fengs_yongheng};
+            , R.drawable.wuqi_wangqian, R.drawable.wuqi_junaibao, R.drawable.wuqi_juehao, R.drawable.wuqi_juexing_chengjie, R.drawable.wuqi_fengs_yongheng, R.drawable.wuqi_hundunpitian, R.drawable.wuqi_haoyuezuiying
+            , R.drawable.wuqi_diaoling_juew, R.drawable.wuqi_due_muyuquenian, R.drawable.wuqi_dadongri, R.drawable.wuqi_beiliyaliliang
+            , R.drawable.wuqi_axibeier, R.drawable.wuqi_dawangdao, R.drawable.wuqi_zuihoudeyiyan, R.drawable.wuqi_yixiang_siwang
+            , R.drawable.wuqi_xukongzhuilie, R.drawable.wuqi_taotie_mori, R.drawable.wuqi_hundunzhutian, R.drawable.wuqi_tiantzhimeng
+            , R.drawable.wuqi_hundunbishou
+    };
 
     private static final int[] imgList2 = new int[]{R.drawable.head_2
             , R.drawable.head_7, R.drawable.head_8, R.drawable.head_9, R.drawable.head_10
@@ -55,7 +60,10 @@ public class PictureRes {
             , R.drawable.head_34, R.drawable.head_35, R.drawable.head_36, R.drawable.head_37
             , R.drawable.head_38, R.drawable.head_39, R.drawable.head_40
             , R.drawable.head_42, R.drawable.head_43, R.drawable.head_44, R.drawable.head_45
-            , R.drawable.head_46, R.drawable.head_47, R.drawable.head_dagouyan};
+            , R.drawable.head_46, R.drawable.head_47, R.drawable.head_dagouyan, R.drawable.head_shenghui_changqzhiyao
+            , R.drawable.head_pingj_xiechengzhiguan, R.drawable.head_lunhui_huimietouj, R.drawable.head_daemeng
+            , R.drawable.head_banshengmianju, R.drawable.head_jugaotou, R.drawable.head_shouhuzhezhihun
+    };
 
     private static final int[] imgList3 = new int[]{R.drawable.nail_2, R.drawable.nail_3, R.drawable.nail_4, R.drawable.nail_5
             , R.drawable.nail_6, R.drawable.nail_7, R.drawable.nail_8, R.drawable.nail_9, R.drawable.nail_10, R.drawable.nail_11, R.drawable.nail_12
@@ -65,7 +73,10 @@ public class PictureRes {
             , R.drawable.nail_34, R.drawable.nail_35, R.drawable.nail_36, R.drawable.nail_37, R.drawable.nail_38, R.drawable.nail_39, R.drawable.nail_40
             , R.drawable.nail_41, R.drawable.nail_42, R.drawable.nail_43, R.drawable.nail_44, R.drawable.nail_45, R.drawable.nail_46, R.drawable.nail_47
             , R.drawable.nail_48, R.drawable.nail_chuxuejiazhou, R.drawable.nail_51, R.drawable.nail_xukpof, R.drawable.nail_xianqufengbao
-            , R.drawable.nail_deruyi, R.drawable.nail_49, R.drawable.nail_dasiling, R.drawable.nail_guiji_jinji, R.drawable.nail_yatanxiya};
+            , R.drawable.nail_deruyi, R.drawable.nail_49, R.drawable.nail_dasiling, R.drawable.nail_guiji_jinji, R.drawable.nail_yatanxiya
+            , R.drawable.nail_tiandidatong, R.drawable.nail_juxuejia, R.drawable.nail_shixuezhe, R.drawable.nail_tiantangfapao
+            , R.drawable.nail_diyufapao
+    };
 
     private static final int[] imgList4 = new int[]{R.drawable.ship_1, R.drawable.ship_2, R.drawable.ship_3, R.drawable.ship_4, R.drawable.ship_5
             , R.drawable.ship_6, R.drawable.ship_7, R.drawable.ship_8, R.drawable.ship_9, R.drawable.ship_10, R.drawable.ship_11, R.drawable.ship_12
@@ -76,15 +87,19 @@ public class PictureRes {
             , R.drawable.ship_40, R.drawable.ship_41, R.drawable.ship_42, R.drawable.ship_43, R.drawable.ship_44, R.drawable.ship_45, R.drawable.ship_46, R.drawable.ship_47
             , R.drawable.ship_48, R.drawable.ship_49, R.drawable.ship_50, R.drawable.ship_51, R.drawable.ship_52, R.drawable.ship_53, R.drawable.ship_54
             , R.drawable.ship_55, R.drawable.ship_56, R.drawable.ship_58, R.drawable.ship_60, R.drawable.ship_62, R.drawable.ship_63, R.drawable.ship_64
-            , R.drawable.head_yangyan, R.drawable.ship_yonghengshengbei, R.drawable.ship_juanlianshengjie, R.drawable.ship_tangl_wujin, R.drawable.ship_57, R.drawable.ship_59
-            , R.drawable.ship_dameigui, R.drawable.ship_mingyunzhih, R.drawable.ship_ningx_fengk, R.drawable.ship_chengh_xiw, R.drawable.ship_suimo_juew};
+            , R.drawable.head_yangyan, R.drawable.ship_yonghengshengbei, R.drawable.ship_juanlianshengjie, R.drawable.ship_57, R.drawable.ship_59
+            , R.drawable.ship_dameigui, R.drawable.ship_mingyunzhih, R.drawable.ship_ningx_fengk, R.drawable.ship_chengh_xiw, R.drawable.ship_suimo_juew
+            , R.drawable.ship_shengfengzhijie,
+    };
 
     private static final int[] imgList = new int[]{R.drawable.chib_1, R.drawable.chib_2, R.drawable.chib_3, R.drawable.chib_4, R.drawable.chib_5
             , R.drawable.chib_6, R.drawable.chib_7, R.drawable.chib_8, R.drawable.chib_9, R.drawable.chib_10, R.drawable.chib_sx, R.drawable.chib_11
             , R.drawable.chib_12, R.drawable.chib_13, R.drawable.chib_14, R.drawable.chib_15, R.drawable.chib_16, R.drawable.chib_18, R.drawable.chib_19
             , R.drawable.chib_20, R.drawable.chib_21, R.drawable.chib_22, R.drawable.chib_23, R.drawable.chib_24, R.drawable.chib_25, R.drawable.chib_26
-            , R.drawable.chib_27, R.drawable.chib_shenyuxueyi, R.drawable.chib_17, R.drawable.chib_xianyi, R.drawable.cb_kanbeier, R.drawable.chib_poxie_changqiong
-            , R.drawable.chib_poqiong_yongg};
+            , R.drawable.chib_27, R.drawable.chib_shenyuxueyi, R.drawable.ship_tangl_wujin, R.drawable.chib_17, R.drawable.chib_xianyi, R.drawable.cb_kanbeier, R.drawable.chib_poxie_changqiong
+            , R.drawable.chib_poqiong_yongg, R.drawable.chib_fengshen_yuhuoshenyi, R.drawable.chib_jinji_shuanghanyuyi
+            , R.drawable.chib_anyelingzhu, R.drawable.chib_shengyuanzican, R.drawable.chib_shihunze, R.drawable.chib_buxiuzhiyi
+    };
 
     private static final int[] huizList = new int[]{R.drawable.huiz_1, R.drawable.huiz_2, R.drawable.huiz_3, R.drawable.huiz_4, R.drawable.huiz_5
             , R.drawable.huiz_6, R.drawable.huiz_7, R.drawable.huiz_8, R.drawable.huiz_9, R.drawable.huiz_10, R.drawable.huiz_11, R.drawable.huiz_12
@@ -119,15 +134,18 @@ public class PictureRes {
 
     private static final int[] EXCLUSIVE_LIST = new int[]{
             //背包
-            R.drawable.liliang, R.drawable.haohan, R.drawable.haohan, R.drawable.shenyuan, R.drawable.shangqiu, R.drawable.wuqi_161, R.drawable.shuiguo,
+            R.drawable.liliang, R.drawable.haohan, R.drawable.haohan, R.drawable.shenyuan, R.drawable.shangqiu, R.drawable.wuqi_161,
+            R.drawable.wuqi_yixiang_siwang, R.drawable.shuiguo,
             R.drawable.tanguo, R.drawable.tanguo, R.drawable.tianguo, R.drawable.shengming, R.drawable.wuqi_162, R.drawable.wuqi_junaibao, R.drawable.wuqi_juexi_baopo,
+            R.drawable.wuqi_diaoling_juew,
             //C8
-            R.drawable.nail_22, R.drawable.nail_37, R.drawable.wuqi_113, R.drawable.ship_14, R.drawable.ship_23, R.drawable.ship_42,
+            R.drawable.wuqi_113, R.drawable.wuqi_dadongri,
+            R.drawable.ship_14, R.drawable.ship_23, R.drawable.ship_42,
             //黑骑
             R.drawable.ship_53, R.drawable.nail_40, R.drawable.nail_49,
             //大锤
-            R.drawable.wuqi_125, R.drawable.wuqi_112, R.drawable.wuqi_155, R.drawable.wuqi_80, R.drawable.wuqi_159, R.drawable.ship_36, R.drawable.ship_56,
-            R.drawable.ship_60,
+            R.drawable.wuqi_125, R.drawable.wuqi_112, R.drawable.wuqi_155, R.drawable.wuqi_80, R.drawable.wuqi_159,
+            R.drawable.wuqi_axibeier, R.drawable.ship_36, R.drawable.ship_56, R.drawable.ship_60,
             //魅影
             R.drawable.wuqi_65, R.drawable.wuqi_117, R.drawable.wuqi_116, R.drawable.ship_60,
             //魔枪
@@ -137,16 +155,21 @@ public class PictureRes {
             //刺客
             R.drawable.ship_50, R.drawable.ship_51,
             //拳师
-            R.drawable.chib_14, R.drawable.chib_27, R.drawable.nail_25, R.drawable.nail_47, R.drawable.nail_yatanxiya, R.drawable.ship_60,
+            R.drawable.chib_14, R.drawable.chib_27, R.drawable.chib_fengshen_yuhuoshenyi, R.drawable.nail_25,
+            R.drawable.nail_47, R.drawable.nail_yatanxiya, R.drawable.ship_60,
             //神射
             R.drawable.wuqi_66, R.drawable.wuqi_124, R.drawable.wuqi_122, R.drawable.wuqi_123,
+            R.drawable.wuqi_dawangdao,
             //狙击
-            R.drawable.wuqi_107,
+            R.drawable.wuqi_107, R.drawable.wuqi_dawangdao,
             //闪闪
             R.drawable.chib_poxie_changqiong, R.drawable.chib_13,
             //机械
-            R.drawable.wuqi_59, R.drawable.wuqi_103, R.drawable.wuqi_105, R.drawable.wuqi_huihuang, R.drawable.wuqi_153, R.drawable.wuqi_xiuzheng_chumo, R.drawable.wuqi_152,
-            R.drawable.wuqi_molu_shengcai, R.drawable.wuqi_95, R.drawable.wuqi_164,
+            R.drawable.wuqi_59, R.drawable.wuqi_103, R.drawable.wuqi_105, R.drawable.wuqi_huihuang,
+            R.drawable.wuqi_153, R.drawable.wuqi_xiuzheng_chumo, R.drawable.wuqi_xukongzhuilie,
+            R.drawable.wuqi_152, R.drawable.wuqi_molu_shengcai, R.drawable.wuqi_zuihoudeyiyan,
+            R.drawable.wuqi_95, R.drawable.wuqi_164, R.drawable.wuqi_due_muyuquenian,
+            R.drawable.wuqi_tiantzhimeng,
             //牧师
             R.drawable.wuqi_120, R.drawable.wuqi_juehao, R.drawable.ship_36, R.drawable.ship_56, R.drawable.ship_57,
             R.drawable.ship_61, R.drawable.ship_62,
@@ -156,7 +179,8 @@ public class PictureRes {
             R.drawable.nail_34, R.drawable.nail_35,
             //月法
             //风法
-            R.drawable.wuqi_88, R.drawable.wuqi_106, R.drawable.nail_27, R.drawable.nail_38, R.drawable.head_39, R.drawable.ship_32,
+            R.drawable.wuqi_88, R.drawable.wuqi_106, R.drawable.wuqi_hundunbishou,
+            R.drawable.nail_27, R.drawable.nail_38, R.drawable.head_39, R.drawable.ship_32,
             R.drawable.ship_36, R.drawable.ship_56, R.drawable.ship_57,
             //召唤
             R.drawable.wuqi_132, R.drawable.wuqi_163, R.drawable.wuqi_62, R.drawable.wuqi_108,
@@ -170,7 +194,7 @@ public class PictureRes {
             //电法
             R.drawable.wuqi_88, R.drawable.wuqi_106, R.drawable.nail_26, R.drawable.nail_27, R.drawable.nail_38,
             //赏金
-            R.drawable.wuqi_152, R.drawable.wuqi_molu_shengcai
+            R.drawable.wuqi_152, R.drawable.wuqi_molu_shengcai, R.drawable.wuqi_zuihoudeyiyan
     };
 
     private static final int[] SKILL_LIST = new int[]{
