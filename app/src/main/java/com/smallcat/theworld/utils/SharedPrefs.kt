@@ -10,7 +10,7 @@ import com.smallcat.theworld.App
  */
 class SharedPref {
 
-    private val prefs: SharedPreferences = App.getInstance().applicationContext.getSharedPreferences(SharedPref.PREFS_KEY, Context.MODE_PRIVATE)
+    private val prefs: SharedPreferences = App.getInstance().applicationContext.getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
 
     companion object {
         private const val KEY_CHOOSE_RECORD = "chooseRecord"
@@ -27,7 +27,7 @@ class SharedPref {
     }
 
     var isBlack: Boolean
-        get() = prefs.getBoolean(KEY_BLACK, false)
+        get() = prefs.getBoolean(KEY_BLACK, true)
         set(token) = prefs.edit().putBoolean(KEY_BLACK, token).apply()
 
     var versionName: String?

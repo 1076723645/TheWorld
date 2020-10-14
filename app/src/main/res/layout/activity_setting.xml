@@ -314,66 +314,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_weight="1"
-                    android:text="人物图"
-                    android:textColor="@color/text_color_black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:text="脱俗小哥，晴空雨落，小背包"
-                    android:textColor="@color/route_view_text_color_gray"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/line_color" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_weight="1"
-                    android:text="Boss资料"
-                    android:textColor="@color/text_color_black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
-                    android:text="涼涼，白衣"
-                    android:textColor="@color/route_view_text_color_gray"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="0.5dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/line_color" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_weight="1"
                     android:text="鸣谢"
                     android:textColor="@color/text_color_black" />
 
@@ -381,7 +321,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
-                    android:text="Noble.faithful，广阔的沙漠，孽，AliceG"
+                    android:text="快稳黑, 脱俗小哥"
                     android:textColor="@color/route_view_text_color_gray"
                     android:textSize="13sp" />
             </LinearLayout>
